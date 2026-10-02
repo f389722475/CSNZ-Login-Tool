@@ -1,0 +1,13 @@
+CSNZ Giga Break LE Native 0.7.4-r2
+
+The mod source is a native port of the existing user-directed weapon repair.
+The publisher determines the license of the first-party mod source. No new
+open-source license is assigned to that work by this package.
+
+No original game binaries, decompiled game sources, assets, accounts or personal
+configuration are distributed. The game and its assets remain with their owners.
+
+MinHook v1.3.4 (x86 subset, unmodified upstream files):
+https://github.com/TsudaKageyu/minhook/tree/v1.3.4
+Its license includes terms for MinHook and bundled disassembly components.
+See MinHook-LICENSE.txt in Deploy, or third_party/minhook/LICENSE.txt in Source.

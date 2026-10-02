@@ -1,0 +1,141 @@
+<Window x:Class="Csnz.Launcher.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Title="{DynamicResource Ui.AppTitle}" Icon="Assets/cstrike-hd-v1.png" Width="1200" Height="820" MinWidth="1100" MinHeight="760" WindowStartupLocation="CenterScreen" Background="#F7F8FC" Foreground="{StaticResource Ink}" FontFamily="Segoe UI, Microsoft YaHei UI" FontSize="14" WindowStyle="None" ResizeMode="CanResize" Loaded="Window_Loaded" Closing="Window_Closing">
+  <shell:WindowChrome.WindowChrome><shell:WindowChrome CaptionHeight="38" ResizeBorderThickness="6" CornerRadius="0" GlassFrameThickness="0"/></shell:WindowChrome.WindowChrome>
+  <Grid>
+    <Grid.RowDefinitions><RowDefinition Height="38"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+    <Border Background="White" BorderBrush="#E9ECF3" BorderThickness="0,0,0,1">
+      <Grid><TextBlock Text="CSNZ" FontSize="10" FontWeight="SemiBold" Foreground="#8B95A8" Margin="22,0" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+          <Button Content="&#xE921;" FontFamily="Segoe MDL2 Assets" FontSize="10" Width="46" Padding="0" BorderThickness="0" Click="Minimize_Click" ToolTip="{DynamicResource Ui.Minimize}" AutomationProperties.Name="{DynamicResource Ui.Minimize}"/>
+          <Button Content="&#xE922;" FontFamily="Segoe MDL2 Assets" FontSize="10" Width="46" Padding="0" BorderThickness="0" Click="Maximize_Click" ToolTip="{DynamicResource Ui.Maximize}" AutomationProperties.Name="{DynamicResource Ui.Maximize}"/>
+          <Button Content="&#xE8BB;" FontFamily="Segoe MDL2 Assets" FontSize="10" Width="48" Padding="0" BorderThickness="0" Click="Close_Click" ToolTip="{DynamicResource Ui.Close}" AutomationProperties.Name="{DynamicResource Ui.Close}"/>
+        </StackPanel>
+      </Grid>
+    </Border>
+    <Grid Grid.Row="1">
+      <Grid.ColumnDefinitions><ColumnDefinition Width="198"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+      <Border Background="White" BorderBrush="#E7EAF2" BorderThickness="0,0,1,0">
+        <Grid Margin="20,30,20,22"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+          <StackPanel Orientation="Horizontal" Margin="0,0,0,42">
+            <Image x:Name="BrandIcon" Source="Assets/cstrike-hd-v1.png" Width="38" Height="38" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock x:Name="BrandName" Text="CSNZ" FontWeight="Bold" FontSize="21" Margin="10,0,0,0" VerticalAlignment="Center"/>
+          </StackPanel>
+          <StackPanel Grid.Row="1">
+            <TextBlock Text="WORKSPACE" FontSize="10" FontWeight="SemiBold" Foreground="#A2ABBB" Margin="12,0,0,13"/>
+            <Button x:Name="LoginNav" Click="LoginNav_Click" Background="#EEECFF" Foreground="#6157E8" BorderThickness="0" HorizontalContentAlignment="Left" Margin="0,0,0,8"><StackPanel Orientation="Horizontal"><TextBlock Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Margin="0,0,12,0" VerticalAlignment="Center"/><TextBlock Text="{DynamicResource Ui.Nav.Login}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/></StackPanel></Button>
+            <Button x:Name="WeaponModsNav" HorizontalContentAlignment="Left" Click="WeaponModsNav_Click" Background="Transparent" Foreground="#758198" BorderThickness="0" Margin="0,0,0,8"><StackPanel Orientation="Horizontal"><TextBlock Text="&#xE8F1;" FontFamily="Segoe MDL2 Assets" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Margin="0,0,12,0" VerticalAlignment="Center"/><TextBlock Text="{DynamicResource Ui.Nav.Mods}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/></StackPanel></Button>
+            <Button x:Name="SettingsNav" HorizontalContentAlignment="Left" Click="SettingsNav_Click" Background="Transparent" Foreground="#758198" BorderThickness="0" Margin="0,0,0,8"><StackPanel Orientation="Horizontal"><TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Margin="0,0,12,0" VerticalAlignment="Center"/><TextBlock Text="{DynamicResource Ui.Nav.Settings}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/></StackPanel></Button>
+            <Button x:Name="HelpNav" HorizontalContentAlignment="Left" Click="Help_Click" Background="Transparent" Foreground="#758198" BorderThickness="0"><StackPanel Orientation="Horizontal"><TextBlock Text="&#xE8A5;" FontFamily="Segoe MDL2 Assets" Foreground="#758198" Margin="0,0,12,0" VerticalAlignment="Center"/><TextBlock Text="{DynamicResource Ui.Nav.Help}" Foreground="#758198"/></StackPanel></Button>
+          </StackPanel>
+          <StackPanel Grid.Row="3">
+            <TextBlock Text="DESKTOP  /  v1.0.7" FontSize="10" Foreground="#A4ADBC" Margin="10,0"/>
+          </StackPanel>
+        </Grid>
+      </Border>
+      <Grid Grid.Column="1"><Grid.RowDefinitions><RowDefinition Height="78"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+        <Border BorderBrush="#E7EAF2" BorderThickness="0,0,0,1" Background="#FBFCFE">
+          <Grid Margin="34,0"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><StackPanel Orientation="Horizontal" VerticalAlignment="Center"><TextBlock Text="{DynamicResource Ui.Workspace}" Foreground="#98A2B4" FontSize="12"/><TextBlock Text="/" Foreground="#C5CBD5" Margin="13,0"/><TextBlock x:Name="Breadcrumb" Text="{DynamicResource Ui.Nav.Login}" FontSize="12" FontWeight="SemiBold"/></StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+              <Button x:Name="LanguageButton" Width="72" Height="32" Padding="8,4" Margin="0,0,16,0" Click="Language_Click" Background="White" ToolTip="{DynamicResource Ui.Language.Switch}" AutomationProperties.Name="{DynamicResource Ui.Language.Switch}">
+                <StackPanel Orientation="Horizontal"><TextBlock x:Name="LanguageCn" Text="CN" FontSize="11"/><TextBlock Text="/" FontSize="11" Foreground="#C5CBD5" Margin="5,0"/><TextBlock x:Name="LanguageEn" Text="EN" FontSize="11"/></StackPanel>
+              </Button>
+              <TextBlock x:Name="ServerAddressHeader" Text="127.0.0.1:30002" FontFamily="Consolas" FontSize="11" Foreground="#8F99AC" Margin="0,0,15,0" VerticalAlignment="Center"/>
+              <Border x:Name="ServerBadge" Background="#FFF1F2" BorderBrush="#F8D9DF" BorderThickness="1" CornerRadius="15" Padding="11,6" ToolTip="{DynamicResource Ui.Server.Status}"><StackPanel Orientation="Horizontal">
+                <Grid Width="12" Height="12" Margin="0,0,7,0" VerticalAlignment="Center"><Ellipse x:Name="ServerDot" Width="7" Height="7" Fill="#E46576"/>
+                  <Path x:Name="ServerSpinner" Visibility="Collapsed" Stroke="#D49926" StrokeThickness="2" Data="M 6,1 A 5,5 0 1 1 1,6" RenderTransformOrigin="0.5,0.5"><Path.RenderTransform><RotateTransform/></Path.RenderTransform><Path.Triggers><EventTrigger RoutedEvent="Loaded"><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)" From="0" To="360" Duration="0:0:1" RepeatBehavior="Forever"/></Storyboard></BeginStoryboard></EventTrigger></Path.Triggers></Path>
+                </Grid>
+                <TextBlock x:Name="ServerStateText" Text="{DynamicResource Ui.State.Stop}" Foreground="#C45C6D" FontSize="11" FontWeight="SemiBold" VerticalAlignment="Center"/>
+              </StackPanel></Border>
+            </StackPanel>
+          </Grid>
+        </Border>
+        <ScrollViewer x:Name="PageScroll" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+          <Grid Margin="38,32,38,18">
+            <Grid x:Name="LoginPage" MinHeight="580" MaxWidth="1120" VerticalAlignment="Top"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="28"/><ColumnDefinition Width="410"/></Grid.ColumnDefinitions>
+              <Grid><Grid.RowDefinitions><RowDefinition Height="*" MinHeight="300"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                <Border x:Name="LoginArtwork" CornerRadius="16" BorderBrush="#E2E6EF" BorderThickness="1">
+                  <Border.Background><ImageBrush ImageSource="Assets/login-artwork.jpg" Stretch="UniformToFill" AlignmentX="Left" AlignmentY="Center" RenderOptions.BitmapScalingMode="HighQuality"/></Border.Background>
+                </Border>
+                <Border x:Name="ServerControlCard" Grid.Row="1" Background="White" CornerRadius="16" BorderBrush="#E5E8F0" BorderThickness="1" Padding="20" Margin="0,18,0,0">
+                  <StackPanel><TextBlock Text="{DynamicResource Ui.Server.Controls}" FontSize="12" FontWeight="SemiBold"/>
+                    <TextBlock x:Name="ServerDetail" Text="{DynamicResource Ui.Server.Preparing}" FontSize="11" Foreground="#8894A8" TextWrapping="Wrap" LineHeight="18" Margin="0,8,0,10"/>
+                    <StackPanel Orientation="Horizontal"><Button x:Name="StartServerButton" Content="{DynamicResource Ui.Server.Start}" FontSize="11" Padding="11,7" Click="StartServer_Click"/><Button x:Name="StopServerButton" Content="{DynamicResource Ui.Server.Stop}" FontSize="11" Padding="11,7" Margin="8,0,0,0" IsEnabled="False" Click="StopServer_Click"/></StackPanel>
+                  </StackPanel>
+                </Border>
+              </Grid>
+              <Border x:Name="LoginCard" Grid.Column="2" Background="White" BorderBrush="#E5E8F0" BorderThickness="1" CornerRadius="16" Padding="29,27">
+                <Border.Effect><DropShadowEffect BlurRadius="25" ShadowDepth="5" Opacity="0.035" Color="#364065"/></Border.Effect>
+                <Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*" MinHeight="22"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                  <TextBlock x:Name="FormTitle" TextWrapping="Wrap" Text="{DynamicResource Ui.Form.LoginTitle}" FontSize="21" FontWeight="Bold"/>
+                  <TextBlock x:Name="FormSubtitle" TextWrapping="Wrap" Text="{DynamicResource Ui.Form.LoginSubtitle}" Foreground="#8A95A8" FontSize="12" Margin="0,9,0,20"/>
+                  <Border Background="#F3F4F9" CornerRadius="8" Padding="4"><Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+                    <Button x:Name="LoginTab" Content="{DynamicResource Ui.Form.Login}" Click="LoginTab_Click" BorderThickness="0" Padding="10,9" Foreground="#6258D9"/>
+                    <Button x:Name="RegisterTab" Grid.Column="1" Content="{DynamicResource Ui.Form.Register}" Click="RegisterTab_Click" Background="Transparent" BorderThickness="0" Padding="10,9" Foreground="#939BAE"/>
+                  </Grid></Border>
+                </StackPanel>
+                <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="0,24">
+                  <TextBlock Text="{DynamicResource Ui.Form.Account}" Style="{StaticResource Label}"/>
+                  <Grid><TextBox x:Name="AccountBox" MaxLength="15" Height="45" TextChanged="Account_Changed" AutomationProperties.Name="{DynamicResource Ui.Form.Account}"/>
+                    <TextBlock x:Name="AccountHint" Text="{DynamicResource Ui.Form.AccountHint}" Foreground="#AFB7C7" FontSize="12" Margin="14,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                  </Grid>
+                  <TextBlock Text="{DynamicResource Ui.Form.Password}" Style="{StaticResource Label}" Margin="0,18,0,9"/>
+                  <Grid>
+                    <PasswordBox x:Name="PasswordInput" MaxLength="15" Height="45" Padding="13,11,56,11" PasswordChanged="Password_Changed" AutomationProperties.Name="{DynamicResource Ui.Form.Password}"/>
+                    <TextBox x:Name="PasswordVisible" MaxLength="15" Height="45" Padding="13,11,56,11" Visibility="Collapsed" TextChanged="VisiblePassword_Changed" AutomationProperties.Name="{DynamicResource Ui.Form.VisiblePassword}"/>
+                    <TextBlock x:Name="PasswordHint" Text="{DynamicResource Ui.Form.PasswordHint}" Foreground="#AFB7C7" FontSize="12" Margin="14,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                    <Button x:Name="RevealButton" Content="{DynamicResource Ui.Form.Show}" Style="{StaticResource Link}" HorizontalAlignment="Right" Margin="0,0,13,0" Click="Reveal_Click" ToolTip="{DynamicResource Ui.Form.Reveal}"/>
+                  </Grid>
+                  <StackPanel x:Name="ConfirmPanel" Visibility="Collapsed"><TextBlock Text="{DynamicResource Ui.Form.Confirm}" Style="{StaticResource Label}" Margin="0,18,0,9"/><PasswordBox x:Name="ConfirmInput" MaxLength="15" Height="45" AutomationProperties.Name="{DynamicResource Ui.Form.Confirm}"/><TextBlock Text="{DynamicResource Ui.Form.PasswordRule}" TextWrapping="Wrap" Foreground="#8A95A8" FontSize="10" Margin="0,8,0,0"/></StackPanel>
+                  <Grid x:Name="RememberRow" Margin="0,17,0,2">
+                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <CheckBox x:Name="RememberAccountBox" Content="{DynamicResource Ui.Form.RememberAccount}" FontSize="11" IsChecked="True" Checked="Remember_Changed" Unchecked="Remember_Changed"/>
+                    <CheckBox x:Name="RememberPasswordBox" Grid.Column="1" Content="{DynamicResource Ui.Form.RememberPassword}" FontSize="11" Margin="8,0,0,0" Checked="Remember_Changed" Unchecked="Remember_Changed"/>
+                    <Button x:Name="ForgotButton" Grid.Row="1" Grid.ColumnSpan="2" Content="{DynamicResource Ui.Form.Forgot}" Style="{StaticResource Link}" HorizontalAlignment="Right" Margin="0,8,0,0" Click="Forgot_Click"/>
+                  </Grid>
+                </StackPanel>
+                <StackPanel Grid.Row="2">
+                  <Button x:Name="SubmitButton" Style="{StaticResource Primary}" Content="{DynamicResource Ui.Form.Submit}" Click="Submit_Click" IsDefault="True"/>
+                  <Border x:Name="FeedbackBox" Visibility="Collapsed" Background="#FFF4F2" CornerRadius="8" Padding="12" Margin="0,13,0,0"><TextBlock x:Name="FeedbackText" TextWrapping="Wrap" Foreground="#B7625C" FontSize="11" LineHeight="18"/></Border>
+                </StackPanel>
+                </Grid>
+              </Border>
+            </Grid>
+            <StackPanel x:Name="WeaponModsPage" Visibility="Collapsed" MaxWidth="770" HorizontalAlignment="Stretch">
+              <TextBlock Text="{DynamicResource Ui.Nav.Mods}" FontSize="27" FontWeight="Bold"/>
+              <TextBlock Text="{DynamicResource Ui.Mods.Description}" TextWrapping="Wrap" Foreground="#8793A9" FontSize="12" Margin="0,9,0,24"/>
+              <Border Background="White" BorderBrush="#E5E8F0" BorderThickness="1" CornerRadius="13" Padding="25">
+                <StackPanel>
+                  <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                    <StackPanel><TextBlock Text="Giga Break LE" FontSize="23" FontWeight="Bold"/><TextBlock Text="WEAPON REPAIR  /  ID 726" FontFamily="Consolas" FontSize="10" Foreground="#99A3B5" Margin="0,8,0,0"/></StackPanel>
+                    <Border Grid.Column="1" Background="#F0EDFF" CornerRadius="6" Padding="10,6" VerticalAlignment="Top"><TextBlock Text="{DynamicResource Ui.Mods.Native}" Foreground="#7163CC" FontSize="11" FontWeight="SemiBold"/></Border>
+                  </Grid>
+                  <CheckBox x:Name="GigaBreakLEBox" Content="{DynamicResource Ui.Mods.Enable}" FontSize="14" Margin="0,24,0,0" Checked="WeaponMod_Changed" Unchecked="WeaponMod_Changed"/>
+                  <TextBlock x:Name="GigaBreakLEStatus" Foreground="#8174BD" FontSize="11" Margin="24,9,0,0" TextWrapping="Wrap"/>
+                </StackPanel>
+              </Border>
+              <TextBlock x:Name="ModsFeedback" Foreground="#8A6AAB" FontSize="12" TextWrapping="Wrap" Margin="0,15,0,0"/>
+            </StackPanel>
+            <StackPanel x:Name="SettingsPage" Visibility="Collapsed" MaxWidth="770" HorizontalAlignment="Stretch">
+              <TextBlock Text="{DynamicResource Ui.Nav.Settings}" FontSize="27" FontWeight="Bold"/><TextBlock Text="{DynamicResource Ui.Settings.Description}" TextWrapping="Wrap" Foreground="#8793A9" FontSize="12" Margin="0,9,0,24"/>
+              <Border Background="White" BorderBrush="#E5E8F0" BorderThickness="1" CornerRadius="13" Padding="25"><StackPanel>
+                <TextBlock Text="{DynamicResource Ui.Settings.GameRoot}" Style="{StaticResource Label}"/><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="110"/></Grid.ColumnDefinitions><TextBox x:Name="GamePathBox" AutomationProperties.Name="{DynamicResource Ui.Settings.GameRoot}"/><Button Grid.Column="1" Content="{DynamicResource Ui.Settings.Browse}" Margin="10,0,0,0" Click="Browse_Click"/></Grid>
+                <TextBlock Text="{DynamicResource Ui.Settings.PathHelp}" TextWrapping="Wrap" FontSize="11" Foreground="#8A95A8" Margin="0,8,0,21"/>
+                <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="20"/><ColumnDefinition Width="125"/></Grid.ColumnDefinitions><StackPanel><TextBlock Text="{DynamicResource Ui.Settings.Host}" Style="{StaticResource Label}"/><TextBox x:Name="HostBox" AutomationProperties.Name="{DynamicResource Ui.Settings.Host}"/></StackPanel><StackPanel Grid.Column="2"><TextBlock Text="{DynamicResource Ui.Settings.Port}" Style="{StaticResource Label}"/><TextBox x:Name="PortBox" MaxLength="5" AutomationProperties.Name="{DynamicResource Ui.Settings.Port}"/></StackPanel></Grid>
+                <CheckBox x:Name="TlsBox" Content="{DynamicResource Ui.Settings.Tls}" Margin="0,18,0,0"/>
+                <Border Height="1" Background="#EDF0F5" Margin="0,23"/>
+                <CheckBox x:Name="AutoServerBox" Content="{DynamicResource Ui.Settings.AutoServer}" FontSize="13"/>
+                <TextBlock Text="{DynamicResource Ui.Settings.AutoServerHelp}" TextWrapping="Wrap" Foreground="#8A95A8" FontSize="11" Margin="24,8,0,21"/>
+                <CheckBox x:Name="MinimizeBox" Content="{DynamicResource Ui.Settings.Minimize}" FontSize="13"/>
+                <Border Background="#F8F7FF" CornerRadius="8" Padding="13" Margin="0,22,0,0"><TextBlock Text="{DynamicResource Ui.Settings.Security}" Foreground="#8A83AC" FontSize="11" TextWrapping="Wrap" LineHeight="19"/></Border>
+              </StackPanel></Border>
+              <StackPanel Orientation="Horizontal" Margin="0,20,0,0"><Button Content="{DynamicResource Ui.Settings.Save}" Style="{StaticResource Primary}" Width="136" Click="SaveSettings_Click"/><Button Content="{DynamicResource Ui.Settings.Clear}" Margin="12,0,0,0" Click="ClearCredentials_Click"/></StackPanel>
+              <TextBlock x:Name="SettingsFeedback" Foreground="#8A6AAB" FontSize="12" TextWrapping="Wrap" Margin="0,15,0,0"/>
+            </StackPanel>
+          </Grid>
+        </ScrollViewer>
+      </Grid>
+    </Grid>
+  </Grid>
+</Window>

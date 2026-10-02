@@ -1,0 +1,5 @@
+LIBRARY CSNZLauncherBridge
+EXPORTS
+CSNZAuth_Start=_CSNZAuth_Start@4
+CSNZAuth_Status=_CSNZAuth_Status@4
+CSNZAuth_Version

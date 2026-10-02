@@ -1,0 +1,7 @@
+Source: user-provided ico/cstrike.ico (original preserved; copy in assets/cstrike-original.ico).
+Mode: built-in image generation, edit. The tool does not expose a selectable model name.
+Actual output: 1254 x 1254 PNG, not 4K. ICO contains 16, 24, 32, 48, 64, 128 and 256 pixel frames.
+The only post-generation processing is format conversion/downsampling for ICO frames.
+
+Prompt:
+Use case: precise-object-edit. Edit target: the supplied 32px cstrike application icon extracted without changes from the user's ICO. Faithfully remaster this exact icon for a high-DPI Windows launcher, in crisp high resolution (4K-quality detail, square composition). Preserve the original recognizable standing counter-strike soldier silhouette aiming a rifle toward the upper right, stance, proportions, black/dark-navy body, limited muted gray highlights, pale cool-gray square tile/background and thin dark border. This is a tiny app icon, so keep it a simple bold graphic, not a realistic scene. Keep the same crop and orientation and original monochrome palette. Remove pixel stair steps and blur; clean precise smooth edges. Do not add letters, names, UI, watermark, decorative glow, new people or objects. One single square icon filling the image, minimal margins.

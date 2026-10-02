@@ -1,0 +1,758 @@
+{
+  "AppTitle": {
+    "Zh": "CSNZ 登录器",
+    "En": "CSNZ Launcher"
+  },
+  "Minimize": {
+    "Zh": "最小化",
+    "En": "Minimize"
+  },
+  "Maximize": {
+    "Zh": "最大化或还原",
+    "En": "Maximize or restore"
+  },
+  "Close": {
+    "Zh": "关闭登录器",
+    "En": "Close launcher"
+  },
+  "Nav.Login": {
+    "Zh": "登录中心",
+    "En": "Login Center"
+  },
+  "Nav.Mods": {
+    "Zh": "武器模组",
+    "En": "Weapon Mods"
+  },
+  "Nav.Settings": {
+    "Zh": "启动设置",
+    "En": "Settings"
+  },
+  "Nav.Help": {
+    "Zh": "使用说明",
+    "En": "Help"
+  },
+  "Workspace": {
+    "Zh": "工作空间",
+    "En": "Workspace"
+  },
+  "Server.Status": {
+    "Zh": "服务端状态",
+    "En": "Server status"
+  },
+  "Server.Controls": {
+    "Zh": "服务端控制",
+    "En": "Server controls"
+  },
+  "Server.Preparing": {
+    "Zh": "正在准备本地服务端…",
+    "En": "Preparing the local server…"
+  },
+  "Server.Start": {
+    "Zh": "启动服务端",
+    "En": "Start server"
+  },
+  "Server.Stop": {
+    "Zh": "安全停止",
+    "En": "Stop safely"
+  },
+  "Form.LoginTitle": {
+    "Zh": "登录你的账号",
+    "En": "Sign in to your account"
+  },
+  "Form.LoginSubtitle": {
+    "Zh": "继续你的下一场游戏。",
+    "En": "Your next game starts here."
+  },
+  "Form.RegisterTitle": {
+    "Zh": "创建你的账号",
+    "En": "Create your account"
+  },
+  "Form.RegisterSubtitle": {
+    "Zh": "账号将直接创建在所选 CSNZ 服务端。",
+    "En": "Create an account on the selected CSNZ server."
+  },
+  "Form.Login": {
+    "Zh": "登录",
+    "En": "Sign in"
+  },
+  "Form.Register": {
+    "Zh": "注册",
+    "En": "Register"
+  },
+  "Form.Account": {
+    "Zh": "账号",
+    "En": "Account"
+  },
+  "Form.AccountHint": {
+    "Zh": "输入 5–15 位英文字母或数字",
+    "En": "5–15 English letters or digits"
+  },
+  "Form.Password": {
+    "Zh": "密码",
+    "En": "Password"
+  },
+  "Form.VisiblePassword": {
+    "Zh": "显示的密码",
+    "En": "Visible password"
+  },
+  "Form.PasswordHint": {
+    "Zh": "输入密码",
+    "En": "Enter your password"
+  },
+  "Form.Show": {
+    "Zh": "显示",
+    "En": "Show"
+  },
+  "Form.Hide": {
+    "Zh": "隐藏",
+    "En": "Hide"
+  },
+  "Form.Reveal": {
+    "Zh": "显示或隐藏密码",
+    "En": "Show or hide password"
+  },
+  "Form.Confirm": {
+    "Zh": "确认密码",
+    "En": "Confirm password"
+  },
+  "Form.PasswordRule": {
+    "Zh": "密码 5–15 位，不能全部为数字。",
+    "En": "5–15 characters; not just digits."
+  },
+  "Form.RememberAccount": {
+    "Zh": "记住账号",
+    "En": "Remember account"
+  },
+  "Form.RememberPassword": {
+    "Zh": "记住密码",
+    "En": "Remember password"
+  },
+  "Form.Forgot": {
+    "Zh": "忘记密码？",
+    "En": "Forgot password?"
+  },
+  "Form.Submit": {
+    "Zh": "登录并启动游戏  →",
+    "En": "Sign in & launch game  →"
+  },
+  "Form.Create": {
+    "Zh": "创建账号  →",
+    "En": "Create account  →"
+  },
+  "Form.Busy": {
+    "Zh": "正在处理，请稍候…",
+    "En": "Please wait…"
+  },
+  "Mods.Description": {
+    "Zh": "选择本次旅程的武器修复。勾选后自动保存，在下次启动游戏时加载。",
+    "En": "Select weapon fixes for your next game. Changes are saved automatically and applied on the next launch."
+  },
+  "Mods.Native": {
+    "Zh": "原生 DLL",
+    "En": "Native DLL"
+  },
+  "Mods.Enable": {
+    "Zh": "启用 Giga Break LE",
+    "En": "Enable Giga Break LE"
+  },
+  "Mods.Enabled": {
+    "Zh": "已勾选 · 下次启动游戏时加载 Giga Break LE。",
+    "En": "Selected · Giga Break LE will load on the next launch."
+  },
+  "Mods.Disabled": {
+    "Zh": "未勾选 · 下次启动不会加载此模组。",
+    "En": "Not selected · This mod will not load on the next launch."
+  },
+  "Settings.Description": {
+    "Zh": "管理本地游戏与服务器连接。武器修复可在左侧「武器模组」选择。",
+    "En": "Manage your game folder and server connection. Select weapon fixes under Weapon Mods."
+  },
+  "Settings.GameRoot": {
+    "Zh": "游戏目录",
+    "En": "Game folder"
+  },
+  "Settings.Browse": {
+    "Zh": "浏览…",
+    "En": "Browse…"
+  },
+  "Settings.PathHelp": {
+    "Zh": "选择游戏根目录；误选 Bin 文件夹时会自动识别上一级。",
+    "En": "Choose the game root folder. Selecting Bin will automatically resolve its parent folder."
+  },
+  "Settings.Host": {
+    "Zh": "服务器地址",
+    "En": "Server address"
+  },
+  "Settings.Port": {
+    "Zh": "端口",
+    "En": "Port"
+  },
+  "Settings.Tls": {
+    "Zh": "使用 TLS 加密连接（必须与服务端 SSL 设置一致）",
+    "En": "Use TLS encryption (must match the server's SSL setting)"
+  },
+  "Settings.AutoServer": {
+    "Zh": "打开登录器时，自动启动本地服务端",
+    "En": "Start the local server when the launcher opens"
+  },
+  "Settings.AutoServerHelp": {
+    "Zh": "仅在本机地址下生效；已有服务端将复用，不会重复启动。",
+    "En": "For loopback addresses only. An existing server is reused, not started again."
+  },
+  "Settings.Minimize": {
+    "Zh": "游戏启动后最小化登录器",
+    "En": "Minimize the launcher after starting the game"
+  },
+  "Settings.Save": {
+    "Zh": "保存设置",
+    "En": "Save settings"
+  },
+  "Settings.Clear": {
+    "Zh": "清除已记住的账号与密码",
+    "En": "Clear saved account and password"
+  },
+  "Settings.FolderTitle": {
+    "Zh": "选择 CSNZ 游戏根目录",
+    "En": "Choose the CSNZ game root folder"
+  },
+  "Settings.Saved": {
+    "Zh": "设置已保存，下次游戏启动时生效。",
+    "En": "Settings saved. Changes apply on the next game launch."
+  },
+  "Settings.EndpointSaved": {
+    "Zh": "设置已保存。服务器已切换，原账号与密码已清空，防止误发到其他服务器。",
+    "En": "Settings saved. The server has changed, so the previous credentials were cleared to prevent sending them to another server."
+  },
+  "Settings.Cleared": {
+    "Zh": "已清除本登录器记住的账号和加密密码，游戏账号本身未删除。",
+    "En": "The saved account and encrypted password were cleared. The game account itself was not deleted."
+  },
+  "Settings.Unreadable": {
+    "Zh": "配置文件无法读取，本次使用默认设置；保存新设置前请检查本地配置。",
+    "En": "The settings file could not be read. Defaults are in use; check your local settings before saving."
+  },
+  "Settings.DecryptFailed": {
+    "Zh": "已保存的密码无法由当前 Windows 用户解密，请重新输入。",
+    "En": "The current Windows user cannot decrypt the saved password. Please enter it again."
+  },
+  "Server.NotStarted": {
+    "Zh": "服务端未启动",
+    "En": "Server not started"
+  },
+  "Server.Checking": {
+    "Zh": "正在检查服务端…",
+    "En": "Checking the server…"
+  },
+  "Server.ReadyOwned": {
+    "Zh": "本地服务端已就绪 · 由登录器管理",
+    "En": "Local server ready · Managed by the launcher"
+  },
+  "Server.ReadyExisting": {
+    "Zh": "服务端已就绪 · 复用现有实例",
+    "En": "Server ready · Using an existing instance"
+  },
+  "Server.WaitExisting": {
+    "Zh": "检测到已有服务端，等待协议就绪…",
+    "En": "Existing server detected. Waiting for the protocol…"
+  },
+  "Server.Initializing": {
+    "Zh": "本地服务端正在初始化…",
+    "En": "Initializing the local server…"
+  },
+  "Server.Retry": {
+    "Zh": "服务端未就绪，点击启动服务端重试",
+    "En": "Server not ready. Click Start server to retry."
+  },
+  "Server.Stopping": {
+    "Zh": "正在请求服务端保存并退出…",
+    "En": "Asking the server to save and shut down…"
+  },
+  "Server.KeptAlive": {
+    "Zh": "服务端未退出；为保护数据，未强行终止进程",
+    "En": "The server has not exited. It was not force-closed, to protect your data."
+  },
+  "Server.Stopped": {
+    "Zh": "本地服务端已安全停止",
+    "En": "Local server stopped safely"
+  },
+  "Server.StoppedFeedback": {
+    "Zh": "本地服务端已安全停止。",
+    "En": "The local server has stopped safely."
+  },
+  "Server.GameRunning": {
+    "Zh": "游戏仍在运行，请退出游戏后再停止服务端。",
+    "En": "The game is still running. Exit the game before stopping the server."
+  },
+  "Server.ConfirmStop": {
+    "Zh": "停止本登录器启动的服务端？其他已连接的玩家也会断开。",
+    "En": "Stop the server started by this launcher? Other connected players will also be disconnected."
+  },
+  "Error.SelectRoot": {
+    "Zh": "请选择游戏目录，或将登录器放到包含 Bin 的游戏根目录。",
+    "En": "Choose your game folder, or place the launcher in the game root folder containing Bin."
+  },
+  "Error.RemoteNotReady": {
+    "Zh": "远程服务端未就绪，请联系服务器管理员启动。",
+    "En": "The remote server is not ready. Ask its administrator to start it."
+  },
+  "Error.AutoStartOff": {
+    "Zh": "服务端未运行，请启用自动启动，或手动启动服务端。",
+    "En": "The server is not running. Enable automatic startup or start it manually."
+  },
+  "Error.ServerMissing": {
+    "Zh": "找不到 Server\\CSNZ_Server.exe，请在启动设置中选择正确的游戏目录。",
+    "En": "Server\\CSNZ_Server.exe was not found. Choose the correct game folder in Settings."
+  },
+  "Error.OtherServerOwned": {
+    "Zh": "登录器仍管理另一个游戏目录的服务端，请先停止它再切换目录。",
+    "En": "The launcher still manages a server from another game folder. Stop it before switching folders."
+  },
+  "Error.ServerCreate": {
+    "Zh": "无法创建服务端进程。",
+    "En": "Could not start the server process."
+  },
+  "Error.ServerTimeout": {
+    "Zh": "服务端未在等待时间内就绪。请检查端口占用或 Server\\Logs；登录器没有修改服务器配置。",
+    "En": "The server did not become ready in time. Check for a port conflict or inspect Server\\Logs. The launcher has not changed the server configuration."
+  },
+  "Error.NotOwned": {
+    "Zh": "当前服务端不是由本登录器启动，不能从这里停止。",
+    "En": "This server was not started by this launcher and cannot be stopped here."
+  },
+  "Error.StopTimeout": {
+    "Zh": "服务端没有响应安全停止请求，已保留进程，请手动处理。",
+    "En": "The server did not respond to the safe shutdown request. It was left running; please check it manually."
+  },
+  "Error.Stdin": {
+    "Zh": "无法为后台服务端保留标准输入句柄，请先安全停止服务端后重试。",
+    "En": "Could not retain the background server's input handle. Stop the server safely before retrying."
+  },
+  "Error.GameMissing": {
+    "Zh": "游戏目录不正确，找不到 Bin\\CSOLauncher.exe。",
+    "En": "Invalid game folder: Bin\\CSOLauncher.exe was not found."
+  },
+  "Error.GameRunning": {
+    "Zh": "游戏已在运行，请先退出游戏后再登录。",
+    "En": "The game is already running. Exit it before signing in again."
+  },
+  "Error.LegacyPatch": {
+    "Zh": "检测到旧版 LEGuard。请先退出旧补丁启动器，不能与原生补丁同时加载。",
+    "En": "An older LEGuard is running. Exit it first; it cannot run alongside the native patch."
+  },
+  "Error.GameStart": {
+    "Zh": "游戏启动失败。",
+    "En": "The game could not be started."
+  },
+  "Error.Account": {
+    "Zh": "账号需为 5–15 位英文字母或数字。",
+    "En": "Use 5–15 English letters or digits for the account name."
+  },
+  "Error.Password": {
+    "Zh": "密码需为 5–15 位可见英文字符，不支持空格、引号或反斜杠。",
+    "En": "Use 5–15 printable ASCII characters for the password, with no spaces, double quotes or backslashes."
+  },
+  "Error.NumericPassword": {
+    "Zh": "注册密码不能全部为数字，请加入英文字母或符号。",
+    "En": "The password cannot contain only digits. Add English letters or symbols."
+  },
+  "Error.PacketLength": {
+    "Zh": "数据包长度无效。",
+    "En": "Invalid packet length."
+  },
+  "Error.RemoteTls": {
+    "Zh": "外部服务器注册必须启用 TLS。未加密注册仅允许本机回环地址。",
+    "En": "Registration on a remote server requires TLS. Unencrypted registration is allowed only on loopback addresses."
+  },
+  "Error.Banner": {
+    "Zh": "目标端口不是兼容的 CSNZ 服务端。",
+    "En": "The selected port is not a compatible CSNZ server."
+  },
+  "Error.ProtocolVersion": {
+    "Zh": "服务端拒绝客户端版本，或返回了不支持的认证协议。",
+    "En": "The server rejected the client version or returned an unsupported authentication protocol."
+  },
+  "Error.RegisterTruncated": {
+    "Zh": "注册回复不完整。",
+    "En": "The registration reply was incomplete."
+  },
+  "Error.RegisterUnknown": {
+    "Zh": "未收到明确的注册结果，请勿将连接成功视为注册成功。",
+    "En": "No definite registration result was received. A successful connection does not mean registration succeeded."
+  },
+  "Error.PacketFormat": {
+    "Zh": "服务端数据包格式或序号不兼容。",
+    "En": "The server packet format or sequence is incompatible."
+  },
+  "Registration.Success": {
+    "Zh": "注册成功。账号已填入登录页，现在可以登录并启动游戏。",
+    "En": "Registration succeeded. Your account is filled in on the sign-in page; you can now launch the game."
+  },
+  "Registration.Duplicate": {
+    "Zh": "此账号已存在，请换一个账号，或返回登录。",
+    "En": "This account already exists. Choose another name or return to sign in."
+  },
+  "Registration.Limit": {
+    "Zh": "此 IP 的注册数量已达到服务端上限，请联系服务器管理员。",
+    "En": "This IP address has reached the server's account limit. Contact its administrator."
+  },
+  "Registration.Account": {
+    "Zh": "账号格式不符合服务端要求，请使用 5–15 位英文字母或数字。",
+    "En": "The account name does not meet the server's requirements. Use 5–15 English letters or digits."
+  },
+  "Registration.Password": {
+    "Zh": "密码需为 5–15 位，且不能全部为数字。",
+    "En": "The password must have 5–15 characters and cannot contain only digits."
+  },
+  "Registration.Database": {
+    "Zh": "服务端数据库操作失败，账号未能创建。",
+    "En": "A server database operation failed. The account could not be created."
+  },
+  "Registration.Unknown": {
+    "Zh": "服务端返回了未识别的注册结果；请使用游戏内注册或联系管理员。",
+    "En": "The server returned an unrecognized registration result. Register in-game or contact the administrator."
+  },
+  "Error.ConfirmPassword": {
+    "Zh": "两次输入的密码不一致，请重新确认。",
+    "En": "The passwords do not match. Please confirm your password again."
+  },
+  "Connection.Unencrypted": {
+    "Zh": "该远程服务器未使用 TLS，游戏会通过未加密连接发送登录凭据。是否仍要连接？",
+    "En": "This remote server does not use TLS. The game will send your credentials over an unencrypted connection. Connect anyway?"
+  },
+  "Connection.UnencryptedTitle": {
+    "Zh": "未加密的远程连接",
+    "En": "Unencrypted remote connection"
+  },
+  "Auth.NotSent": {
+    "Zh": "自动登录请求未能发出，请退出游戏后重试。服务端 Ready 只表示连接就绪，不代表账号已登录。",
+    "En": "The automatic sign-in request could not be sent. Exit the game and retry. Ready means the server is reachable, not that your account is signed in."
+  },
+  "Patch.Ready": {
+    "Zh": "Giga Break LE 原生补丁已就绪；游戏会使用登录器账号自动登录。若游戏提示账号或密码错误，请退出游戏，在这里更正后重试。",
+    "En": "The Giga Break LE native patch is ready. The game will sign in using this account. If the game reports incorrect credentials, exit it and correct them here before retrying."
+  },
+  "Error.Canceled": {
+    "Zh": "操作超时或已取消，未确认成功。请检查服务端状态后再试。",
+    "En": "The operation timed out or was canceled; success is not confirmed. Check the server status and retry."
+  },
+  "Error.Tls": {
+    "Zh": "TLS 验证失败。请检查服务器证书、地址和 SSL 设置；不会绕过证书验证。",
+    "En": "TLS validation failed. Check the server certificate, address and SSL settings. Certificate validation will not be bypassed."
+  },
+  "Error.Connection": {
+    "Zh": "无法连接服务端。请检查地址、端口和服务器运行状态。",
+    "En": "Could not connect to the server. Check its address, port and running status."
+  },
+  "Error.SettingsGameMissing": {
+    "Zh": "该目录下找不到 Bin\\CSOLauncher.exe。",
+    "En": "Bin\\CSOLauncher.exe was not found in this folder."
+  },
+  "Error.Host": {
+    "Zh": "服务器地址无效，请填写 IP 或域名，不含协议与端口。",
+    "En": "Enter a valid IP address or hostname, without a protocol or port."
+  },
+  "Error.Port": {
+    "Zh": "端口必须为 1–65535。",
+    "En": "The port must be between 1 and 65535."
+  },
+  "Error.StopBeforeSwitch": {
+    "Zh": "请先在登录中心安全停止当前服务端，再切换目录或服务器地址。",
+    "En": "Stop the current server safely in Login Center before changing its folder or address."
+  },
+  "Dialog.RecoverTitle": {
+    "Zh": "找回密码",
+    "En": "Password recovery"
+  },
+  "Close.Busy": {
+    "Zh": "当前操作尚未结束，请稍候再关闭。",
+    "En": "An operation is still in progress. Please wait before closing."
+  },
+  "Close.GameRunning": {
+    "Zh": "游戏仍在运行。关闭登录器后，游戏和服务端将继续运行。确定关闭？",
+    "En": "The game is still running. Closing the launcher will leave the game and server running. Close anyway?"
+  },
+  "Close.Title": {
+    "Zh": "退出登录器",
+    "En": "Exit launcher"
+  },
+  "Error.PE": {
+    "Zh": "不是有效的 PE 文件。",
+    "En": "Not a valid PE file."
+  },
+  "Error.PEBounds": {
+    "Zh": "PE 头超出文件范围。",
+    "En": "The PE header is outside the file bounds."
+  },
+  "Error.PESignature": {
+    "Zh": "PE 签名不正确。",
+    "En": "Invalid PE signature."
+  },
+  "Error.PE32": {
+    "Zh": "需要 32 位 CSNZ 文件。",
+    "En": "32-bit CSNZ files are required."
+  },
+  "Error.Launcher32": {
+    "Zh": "登录器必须运行于 x86 模式。",
+    "En": "The launcher must run in x86 mode."
+  },
+  "Native.Preload": {
+    "Zh": "无法预加载 Giga Break LE 原生 DLL",
+    "En": "Could not preload the Giga Break LE native DLL"
+  },
+  "Native.Version": {
+    "Zh": "Giga Break LE DLL 版本不匹配。",
+    "En": "Giga Break LE DLL version mismatch."
+  },
+  "Native.Exports": {
+    "Zh": "Giga Break LE DLL 导出不完整。",
+    "En": "Required Giga Break LE DLL exports are missing."
+  },
+  "Native.GameExited": {
+    "Zh": "游戏进程已经退出。",
+    "En": "The game process has exited."
+  },
+  "Native.ModuleMissing": {
+    "Zh": "游戏中未找到预期模块。",
+    "En": "The expected module was not found in the game."
+  },
+  "Native.Load": {
+    "Zh": "无法加载原生补丁",
+    "En": "Could not load the native patch"
+  },
+  "Native.Timeout": {
+    "Zh": "原生补丁入口响应超时，请退出游戏后重试。",
+    "En": "The native patch entry point timed out. Exit the game and retry."
+  },
+  "Native.Result": {
+    "Zh": "无法读取补丁入口结果",
+    "En": "Could not read the patch entry-point result"
+  },
+  "Native.ComponentPreload": {
+    "Zh": "原生组件 DLL 预加载失败",
+    "En": "Could not preload the native component DLL"
+  },
+  "Native.Loader": {
+    "Zh": "无法定位系统加载函数",
+    "En": "Could not locate the system loader function"
+  },
+  "Native.SystemPath": {
+    "Zh": "无法获取系统模块路径",
+    "En": "Could not retrieve the system module path"
+  },
+  "Native.PathTransfer": {
+    "Zh": "无法传递 DLL 路径",
+    "En": "Could not transfer the DLL path"
+  },
+  "Native.PathWrite": {
+    "Zh": "无法写入 DLL 路径",
+    "En": "Could not write the DLL path"
+  },
+  "Native.LoadRejected": {
+    "Zh": "游戏未能加载原生组件 DLL。",
+    "En": "The game could not load the native component DLL."
+  },
+  "Native.BaseAddress": {
+    "Zh": "原生组件 DLL 基址校验失败。",
+    "En": "Native component DLL base-address verification failed."
+  },
+  "Native.Arguments": {
+    "Zh": "无法传递原生组件初始化数据",
+    "En": "Could not transfer native component initialization data"
+  },
+  "Native.Status": {
+    "Zh": "无法读取原生组件状态",
+    "En": "Could not read native component status"
+  },
+  "Native.StatusExport": {
+    "Zh": "原生组件状态入口不存在",
+    "En": "The native component status export is missing"
+  },
+  "App.AlreadyRunning": {
+    "Zh": "登录器已经在运行，请切换到现有窗口。",
+    "En": "The launcher is already running. Switch to its existing window."
+  },
+  "Settings.Security": {
+    "Zh": "保存的密码使用 Windows 当前用户加密，自动登录不会将凭据放入命令行。同一 Windows 用户或管理员仍可能读取进程内存，请勿使用其他重要账号的密码。远程注册必须使用证书有效的 TLS 连接。",
+    "En": "Saved passwords are encrypted for the current Windows user. Automatic sign-in does not put credentials on the command line. The same Windows user or an administrator may still read process memory; do not reuse important passwords. Remote registration requires TLS with a valid certificate."
+  },
+  "Dialog.Recover": {
+    "Zh": "当前 CSNZ 服务端没有邮件或短信找回接口。\n\n请联系该服务器管理员处理，登录器不会改写账号数据库或绕过密码验证。",
+    "En": "This CSNZ server has no email or SMS password-recovery interface.\n\nContact the server administrator. The launcher will not edit the account database or bypass password verification."
+  },
+  "Dialog.Help": {
+    "Zh": "1. 若启用了自动启动，打开登录器会启动本地服务端；右上角 Ready 表示协议已响应。\n2. 使用已有游戏账号登录，或通过注册页创建真实服务端账号。\n3. 默认加载 Giga Break LE 原生补丁，可在武器模组中关闭。\n4. 密码记忆仅适用于当前 Windows 用户；切换服务器会清空凭据。\n5. 关闭窗口不会强行终止游戏或第三方启动的服务端。\n6. 右上角 CN / EN 可立即切换语言，下次启动会记住选择。\n\n登录器不包含游戏本体，不修改原游戏文件。首次创建角色仍在游戏内完成。",
+    "En": "1. If automatic startup is enabled, opening the launcher starts the local server. Ready means its protocol has responded.\n2. Sign in with an existing game account, or create an account on the selected server using Register.\n3. The Giga Break LE native patch is enabled by default. You can turn it off under Weapon Mods.\n4. Saved passwords are tied to the current Windows user. Changing servers clears credentials.\n5. Closing the launcher does not force-close the game or a server started by another program.\n6. Use CN / EN at the top right to switch languages instantly. Your choice is remembered.\n\nThe launcher does not include the game or modify its original files. First-time character creation still takes place in-game."
+  },
+  "Close.Confirm": {
+    "Zh": "是否同时安全停止由本登录器启动的服务端？\n\n是：保存并停止服务端，然后退出。\n否：保留服务端运行，仅退出登录器。",
+    "En": "Also stop the server started by this launcher safely?\n\nYes: save and stop the server, then exit.\nNo: leave the server running and exit only the launcher."
+  },
+  "Language.Switch": {
+    "Zh": "切换为 English",
+    "En": "Switch to Chinese"
+  },
+  "Language.SavedError": {
+    "Zh": "语言偏好保存失败：{0}",
+    "En": "Could not save the language preference: {0}"
+  },
+  "Dialog.OK": {
+    "Zh": "确定",
+    "En": "OK"
+  },
+  "Dialog.Yes": {
+    "Zh": "是",
+    "En": "Yes"
+  },
+  "Dialog.No": {
+    "Zh": "否",
+    "En": "No"
+  },
+  "Dialog.Cancel": {
+    "Zh": "取消",
+    "En": "Cancel"
+  },
+  "State.Stop": {
+    "Zh": "Stop",
+    "En": "Stopped"
+  },
+  "State.Ready": {
+    "Zh": "Ready",
+    "En": "Ready"
+  },
+  "State.Starting": {
+    "Zh": "Starting",
+    "En": "Starting"
+  },
+  "State.Stopping": {
+    "Zh": "Stoping",
+    "En": "Stopping"
+  },
+  "Server.StoppingButton": {
+    "Zh": "Stoping…",
+    "En": "Stopping…"
+  },
+  "Error.Windows": {
+    "Zh": "Windows 操作失败（错误代码 {0}）。请检查相关文件和进程后重试。",
+    "En": "A Windows operation failed (error {0}). Check the relevant files and processes, then retry."
+  },
+  "Error.Access": {
+    "Zh": "无法访问相关文件或目录，请检查权限与文件占用。",
+    "En": "Access to a file or folder was denied. Check its permissions and whether it is in use."
+  },
+  "Error.IO": {
+    "Zh": "文件或连接读写失败，请检查游戏目录、文件占用及服务端状态。",
+    "En": "A file or connection could not be read or written. Check the game folder, open files and server status."
+  },
+  "Error.System": {
+    "Zh": "操作失败（{0}，{1}）。请检查设置后重试。",
+    "En": "The operation failed ({0}, {1}). Check your settings and retry."
+  },
+  "Error.Dpapi": {
+    "Zh": "无法使用 Windows 当前用户加密服务（Windows {0}）。",
+    "En": "The current Windows user encryption service is unavailable (Windows {0})."
+  },
+  "Server.Canceled": {
+    "Zh": "操作已取消",
+    "En": "Operation canceled"
+  },
+  "Server.StopFailed": {
+    "Zh": "安全停止未完成：{0}",
+    "En": "Safe shutdown did not complete: {0}"
+  },
+  "Error.ServerExited": {
+    "Zh": "服务端启动后退出（代码 {0}）。请检查游戏 Server\\Logs 中的日志。",
+    "En": "The server exited after starting (code {0}). Check the logs in Server\\Logs."
+  },
+  "Error.ConfigMismatch": {
+    "Zh": "登录器地址设置与 ServerConfig.json 不一致（服务端端口 {0}，TLS {1}）。请修改登录器设置，原服务端配置不会被自动改写。",
+    "En": "Launcher settings do not match ServerConfig.json (server port {0}, TLS {1}). Update the launcher settings; the server configuration will not be changed automatically."
+  },
+  "Common.On": {
+    "Zh": "开启",
+    "En": "on"
+  },
+  "Common.Off": {
+    "Zh": "关闭",
+    "En": "off"
+  },
+  "Error.ProcessCheck": {
+    "Zh": "无法核对已有 {0} 进程，请先手动关闭该程序再重试。",
+    "En": "Could not verify the existing {0} process. Close it manually and retry."
+  },
+  "Error.AuthAttach": {
+    "Zh": "游戏已启动，但自动登录组件未就绪：{0} 请退出游戏后重试。",
+    "En": "The game started, but the automatic sign-in component is not ready: {0} Exit the game and retry."
+  },
+  "Game.AutoLogin": {
+    "Zh": "游戏已启动，正使用登录器账号「{0}」自动登录，无需再次输入。账号或密码错误时，请退出游戏后在这里更正。",
+    "En": "The game started and is signing in as \"{0}\" automatically. If the credentials are incorrect, exit the game and correct them here."
+  },
+  "Error.PatchAttach": {
+    "Zh": "游戏已启动，但 Giga Break LE 补丁加载失败：{0} 请退出游戏后重试；未自动结束游戏。",
+    "En": "The game started, but the Giga Break LE patch could not load: {0} Exit the game and retry. The game was not closed automatically."
+  },
+  "Game.PatchLoaded": {
+    "Zh": "游戏已启动 · Giga Break LE 原生补丁已加载，等待引擎初始化…",
+    "En": "Game started · Giga Break LE native patch loaded; waiting for engine initialization…"
+  },
+  "Auth.CheckFailed": {
+    "Zh": "自动登录状态检查失败：{0}",
+    "En": "Could not check automatic sign-in status: {0}"
+  },
+  "Patch.NotReady": {
+    "Zh": "未确认 Giga Break LE 补丁就绪，请查看 {0}；加载成功不等于战斗效果验收。",
+    "En": "Giga Break LE readiness is not confirmed. Check {0}. A successful load does not verify combat behavior."
+  },
+  "Patch.CheckFailed": {
+    "Zh": "补丁状态检查失败：{0}",
+    "En": "Could not check patch status: {0}"
+  },
+  "Settings.PreferencesFailed": {
+    "Zh": "偏好保存失败：{0}",
+    "En": "Could not save preferences: {0}"
+  },
+  "Mods.Count": {
+    "Zh": "已加载 {0} 项武器",
+    "En": "Weapons selected: {0}"
+  },
+  "Settings.SaveFailed": {
+    "Zh": "保存失败：{0}",
+    "En": "Could not save: {0}"
+  },
+  "Close.Failed": {
+    "Zh": "退出未完成：{0}",
+    "En": "Could not finish closing: {0}"
+  },
+  "Error.AuthVersion": {
+    "Zh": "{0} 版本与自动登录组件不匹配，已阻止启动；未修改游戏文件。",
+    "En": "{0} does not match the automatic sign-in component. Launch was blocked; no game files were changed."
+  },
+  "Error.BundleMissing": {
+    "Zh": "登录器内嵌资源不完整：{0}，请使用完整的新版本 EXE。",
+    "En": "The launcher is missing an embedded resource: {0}. Use a complete copy of the latest EXE."
+  },
+  "Error.BundleMismatch": {
+    "Zh": "原生补丁缓存与此登录器不匹配，未加载或覆盖。请退出游戏后移走此版本缓存并重启登录器：{0}",
+    "En": "The native cache does not match this launcher and was neither loaded nor overwritten. Exit the game, move this version cache aside, then restart the launcher: {0}"
+  },
+  "Native.Windows": {
+    "Zh": "{0}（Windows {1}）",
+    "En": "{0} (Windows {1})"
+  },
+  "Native.BuildMismatch": {
+    "Zh": "{0} 版本与 Giga Break LE 原生补丁不匹配，已阻止启动。请关闭补丁或使用匹配版本。",
+    "En": "{0} does not match the Giga Break LE native patch. Launch was blocked. Disable the patch or use a matching game build."
+  },
+  "Native.Missing": {
+    "Zh": "原生补丁文件不存在：{0}。请重新启动登录器以释放内嵌补丁。",
+    "En": "The native patch file was not found: {0}. Restart the launcher to extract its embedded patch."
+  },
+  "Native.EntryMissing": {
+    "Zh": "找不到原生组件入口 {0}。",
+    "En": "The native component entry point {0} was not found."
+  },
+  "Native.InitError": {
+    "Zh": "原生组件初始化返回错误 {0}。",
+    "En": "Native component initialization returned error {0}."
+  }
+}
