@@ -2,7 +2,7 @@
 
 **简体中文** | [English](README.en.md)
 
-独立 Windows x86 / .NET 8 WPF 桌面程序。SaaS 风格界面，不依赖 BAT、Python、Frida、浏览器或单独安装 .NET。
+独立 Windows x86 / .NET 8 WPF 桌面程序。
 
 ## 使用
 
