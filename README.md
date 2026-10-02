@@ -1,128 +1,129 @@
-# CSNZ Desktop Launcher 1.0.7
+# CSNZ 桌面登录器 1.0.7
 
-[简体中文](README.md) | **English**
+**简体中文** | [English](README.en.md)
 
-A standalone Windows x86 / .NET 8 WPF desktop application with a SaaS-style interface. No BAT files, Python, Frida, browser, or separate .NET installation is required to use it.
+独立 Windows x86 / .NET 8 WPF 桌面程序。SaaS 风格界面，不依赖 BAT、Python、Frida、浏览器或单独安装 .NET。
 
-## Usage
+## 使用
 
-Use the **CN / EN** button in the top-right corner, to the left of the server address, to switch instantly between Simplified Chinese and English. The active language is highlighted in purple, and your selection is saved automatically. Translation covers login, registration, weapon mods, settings, help, confirmation dialogs, server status, and error messages. Standard buttons in the system folder picker still follow the Windows display language.
+右上角服务器地址左侧的 **CN / EN** 按钮可立即切换简体中文 / English，当前语言以紫色标示，选择自动保存。覆盖登录、注册、武器模组、设置、帮助、确认对话框、服务端状态及错误反馈。系统文件夹选择窗口的通用按钮仍遵循 Windows 的显示语言。
 
-When the patch is enabled for the first time, the launcher extracts its embedded files to `%LOCALAPPDATA%\CSNZLauncher\Native\GigaBreakLE\0.7.4-native-r2`. Administrator privileges are not required. It does not search the working directory or game directory for unknown DLLs. If the cached files do not match, loading is refused; existing files are not overwritten. Patch runtime logs are also stored in this directory.
+运行 `dist/CSNZ_Launcher_1.0.7/CSNZ登录器.exe`。原生补丁及许可证已内嵌，单独复制此 EXE 也能使用，不再依赖旁边的 `Native` 文件夹。
 
-The game directory is no longer hard-coded. Place the EXE in the game root directory (the folder containing `Bin`) or in `Bin` itself. Detection uses the EXE's location, not the startup working directory. If you move it to another complete game installation, the adjacent installation takes priority; an explicitly selected external directory is still retained. If the game cannot be found, select its root directory under **Settings**. A `Bin` directory or `Bin/CSOLauncher.exe` path is also accepted. The launcher does not copy, overwrite, or modify original game files, server configuration, or startup scripts.
+首次启用补丁时，登录器将自己的内嵌文件释放到 `%LOCALAPPDATA%\CSNZLauncher\Native\GigaBreakLE\0.7.4-native-r2`，不需要管理员权限。不会从当前目录或游戏目录搜索未知 DLL；缓存内容不匹配时拒绝加载，不覆盖已存在的文件。补丁运行日志也在此目录。
 
-- Opening the launcher automatically starts `game directory/Server/CSNZ_Server.exe` in the background, without a console window.
-- The top-right indicator shows a red dot when stopped, a spinner while starting, and a green dot when ready. A spinner remains visible during graceful shutdown, and the stopped state is shown only after the server exits. The Chinese UI retains the labels `Stop`, `Starting`, `Ready`, and `Stoping`. Readiness requires a real CSNZ protocol banner response, not just a running process.
-- An existing server is reused. The launcher does not take ownership of it and will not stop it.
-- Graceful shutdown uses the original server's `shutdown` console command and waits for a normal exit. A timeout does not trigger a forced termination. Stopping the server is disabled while the game is running.
-- When closing the launcher, you can choose to gracefully stop the server it started or leave that server running. The launcher will not terminate a running game.
-- Automatic login is handled by the embedded `CSNZLauncherBridge.dll`, independently of the weapon-mod toggle. At the game's original login callback, it sends a standard `/login` authentication packet over the game's existing connection, rather than relying on the chat UI, which could discard the command. The server still validates the password normally; incorrect passwords are rejected. The `-disableauthui` option remains enabled, so credentials do not need to be entered again. First-time character creation for a new account still takes place in the game. The launcher does not log in through a separate session beforehand, grant duplicate login rewards, or rewrite the database.
-- The automatic-login component strictly checks the SHA-256 hashes of the current `CSOLauncher.exe` and `hw.dll`, and verifies the PE, function entry point, and current two-argument ABI at runtime. Unknown versions are refused; original game binaries are not overwritten. The component is embedded in the EXE and extracted to `%LOCALAPPDATA%\CSNZLauncher\Native\LauncherAuth\1.0.0`.
-- Registration uses the selected server's actual network protocol. Success is displayed only after an explicit success response. Duplicate accounts, invalid input, registration limits per IP, and database errors have separate messages. The launcher does not directly read or write the account database.
-- Usernames must contain 5–15 ASCII letters or digits. Passwords must contain 5–15 printable ASCII characters; spaces, double quotes, and backslashes are not supported. A registration password cannot consist entirely of digits. These are the field constraints of the current server authentication commands.
-- Remember username, remember password, show/hide password, password confirmation, clear saved credentials, server address/port/TLS settings, and minimize after launch are supported.
-- The `LE 0.7.4-native-r2` native patch is enabled by default and can be disabled under **Weapon Mods**. It strictly checks the current CSNZ0930 PE version and ABI. A mismatch prevents the patch from starting rather than applying offsets anyway. The old LEGuard must not run at the same time.
+不再写死游戏目录。将 EXE 放在游戏根目录（包含 `Bin`）或 `Bin` 中，会按 EXE 所在位置识别，不依赖启动时的工作目录。移动到另一份完整游戏目录时优先使用相邻游戏；明确手动选择的外部目录仍会保留。如果找不到游戏，在「启动设置」选择根目录，也接受 `Bin` 或 `Bin/CSOLauncher.exe` 路径。不会复制、覆盖或改写原游戏文件、原服务端配置、原启动脚本。
 
-## Password and Network Boundaries
+* 打开登录器即自动启动 `游戏目录/Server/CSNZ_Server.exe`，后台运行，不弹控制台。
+* 右上角：红点 `Stop`、旋转指示 `Starting`、绿点 `Ready`；安全停止期间显示 `Stoping` 与旋转指示，退出后才显示 `Stop`。就绪以真实 CSNZ 协议横幅响应为准，不仅检查进程存在。
+* 已有服务端会复用，登录器不取得其所有权，也不会停止它。
+* 安全停止使用原服务端的 `shutdown` 控制台命令，等待正常退出；超时不会强杀进程。游戏运行时禁用停止行为。
+* 关闭登录器时可选择同时安全停止它自己启动的服务端；也可保留服务端。游戏运行时不会被登录器结束。
+* 自动登录由内嵌的 `CSNZLauncherBridge.dll` 完成，独立于武器模组开关。它在游戏原登录回调中，通过原有游戏连接发送标准 `/login` 认证包，不再依赖可能丢弃命令的聊天 UI。服务端仍正常验证密码；错误密码会被拒绝。保留 `-disableauthui`，不重复要求输入账号密码；新账号首次创建角色仍在游戏内完成。不会预先另开会话登录账号，不重复发放登录奖励或改写数据库。
+* 自动登录组件严格核对当前 `CSOLauncher.exe` 和 `hw.dll` SHA-256，并在运行时核对 PE、函数入口及当前两参数 ABI。未知版本拒绝启动，不覆盖原游戏二进制。组件内嵌于 EXE，释放到 `%LOCALAPPDATA%\CSNZLauncher\Native\LauncherAuth\1.0.0`。
+* 注册通过选定服务端的真实网络协议提交，只有明确的成功回复才显示成功。重复账号、格式错误、注册 IP 上限、数据库错误有单独提示，不直接读写用户数据库。
+* 账号 5–15 位英文字母或数字；密码 5–15 位可见 ASCII 字符，不支持空格、双引号、反斜杠；注册密码不能全部为数字。这是当前服务端认证命令的字段约束。
+* 记住账号、记住密码、显示/隐藏密码、密码二次确认、清除保存凭据、服务端地址/端口/TLS、启动后最小化均可用。
+* 默认加载 `LE 0.7.4-native-r2` 原生补丁，可在「武器模组」关闭。补丁严格核对当前 CSNZ0930 PE 版本与 ABI；不匹配时阻止补丁启动，不尝试强行套用偏移。旧版 LEGuard 不能同时运行。
 
-Configuration is stored in `%LOCALAPPDATA%\CSNZLauncher\settings.json`. The username and preferences are readable. A password is saved only when **Remember password** is selected, and is encrypted using **Windows DPAPI for the current user**, bound to the server address, port, TLS mode, and username. Changing servers clears the input and previous credentials. Disabling password retention removes the encrypted password value.
+## 密码与网络边界
 
-Automatic-login credentials **no longer appear on the game's command line**. The launcher temporarily passes them to the game process it has just started, and the component clears its copy after sending the authentication request. Credentials are not written to plaintext files or logs. The same Windows user or an administrator may still be able to read process memory; DPAPI does not make secrets inaccessible to administrators. The original launcher's stdout/stderr are discarded rather than saved.
+配置存于 `%LOCALAPPDATA%\CSNZLauncher\settings.json`。账号与偏好可读；密码仅在勾选记住密码时保存为 **Windows DPAPI 当前用户加密**的密文，绑定服务器地址、端口、TLS 模式和账号。更换服务器会清空输入和旧凭据，取消记住密码会移除密文字段内容。
 
-For registration outside the game, unencrypted connections are allowed only for `localhost` or loopback IP addresses. Remote registration requires TLS and successful system validation of the certificate and hostname; there is no accept-any-certificate bypass. Remote non-TLS login through the original game first requires explicit confirmation. The server's TLS configuration and the launcher's setting must match. `ready` means a CSNZ banner was received; it does not mean the account is authenticated or the TLS certificate has been validated.
+自动登录账号、密码**不再出现在游戏命令行**。登录器将凭据临时传给自己新启动的游戏进程，认证请求发出后清空组件内的副本；不写明文文件或日志。同一 Windows 用户或管理员仍可能读取进程内存，DPAPI 不等于对管理员保密。原启动器 stdout/stderr 被丢弃而不保存。
 
-The server has no email/SMS password-recovery interface. **Forgot password** therefore directs users to the administrator. It does not pretend to send a recovery email or bypass account verification.
+外置注册：未加密连接只允许 `localhost`/回环 IP，远程注册要求 TLS 且证书/域名通过系统校验，没有接受任意证书的后门。原游戏远程非 TLS 登录会先给出明确确认提示。服务器 TLS 与登录器设置必须一致。`ready` 表示 CSNZ 横幅响应，不代表账号已认证或 TLS 证书已验证。
 
-## Build
+服务端没有邮件/短信找回密码接口，因此「忘记密码」明确指向管理员，不假装发送找回邮件，也不绕过账号验证。
 
-The .NET 8 SDK is required. Prebuilt embedded native components are included in the source package. Rebuilding them with `-RebuildNative` also requires Visual Studio 2022 C++ x86 Build Tools.
+## 构建
 
-```powershell
-pwsh -NoProfile -File .\build.ps1
-```
+需要 .NET 8 SDK；内嵌原生组件随源码包提供，如使用 `-RebuildNative` 重新编译，还需要 Visual Studio 2022 C++ x86 Build Tools。
 
-The self-contained output is written to `dist/CSNZ_Launcher_1.0.7`. Administrator privileges are not required by default at runtime. Launcher source is in `src/CSNZ.Launcher`; targeted tests are in `tests/Launcher.Smoke`. Those tests explicitly require an isolated server directory and must not use the production database.
+    pwsh -NoProfile -File .\build.ps1
 
-`assets/Native/GigaBreakLE.dll` is this project's own native weapon patch. Its complete, rebuildable source is in `native-mod-source`. The automatic-login component's source is in `native-launcher-source` and reuses the bundled MinHook. The MinHook license is included. Original game DLLs, asset archives, server executables, account data, and upstream reverse-engineering output are not included.
+输出独立运行的 `dist/CSNZ_Launcher_1.0.7` 目录。运行时默认不要求管理员权限。新登录器源码在 `src/CSNZ.Launcher`；定向测试在 `tests/Launcher.Smoke`（测试明确要求隔离服务端目录，不允许使用正式数据库）。
 
-## Protocol References
+`assets/Native/GigaBreakLE.dll` 是本项目配套的自有原生武器补丁；完整可重建原生源码收在 `native-mod-source`；自动登录组件源码在 `native-launcher-source`，复用同包的 MinHook。MinHook 授权随包附带。不包含原游戏 DLL、资源包、服务端 EXE、账号数据或上游逆向输出。
 
-Out-of-game registration is implemented as a small, independent client using only the public wire format. It does not copy the server's account database or password-processing code. The upstream versions checked were:
+## 协议依据
 
-- [JusicP/CSNZ_Server](https://github.com/JusicP/CSNZ_Server/tree/6e5275cb4bf4178b391a1db09dd604c8eaa1420b): `src/net/tcpserver.cpp` (connection banner precedes TLS), `src/net/sendpacket.cpp` (4-byte header), `src/manager/usermanager.cpp` (version and registration requirements), `src/manager/channelmanager.cpp` (registration requests and results), and `src/servercommands.h` (graceful server shutdown).
-- [JusicP/Launcher_CSNZ](https://github.com/JusicP/Launcher_CSNZ/tree/9b1872aa32b748a1fb95e129807f50008057318b): the old automatic-login call in `hook.cpp` was used only to investigate the failure. Version 1.0.6 no longer passes credentials on the command line.
-- The local `Server/Documentation/Client Launcher Info.txt` and `Server/ChangeLog.txt`, version `30.09.2026_EoS`. The old `-register` argument has been removed upstream; this obsolete entry point is not used.
+外置注册是独立实现的小型客户端，仅使用公开线上字段格式，没有复制服务端的账号数据库或密码处理代码。核对的上游版本：
 
-Protocol sequence: raw ASCII banner `~SERVERCONNECTED\n` → optional TLS handshake → `0x55 | seq:u8 | bodyLen:u16LE | body`. A version packet is sent first (launcher version 67 / game version 26 / current client.dll timestamp). After a successful version response, the client sends UMsg 67, LobbyChat 1, and a NUL-terminated `/register` command, then waits for an explicit registration result in UMsg 67 / MsgBox 10. Receiving handles TCP fragmentation and enforces length limits. Unknown responses and timeouts are not treated as success.
+* [JusicP/CSNZ_Server](https://github.com/JusicP/CSNZ_Server/tree/6e5275cb4bf4178b391a1db09dd604c8eaa1420b)：`src/net/tcpserver.cpp`（连接横幅先于 TLS）、`src/net/sendpacket.cpp`（4 字节头）、`src/manager/usermanager.cpp`（版本与注册条件）、`src/manager/channelmanager.cpp`（注册请求及结果）、`src/servercommands.h`（正常停服）。
+* [JusicP/Launcher_CSNZ](https://github.com/JusicP/Launcher_CSNZ/tree/9b1872aa32b748a1fb95e129807f50008057318b)：`hook.cpp` 中的旧自动登录调用仅作为故障分析依据；1.0.6 不再通过命令行传递凭据。
+* 本机 `Server/Documentation/Client Launcher Info.txt` 与 `Server/ChangeLog.txt`，版本 `30.09.2026_EoS`。旧 `-register` 参数已经删除，没有使用该失效入口。
 
-## Verification
+协议：原始 ASCII 横幅 `~SERVERCONNECTED\n` → 可选 TLS 握手 → `0x55 | seq:u8 | bodyLen:u16LE | body`。先发版本包（启动器版本 67 / 游戏版本 26 / 当前 client.dll 时间戳），收到版本成功后发送 UMsg 67、LobbyChat 1、NUL 终止的 `/register` 命令，等待 UMsg 67 / MsgBox 10 中的明确注册结果。接收会处理 TCP 分片与长度上限，未知/超时回复不算成功。
 
-### 1.0.7 — Chinese/English Switching
+## 本次验证
 
-- Embedded bilingual resources require no online translation, external language files, or restart. All 189 strings are centralized in `src/CSNZ.Launcher/Strings.json`, with matching placeholders in Chinese and English.
-- Switching languages does not rebuild the page, clear the username/password/confirmation fields, change password visibility, or submit unsaved settings. It saves only the language preference, without re-encrypting the password or changing the authentication binding, server address, or mod toggle.
-- Existing registration results, errors, and asynchronous server-status messages retain message identifiers and update when the language changes. Yes/No/Cancel/OK buttons in confirmation dialogs follow the selected language, independently of the Windows language.
-- Navigation starts at a consistent position in both languages, with aligned buttons and input fields. English remember options and the recovery link use separate rows to avoid overlap in narrow windows. The directory browse button has enough space for English text.
-- All 35 offline localization checks passed, including 12 bilingual page renders using production WPF controls at 1100×760, 1200×820, and 1600×900, error messages, input preservation, language persistence, and dialog buttons. The 5 graceful-shutdown and 13 portable-path regression checks also passed.
-- This update changes only launcher presentation and text. The native automatic-login component, weapon-patch binaries, and game protocol are unchanged. These UI checks are not presented as new gameplay or network-authentication acceptance tests.
+### 1.0.7 中英文切换
 
-### 1.0.6 — Automatic Login and Portable Paths
+* 使用内嵌双语资源，无需联网翻译、外部语言文件或重启。189 项文案集中在 `src/CSNZ.Launcher/Strings.json`，中文和英文占位符一致。
+* 切换不会重建页面、清空账号/密码/确认密码、改变显示密码状态或提交尚未保存的设置。只保存语言偏好，不重新加密密码，也不改变认证绑定、服务器地址或模组开关。
+* 已显示的注册结果、错误和异步服务端状态保留消息标识，切换后一起更新；确认对话框的 Yes/No/Cancel/OK 跟随所选语言，不依赖 Windows 语言。
+* 两种语言均统一导航起始位置、按钮与输入框对齐。英文记忆选项与找回链接分行，避免窄窗口重叠；目录浏览按钮已为英文留足宽度。
+* 35 项离线本地化检查通过：包含真实生产 WPF 控件在 1100×760、1200×820、1600×900 下的 12 个双语页面渲染、错误提示、输入保留、语言持久化及对话框按钮。安全停止 5 项、便携路径 13 项回归通过。
+* 本次只更新启动器显示和文案；自动登录原生组件、武器补丁二进制及游戏协议未改动。没有将本次 UI 检查当作新的游戏战斗或联网认证验收。
 
-- The original failure was reproduced in the installed game directory: the initial connection and native Login packet were present, but no actual `/login` authentication packet was sent. Only packet IDs/lengths and boolean results were captured, not credentials.
-- The fix does not rewrite any EXE/DLL in `Bin`, use proxy forwarding, rely on arbitrary delays, or bypass server password validation. The authentication component and Giga Break LE can work independently.
-- Path detection and x86/x64 process-path verification passed 13 targeted checks without touching saved encrypted credentials. The EXE's icon resources were already complete. Startup only notifies Explorer to refresh that EXE; it does not delete the system icon cache or restart Explorer.
-- The gray C icon cached for the old local path required one additional Shell icon-cache invalidation notification. The character icon was then confirmed in Explorer. This maintenance step did not delete cache files or change system settings, and is not part of every startup. See the [Microsoft SHChangeNotify documentation](https://learn.microsoft.com/en-us/windows/win32/api/shlobj_core/nf-shlobj_core-shchangenotify) for the notification used.
-- Fixed WPF Closing re-entry when closing the window after graceful server shutdown. The final close is scheduled after the current event returns, rather than calling Close synchronously inside Closing.
-- Runtime acceptance used an isolated account database and synthetic accounts; the production account database was not read or written for those tests. Direct-connection checks with the actual `D:\CS\CSNZ0930` client passed: authentication and channel entry worked with weapon mods both enabled and disabled, and an incorrect password was explicitly rejected. The real game UI then loaded the notice, inventory items, and shop list instead of remaining at Connecting to server. No purchases were made and no survey was submitted.
-- With the single EXE moved to a new directory containing Chinese characters and spaces, and launched from `C:\Windows\System32`, it correctly detected the adjacent game. The actual client in the new location successfully logged in using a synthetic password containing `@`, `-`, and `!`. Only valid manually selected paths are retained; detection does not depend on a hard-coded default path.
-- The transparent-forwarding check in 1.0.2 did not cover the original direct-connection timing. This release added direct-connection acceptance without a proxy. Combat behavior and remote TLS are outside the scope of this local login fix's acceptance tests.
+### 1.0.6 自动登录与便携目录
 
-### 1.0.5 — Login Page Layout
+* 原故障在正式游戏目录复现：初始连接及原生 Login 包存在，但没有真正的 `/login` 认证包。只捕获数据包 ID/长度与布尔结果，不记录凭据。
+* 修复不改写 `Bin` 内任何 EXE/DLL，不使用代理转发、不延时碰运气、不跳过服务器密码校验。认证组件与 Giga Break LE 可独立工作。
+* 路径识别与 x86/x64 进程路径核验通过 13 项定向检查；不触碰保存的加密凭据。EXE 图标资源本来完整；启动时只通知 Explorer 刷新该 EXE，不删除系统图标缓存或重启 Explorer。
+* 本机旧路径的灰色 C 图标需额外执行一次 Shell 图标缓存失效通知，已在 Explorer 实际确认恢复为人物图标；这次维护不删除缓存文件、不更改系统设置，也不加入每次启动流程。所用通知见 [Microsoft SHChangeNotify 文档](https://learn.microsoft.com/en-us/windows/win32/api/shlobj_core/nf-shlobj_core-shchangenotify)。
+* 修复安全停服后关闭窗口时的 WPF Closing 重入；关闭安排在当前事件结束后执行，不在 Closing 内同步再次 Close。
+* 运行时验收采用隔离账号数据库及合成账号；正式账号数据库未读写。实际 `D:\CS\CSNZ0930` 客户端直连验证通过：武器模组开启/关闭均可认证并加入频道；错误密码明确拒绝。随后在真实游戏界面确认公告、仓库物品及商城列表已加载，不再停留在 Connecting to server；未购买或提交问卷。
+* 单 EXE 放入含中文和空格的新目录、以 `C:\Windows\System32` 为工作目录启动，正确识别相邻游戏；新位置的真实客户端使用含 `@`、`-`、`!` 的合成密码登录通过。只保留有效的手动指定路径，不依赖写死的默认路径。
+* 1.0.2 的透明转发验证没有覆盖原始直连时序，本次已补齐无代理直连验收。战斗效果及远程 TLS 不属于本次本地登录修复验收。
 
-- The title bar now shows only CSNZ. The left-side welcome text and old illustration were replaced by the original background image supplied by the user, embedded in the EXE without modifying the original image.
-- The image fills its area while preserving its aspect ratio and prioritizing the character on the left, without horizontal or vertical stretching. The image, server controls, and login form use consistent corner radii and spacing.
-- The two columns share their layout: the image's top edge aligns with the login card's top edge, and the server controls' bottom edge aligns with the login card's bottom edge. The login button sits near the bottom of the card. Both columns grow together when registration or error messages appear.
-- Real WPF layout renders passed at 1200×820, 1100×760, and 1600×900, plus a registration-error case. The bottom edges differed by less than 0.1 DIP. Synthetic previews do not read account settings or start the server or game.
+### 1.0.5 登录页布局
 
-### 1.0.4 — Shutdown State and Branding Icon
+* 标题栏仅保留 CSNZ。左侧欢迎文案与旧示意图替换为用户提供的背景原图，图片内嵌于 EXE；不改写原图。
+* 图片保持比例填充，优先保留左侧人物主体，不横向或纵向拉伸；图片、服务端控制与登录表单统一圆角和间距。
+* 两列共同布局：图片顶边与登录卡片顶边、服务端控制底边与登录卡片底边对齐，登录按钮靠近卡片底部。注册与错误信息出现时，两侧一起增高。
 
-- Graceful shutdown has a separate internal Stopping state. The UI label in this release was `Stoping`, as requested. Repeated operations are disabled while waiting for normal exit; a failure restores the state rather than forcibly terminating the process.
-- The top-left logo and application icon were replaced with a high-resolution redraw of the user's cstrike.ico. The “Game Workspace” text was removed, and CSNZ and the icon were vertically centered. The original ICO was preserved.
-- The high-resolution source image is stored at assets/cstrike-hd-v1.png, with an actual size of 1254 × 1254. A cstrike-hd-v1.ico containing 16–256-pixel frames is also provided. It was produced with the built-in image-generation tool. No model was specified or claimed to be image2.5, and the actual output was not described as 4K.
+* 已通过 1200×820、1100×760、1600×900 与注册错误反馈四种真实 WPF 排版渲染检查；两侧底边误差小于 0.1 DIP。合成预览不读取账号配置，不启动服务端或游戏。
 
-### 1.0.3 — UI Simplification
+### 1.0.4 停止状态与品牌图标
 
-- Status labels use initial capitals, with vertically aligned dots and text.
-- Removed the long weapon-card description, bottom information panel, login-card footer note, and footer text, while retaining necessary error feedback.
-- The weapon page shows the number of loaded weapons and updates it as selections change. Selections still take effect on the next game launch; authentication, persistence, and native weapon logic are unchanged.
+* 安全停止有独立的 Stopping 内部状态，界面按要求显示 Stoping；等待正常退出时禁用重复操作，失败恢复状态，不强杀进程。
+* 左上角与应用图标改为用户 cstrike.ico 的高清重绘版，去掉「游戏工作空间」，CSNZ 与图标垂直居中。原 ICO 保留不变。
+* 高清源图保存在 assets/cstrike-hd-v1.png，实际尺寸 1254 × 1254；另提供含 16–256 像素帧的 cstrike-hd-v1.ico。使用内置图像生成工具，未指定或声称模型为 image2.5，未将实际输出称为 4K。
 
-### Weapon Mods Page and Consistent Naming
+### 1.0.3 界面精简
 
-- Sidebar order: Login Center → Weapon Mods → Settings → Help. Weapon selections are saved automatically and loaded on the next launch; they do not hot-switch a running game.
-- **Giga Break LE** is currently the only weapon with a loadable, partially reconstructed implementation, so the list contains one item. The other five investigated weapons are not presented as working fixes.
-- The mod's display name is consistently Giga Break LE, and code/file identifiers use `GigaBreakLE` or `giga_break_le`. DLL names, native source filenames, exported functions, resource versions, launch-control events, and release naming were updated together.
-- The original game's `ef_beamgunle_wingman.mdl` resource key and the legacy mutex key preventing old and new mods from loading together are compatibility contracts and retain their original values. Historical backups and older release packages were not rewritten.
-- Real desktop checks confirmed that deselecting/selecting the mod immediately persists the setting; it was restored to enabled afterward. The renamed DLL initialized to ready in an isolated real-game run. After normalizing naming differences, its weapon-logic source matched the previous version.
+* 状态标签改为首字母大写，圆点与文字垂直居中。
+* 删除武器卡片长说明、底部说明框、登录卡片底部提示与页脚文字；保留必要的错误反馈。
+* 武器页显示「已加载 X 项武器」，随勾选数量更新；仍在下次启动游戏时应用，不更改认证、保存与原生武器逻辑。
 
-### 1.0.2 — Automatic Login
+### 武器模组页与统一命名
 
-- Tests using a complete isolated game copy, a separate real server, and synthetic accounts confirmed that the game automatically sent `/login` once, with an exact username/password match. The server explicitly accepted the login, and the game automatically reached character naming for a new account.
-- `tests/AutoLogin.E2E` observed the game's own session through transparent local forwarding, recording only packet types and match booleans, not credentials or raw packets. Isolated test data and game files are not included in the source package.
-- Added `-disableauthui` to disable the separate VGUI login window. This does not introduce a second authentication session, fake login success, or modify the server or original game files.
-- An incorrect password was explicitly rejected on the same actual game path. Hiding the login window does not let invalid accounts bypass authentication. Automatic login also passed a combined check with the newly named Giga Break LE mod enabled.
+* 左侧顺序为「登录中心 → 武器模组 → 启动设置 → 使用说明」。武器勾选自动保存，下次启动时加载；不热切换运行中的游戏。
+* 当前只有 **Giga Break LE** 已提供可加载的部分重建实现，因此列表为 1 项，不把另外五把仅调查过的武器伪装为可用修复。
+* 模组名称统一为 Giga Break LE，代码/文件标识统一为 `GigaBreakLE` 或 `giga_break_le`：DLL、原生源码文件、导出函数、资源版本、启动控制事件和发布命名同步更新。
+* 原游戏的 `ef_beamgunle_wingman.mdl` 资源键及用于防止新旧模组重复加载的旧版互斥键属于兼容契约，保留原值；历史备份和旧版本包不改写。
+* 已在真实桌面界面验证取消/勾选会立即持久化，并恢复为启用。改名后的 DLL 在隔离真实游戏中初始化为 ready；归一化命名差异后，武器逻辑源码与上一版一致。
 
-### 1.0.1 — Fixes
+### 1.0.2 自动登录
 
-- Fixed input-control templates applying Padding twice, which reduced the text area height to zero. Username, masked password, visible password, and settings inputs use black text and carets. Removed the introduction card at the bottom of the sidebar.
-- Embedded the native patch in the EXE while preserving weapon logic and PE/ABI checks. Standalone EXE preflight checks do not read account settings, start the server or game, or install hooks.
-- Run `CSNZ login tool.exe --check-native <game root directory> <absolute path to a new report file>`. Exit codes: 0 for success, 1 for failure, and 2 for invalid arguments or report paths. Existing report files will not be overwritten.
-- Verified synthetic WPF renders for three input variants (text area restored from 0 to 21 DIP), DLL extraction and preloading from a standalone EXE in a path containing Chinese characters and spaces, preflight against the actual game installation, the updated window, and server `ready`. No real account was submitted and the game was not launched in these checks.
+* 使用完整的隔离游戏副本、独立真实服务端和合成账号实测：游戏自动发送一次 `/login`，账号与密码均逐字匹配，服务端明确接受，自动到达新账号的角色命名阶段。
+* `tests/AutoLogin.E2E` 通过透明本机转发观察游戏自己的会话，只记录包类型和匹配布尔值，不保存凭据或原始包。隔离数据和游戏文件不随源码包发布。
+* 启动参数增加 `-disableauthui`，关闭独立 VGUI 登录窗口；不增加第二个认证会话，不伪造登录成功，不修改服务端或原游戏文件。
+* 同一实际游戏链路的错误密码测试明确被拒绝；关闭登录框不会使无效账号绕过认证。开启新命名的 Giga Break LE 模组与自动登录组合测试也通过。
 
-### 1.0.0 — Earlier Verification
+### 1.0.1 修复
 
-- Release build, x86 native DLL preloading, and export/PE version checks passed.
-- An isolated real CSNZ_Server passed automatic startup, protocol readiness, successful registration, duplicate-account rejection, incorrect-password rejection, new-account login acceptance, and normal shutdown. The test database was separate from the production database; production accounts were not read or modified.
-- DPAPI encryption/decryption, binding-mismatch rejection, absence of plaintext passwords in configuration, input constraints, packet construction, and launch arguments without a shell passed a total of 17 targeted checks. Evidence is in `evidence/smoke-result.txt` and is not distributed in release packages.
-- The desktop window was opened and the local production server was confirmed to reach `ready` automatically, then stopped normally by the launcher. No user account was used to log in, and no gameplay test was started.
-- These are the historical verification boundaries for 1.0.0. Version 1.0.2 added actual in-game automatic-login checks. **The native patch's combat behavior still requires user acceptance**; account login or DLL loading is not treated as a complete combat test.
+* 修复输入控件模板重复计算 Padding 导致文字区域高度为 0；账号、掩码密码、显示密码和设置输入使用黑色文字与光标。删除侧栏底部介绍卡片。
+* EXE 内嵌原生补丁，保持原有武器逻辑与 PE/ABI 门禁。独立 EXE 预检不读取账号配置，不启动服务器或游戏，不安装挂钩。
+* 可运行 `CSNZ登录器.exe --check-native <游戏根目录> <新报告文件绝对路径>`；成功退出码 0，失败 1，参数/报告路径错误 2。报告拒绝覆盖已有文件。
+* 已验证：三种输入的合成 WPF 渲染（文字区域由 0 恢复为 21 DIP 高）、从含中文/空格目录单独运行 EXE 的 DLL 释放与预加载、实际游戏目录入口的预检、新版窗口与服务端 `ready`。未提交真实账号或启动游戏。
+
+### 1.0.0 已有验证
+
+* Release 构建、x86 原生 DLL 预加载和导出/PE 版本检查通过。
+* 隔离的真实 CSNZ_Server：自动启动、协议 ready、注册成功、重复账号拒绝、错误密码拒绝、新账号登录接受、正常 shutdown 通过。测试数据库与正式数据库隔离，未读取或修改正式账号。
+* DPAPI 加解密、绑定不匹配拒绝、配置无明文密码、输入约束、封包、无 shell 启动参数通过，共 17 项定向检查。证据在 `evidence/smoke-result.txt`，不随发布包公开。
+* 已实际打开桌面窗口，确认本地正式服务端自动进入 `ready`，随后由登录器正常停止；未使用用户账号登录，未启动游戏战斗测试。
+* 以上为 1.0.0 的历史验证范围；1.0.2 已增加实际游戏自动登录验证。**原生补丁战斗效果仍待用户验收**，不把账号登录或 DLL 加载当作完整战斗实测。
