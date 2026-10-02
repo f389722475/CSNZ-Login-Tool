@@ -4,3 +4,11 @@ dist/
 research/
 evidence/
 *.user
+
+# Local native build outputs and runtime data must not be published.
+**/build/
+*.db3
+*.db3-wal
+*.db3-shm
+*.log
+settings.json

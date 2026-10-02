@@ -14,6 +14,9 @@ public partial class MainWindow : Window
 {
     private LauncherSettings settings;
     private readonly ServerManager server = new();
+    private readonly AwakeningPlugin awakening = new();
+    private readonly bool previewPlugins;
+    private UiText? pluginFailure;
     private readonly CancellationTokenSource lifetime = new();
     private readonly DispatcherTimer timer = new() { Interval = TimeSpan.FromSeconds(8) };
     private bool initialized, registering, busy, syncing, closing, allowClose;
@@ -21,9 +24,10 @@ public partial class MainWindow : Window
     private string currentPage = "login";
     private UiText? feedbackMessage, settingsMessage, modFailure;
     private static SolidColorBrush Brush(string hex) => (SolidColorBrush)new BrushConverter().ConvertFromString(hex)!;
-    public MainWindow(LauncherSettings settings, UiText? warning = null)
+    public MainWindow(LauncherSettings settings, UiText? warning = null, bool previewPlugins = false)
     {
         this.settings = settings;
+        this.previewPlugins = previewPlugins;
         Apply(settings.Language);
         InitializeComponent();
         server.Changed += s => Dispatcher.BeginInvoke(() => RenderServer(s));
@@ -38,10 +42,11 @@ public partial class MainWindow : Window
         }
         initialized = true; UpdateHints(); RefreshLocalizedUi();
         if (warning != null) Feedback(warning, false);
-        timer.Tick += async (_, _) => { if (!busy && !closing) { try { await server.RefreshAsync(settings, lifetime.Token); } catch (OperationCanceledException) { } catch { } } };
+        timer.Tick += async (_, _) => { if (!busy && !closing) { try { await server.RefreshAsync(settings, lifetime.Token); await SyncPluginsAsync(); } catch (OperationCanceledException) { } catch { } } };
     }
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
+        if (previewPlugins) { ShowPage("plugins"); ClassAwakeningBox.IsEnabled = false; return; }
         timer.Start();
         if (settings.StartLocalServer && CsnzProtocol.IsLoopback(settings.Host)) await StartServerAsync();
         else { try { await server.RefreshAsync(settings, lifetime.Token); } catch { } }
@@ -65,6 +70,7 @@ public partial class MainWindow : Window
     {
         busy = value; SubmitButton.IsEnabled = !value; LoginTab.IsEnabled = !value; RegisterTab.IsEnabled = !value;
         AccountBox.IsEnabled = !value; PasswordInput.IsEnabled = !value; PasswordVisible.IsEnabled = !value; ConfirmInput.IsEnabled = !value;
+        PluginsNav.IsEnabled = !value; ClassAwakeningBox.IsEnabled = !value;
         SettingsNav.IsEnabled = !value; WeaponModsNav.IsEnabled = !value; GigaBreakLEBox.IsEnabled = !value; RememberRow.IsEnabled = !value; RevealButton.IsEnabled = !value;
         SubmitButton.Content = value ? Text("Form.Busy") : registering ? Text("Form.Create") : Text("Form.Submit");
         RenderServer(server.Status);
@@ -72,7 +78,7 @@ public partial class MainWindow : Window
     private async Task StartServerAsync()
     {
         if (busy) return; SetBusy(true);
-        try { await server.EnsureReadyAsync(settings, lifetime.Token); }
+        try { await server.EnsureReadyAsync(settings, lifetime.Token); await SyncPluginsAsync(true); }
         catch (OperationCanceledException) { }
         catch (Exception e) { Feedback(Explain(e), false); }
         finally { SetBusy(false); }
@@ -99,6 +105,7 @@ public partial class MainWindow : Window
             if (!register) GameLauncher.CheckGame(settings);
             SetBusy(true); FeedbackBox.Visibility = Visibility.Collapsed;
             await server.EnsureReadyAsync(settings, lifetime.Token);
+            await SyncPluginsAsync(true);
             if (register)
             {
                 var timestamp = NativePatch.ReadPeTimestamp(Path.Combine(settings.GameRoot, "Bin", "client.dll"));
@@ -113,6 +120,7 @@ public partial class MainWindow : Window
                 game = await GameLauncher.StartAsync(settings, account, password, text => Dispatcher.BeginInvoke(() => Feedback(text, true)), lifetime.Token);
                 SaveCredentials();
                 _ = MonitorAuthenticationAsync(game);
+                _ = MonitorAwakeningObserverAsync();
                 if (settings.EnableNativePatch) _ = MonitorPatchAsync(game);
                 if (settings.MinimizeOnLaunch) WindowState = WindowState.Minimized;
             }
@@ -190,7 +198,7 @@ public partial class MainWindow : Window
     {
         GamePathBox.Text = settings.GameRoot; HostBox.Text = settings.Host; PortBox.Text = settings.Port.ToString(); TlsBox.IsChecked = settings.UseTls;
         AutoServerBox.IsChecked = settings.StartLocalServer; MinimizeBox.IsChecked = settings.MinimizeOnLaunch;
-        syncing = true; GigaBreakLEBox.IsChecked = settings.EnableNativePatch; syncing = false;
+        syncing = true; GigaBreakLEBox.IsChecked = settings.EnableNativePatch; ClassAwakeningBox.IsChecked = settings.EnableClassAwakening; syncing = false;
         ServerAddressHeader.Text = $"{settings.Host}:{settings.Port}"; UpdateModHints();
     }
     private void UpdateModHints()
@@ -213,20 +221,63 @@ public partial class MainWindow : Window
             modFailure = Msg("Settings.SaveFailed", Explain(error)); UpdateModHints();
         }
     }
+    private void UpdatePluginHints()
+    {
+        ClassAwakeningStatus.Text = Text(pluginFailure != null ? "Plugins.ShortError" : awakening.Active ? "Plugins.ShortActive" : settings.EnableClassAwakening ? "Plugins.ShortWaiting" : "Plugins.ShortDisabled");
+        ClassAwakeningStatus.ToolTip = pluginFailure?.ToString();
+        PluginsFeedback.Text = awakening.Active ? Text("Plugins.CountOne") : Text("Plugins.Count", 0);
+        PluginsFeedback.ToolTip = pluginFailure?.ToString();
+    }
+    private async Task SyncPluginsAsync(bool required = false)
+    {
+        try { await awakening.SyncAsync(settings, lifetime.Token); pluginFailure = null; }
+        catch (OperationCanceledException) { throw; }
+        catch (Exception error) { pluginFailure = Msg("Plugins.Failed", error.Message); if (required) throw; }
+        finally { UpdatePluginHints(); }
+        _ = MonitorAwakeningObserverAsync();
+    }
+    private async Task MonitorAwakeningObserverAsync()
+    {
+        try { await awakening.SyncObserverAsync(settings, lifetime.Token); }
+        catch (OperationCanceledException) { }
+        catch (Exception error) { if (!closing) { pluginFailure = Msg("Plugins.ObserverFailed", error.Message); UpdatePluginHints(); } }
+    }
+    private async void ClassAwakening_Changed(object sender, RoutedEventArgs e)
+    {
+        if (!initialized || syncing || previewPlugins) return;
+        bool previous = settings.EnableClassAwakening;
+        try
+        {
+            settings.EnableClassAwakening = ClassAwakeningBox.IsChecked == true;
+            SettingsStore.Save(settings);
+        }
+        catch (Exception error)
+        {
+            settings.EnableClassAwakening = previous; syncing = true; ClassAwakeningBox.IsChecked = previous; syncing = false;
+            pluginFailure = Msg("Settings.SaveFailed", Explain(error)); UpdatePluginHints(); return;
+        }
+        ClassAwakeningBox.IsEnabled = false;
+        try { await SyncPluginsAsync(); }
+        catch (OperationCanceledException) { }
+        finally { ClassAwakeningBox.IsEnabled = !busy; }
+    }
     private void ShowPage(string page)
     {
         currentPage = page;
+        PluginsPage.Visibility = page == "plugins" ? Visibility.Visible : Visibility.Collapsed;
         LoginPage.Visibility = page == "login" ? Visibility.Visible : Visibility.Collapsed;
         WeaponModsPage.Visibility = page == "mods" ? Visibility.Visible : Visibility.Collapsed;
         SettingsPage.Visibility = page == "settings" ? Visibility.Visible : Visibility.Collapsed;
-        Breadcrumb.Text = page == "mods" ? Text("Nav.Mods") : page == "settings" ? Text("Nav.Settings") : Text("Nav.Login");
-        foreach (var (button, name) in new[] { (LoginNav, "login"), (WeaponModsNav, "mods"), (SettingsNav, "settings") })
+        Breadcrumb.Text = page == "plugins" ? Text("Nav.Plugins") : page == "mods" ? Text("Nav.Mods") : page == "settings" ? Text("Nav.Settings") : Text("Nav.Login");
+        foreach (var (button, name) in new[] { (LoginNav, "login"), (WeaponModsNav, "mods"), (PluginsNav, "plugins"), (SettingsNav, "settings") })
         { button.Background = Brush(page == name ? "#EEECFF" : "#00FFFFFF"); button.Foreground = Brush(page == name ? "#6157E8" : "#758198"); }
         if (page == "settings") { LoadSettingsFields(); SetSettingsFeedback(null); }
+        UpdatePluginHints();
         PageScroll.ScrollToTop();
     }
     private void LoginNav_Click(object sender, RoutedEventArgs e) => ShowPage("login");
     private void WeaponModsNav_Click(object sender, RoutedEventArgs e) => ShowPage("mods");
+    private void PluginsNav_Click(object sender, RoutedEventArgs e) => ShowPage("plugins");
     private void SettingsNav_Click(object sender, RoutedEventArgs e) => ShowPage("settings");
     private void Browse_Click(object sender, RoutedEventArgs e) { var dialog = new OpenFolderDialog { Title = Text("Settings.FolderTitle") }; if (dialog.ShowDialog(this) == true) GamePathBox.Text = dialog.FolderName; }
     private async void SaveSettings_Click(object sender, RoutedEventArgs e)
@@ -262,7 +313,7 @@ public partial class MainWindow : Window
     private bool GameIsRunning() { try { return ProcessTools.IsRunning(Path.Combine(settings.GameRoot, "Bin", "CSOLauncher.exe"), "CSOLauncher"); } catch { return true; } }
     private async void Window_Closing(object? sender, CancelEventArgs e)
     {
-        if (allowClose) return;
+        if (allowClose || previewPlugins) return;
         if (closing) { e.Cancel = true; return; }
         if (busy) { e.Cancel = true; Feedback(Msg("Close.Busy"), false); return; }
         e.Cancel = true; closing = true;
@@ -300,10 +351,10 @@ public partial class MainWindow : Window
         FormSubtitle.Text = Text(registering ? "Form.RegisterSubtitle" : "Form.LoginSubtitle");
         SubmitButton.Content = Text(busy ? "Form.Busy" : registering ? "Form.Create" : "Form.Submit");
         RevealButton.Content = Text(PasswordVisible.Visibility == Visibility.Visible ? "Form.Hide" : "Form.Show");
-        Breadcrumb.Text = Text(currentPage == "mods" ? "Nav.Mods" : currentPage == "settings" ? "Nav.Settings" : "Nav.Login");
+        Breadcrumb.Text = Text(currentPage == "plugins" ? "Nav.Plugins" : currentPage == "mods" ? "Nav.Mods" : currentPage == "settings" ? "Nav.Settings" : "Nav.Login");
         LanguageCn.Foreground = Brush(Localizer.Language == "zh-CN" ? "#6157E8" : "#8F99AC");
         LanguageEn.Foreground = Brush(Localizer.Language == "en" ? "#6157E8" : "#8F99AC");
-        RenderServer(server.Status); UpdateModHints();
+        RenderServer(server.Status); UpdateModHints(); UpdatePluginHints();
         if (feedbackMessage != null) FeedbackText.Text = feedbackMessage.ToString();
         SetSettingsFeedback(settingsMessage);
     }

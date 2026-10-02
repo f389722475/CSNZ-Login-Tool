@@ -17,6 +17,7 @@ public sealed class LauncherSettings
     public bool UseTls { get; set; }
     public bool StartLocalServer { get; set; } = true;
     public bool EnableNativePatch { get; set; } = true;
+    public bool EnableClassAwakening { get; set; } = true;
     public bool MinimizeOnLaunch { get; set; }
     public bool RememberAccount { get; set; } = true;
     public bool RememberPassword { get; set; }

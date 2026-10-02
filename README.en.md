@@ -1,4 +1,4 @@
-# CSNZ Desktop Launcher 1.0.7
+# CSNZ Desktop Launcher 1.0.8
 
 [简体中文](README.md) | **English**
 
@@ -6,9 +6,9 @@ A standalone Windows x86 / .NET 8 WPF desktop application with a SaaS-style inte
 
 ## Usage
 
-Use the **CN / EN** button in the top-right corner, to the left of the server address, to switch instantly between Simplified Chinese and English. The active language is highlighted in purple, and your selection is saved automatically. Translation covers login, registration, weapon mods, settings, help, confirmation dialogs, server status, and error messages. Standard buttons in the system folder picker still follow the Windows display language.
+Use the **CN / EN** button in the top-right corner, to the left of the server address, to switch instantly between Simplified Chinese and English. The active language is highlighted in purple, and your selection is saved automatically. Translation covers login, registration, weapon mods, plugins, settings, help, confirmation dialogs, server status, and error messages. Standard buttons in the system folder picker still follow the Windows display language.
 
-Run `dist/CSNZ_Launcher_1.0.7/CSNZ登录器.exe`. The native patch and licenses are embedded, so you can also copy and run the EXE on its own; a separate `Native` folder is no longer required.
+Run `dist/CSNZ_Launcher_1.0.8/CSNZ登录器.exe`. The native patch and licenses are embedded, so you can also copy and run the EXE on its own; a separate `Native` folder is no longer required.
 
 When the patch is enabled for the first time, the launcher extracts its embedded files to `%LOCALAPPDATA%\CSNZLauncher\Native\GigaBreakLE\0.7.4-native-r2`. Administrator privileges are not required. It does not search the working directory or game directory for unknown DLLs. If the cached files do not match, loading is refused; existing files are not overwritten. Patch runtime logs are also stored in this directory.
 
@@ -26,6 +26,16 @@ The game directory is no longer hard-coded. Place the EXE in the game root direc
 - Remember username, remember password, show/hide password, password confirmation, clear saved credentials, server address/port/TLS settings, and minimize after launch are supported.
 - The `LE 0.7.4-native-r2` native patch is enabled by default and can be disabled under **Weapon Mods**. It strictly checks the current CSNZ0930 PE version and ABI. A mismatch prevents the patch from starting rather than applying offsets anyway. The old LEGuard must not run at the same time.
 
+## Plugins / Class Awakening
+
+Plugins sits between Weapon Mods and Settings and uses the same card typography. The footer shows the number of plugins actually loaded, not merely selected.
+
+Class Awakening is now a C++ native implementation: an x64 server repair, an x86 read-only paired-weapon observer, and matching native loading tools. No Python or Frida runtime is required. The WPF launcher stays self-contained.
+
+The plugin opens 20 legal trait slots for owned characters and repairs equip, protected replacement, extraction, swapping and reroll transactions. It validates the exact CSNZ0930 build. Before its first unlock in each server process, it makes an online database backup in `Server/AwakeningBackups`. Disabling does not relock slots or remove equipped traits. DLLs remain resident safely until process exit.
+
+Payloads are extracted under `%LOCALAPPDATA%\CSNZLauncher\Native\ClassAwakening\0.3.0-native-r1`. Original game binaries and resource archives are not overwritten. Do not run the retired Python/Frida repair at the same time. Transfer is not configured in this client build; other paired weapons and remote multiplayer have not been exhaustively verified. Hover an error status for details.
+
 ## Password and Network Boundaries
 
 Configuration is stored in `%LOCALAPPDATA%\CSNZLauncher\settings.json`. The username and preferences are readable. A password is saved only when **Remember password** is selected, and is encrypted using **Windows DPAPI for the current user**, bound to the server address, port, TLS mode, and username. Changing servers clears the input and previous credentials. Disabling password retention removes the encrypted password value.
@@ -38,15 +48,15 @@ The server has no email/SMS password-recovery interface. **Forgot password** the
 
 ## Build
 
-The .NET 8 SDK is required. Prebuilt embedded native components are included in the source package. Rebuilding them with `-RebuildNative` also requires Visual Studio 2022 C++ x86 Build Tools.
+The .NET 8 SDK is required. Prebuilt embedded native components are included in the source package. Rebuilding them with `-RebuildNative` also requires Visual Studio 2022 C++ x86/x64 Build Tools.
 
 ```powershell
 pwsh -NoProfile -File .\build.ps1
 ```
 
-The self-contained output is written to `dist/CSNZ_Launcher_1.0.7`. Administrator privileges are not required by default at runtime. Launcher source is in `src/CSNZ.Launcher`; targeted tests are in `tests/Launcher.Smoke`. Those tests explicitly require an isolated server directory and must not use the production database.
+The self-contained output is written to `dist/CSNZ_Launcher_1.0.8`. Administrator privileges are not required by default at runtime. Launcher source is in `src/CSNZ.Launcher`; targeted tests are in `tests/Launcher.Smoke`. Those tests explicitly require an isolated server directory and must not use the production database.
 
-`assets/Native/GigaBreakLE.dll` is this project's own native weapon patch. Its complete, rebuildable source is in `native-mod-source`. The automatic-login component's source is in `native-launcher-source` and reuses the bundled MinHook. The MinHook license is included. Original game DLLs, asset archives, server executables, account data, and upstream reverse-engineering output are not included.
+`assets/Native/GigaBreakLE.dll` is this project's own native weapon patch. Its complete, rebuildable source is in `native-mod-source`. The automatic-login component's source is in `native-launcher-source` and reuses the bundled MinHook. Class Awakening source, its read-only observer, and the x86/x64 loader tools are in `native-awakening-source`. It uses the system `winsqlite3.dll`; MinHook and nlohmann/json licenses are included. Original game DLLs, asset archives, server executables, account data, and upstream reverse-engineering output are not included.
 
 ## Protocol References
 
@@ -59,6 +69,13 @@ Out-of-game registration is implemented as a small, independent client using onl
 Protocol sequence: raw ASCII banner `~SERVERCONNECTED\n` → optional TLS handshake → `0x55 | seq:u8 | bodyLen:u16LE | body`. A version packet is sent first (launcher version 67 / game version 26 / current client.dll timestamp). After a successful version response, the client sends UMsg 67, LobbyChat 1, and a NUL-terminated `/register` command, then waits for an explicit registration result in UMsg 67 / MsgBox 10. Receiving handles TCP fragmentation and enforces length limits. Unknown responses and timeouts are not treated as success.
 
 ## Verification
+
+### 1.0.8 Plugins and Native Class Awakening
+
+- Added the bilingual **Plugins** page, following Weapon Mods typography, with a persistent toggle and an actual loaded-plugin count.
+- Embedded the C++ native Class Awakening server plugin, read-only game observer, and x86/x64 loader tools. Plugin runtime does not require Python or Frida. Native sources and licenses are included for rebuilding.
+- Passed 37 localization/layout checks and 17 isolated native-engine checks. In the running game, verified 20/20 awakening slots and two-way passive-trait movement; original stats and inventory were preserved. Native disable/re-enable was also checked.
+- The native observer loaded successfully. The prior paired-weapon firing-range A/B test has not been repeated after migration to C++; this is not a claim of all weapons or multiplayer being validated.
 
 ### 1.0.7 — Chinese/English Switching
 

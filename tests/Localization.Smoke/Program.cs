@@ -88,7 +88,7 @@ internal static class Program
         Check(!Named<Button>(window, "SubmitButton").IsEnabled && (string)Named<Button>(window, "SubmitButton").Content == "Please wait…", "busy state remains disabled and translates");
         Call(window, "SetBusy", false);
         foreach (var language in new[] { "zh-CN", "en" })
-        foreach (var scenario in new[] { ("login",1200,820), ("minimum",1100,760), ("register-error",1100,760), ("settings",1100,760), ("mods",1100,760), ("wide",1600,900) })
+        foreach (var scenario in new[] { ("login",1200,820), ("minimum",1100,760), ("register-error",1100,760), ("settings",1100,760), ("mods",1100,760), ("plugins",1100,760), ("wide",1600,900) })
             Render(output, language, scenario.Item1, scenario.Item2, scenario.Item3);
         foreach (var language in new[] { "zh-CN", "en" })
         {
@@ -115,7 +115,7 @@ internal static class Program
     {
         var window = new MainWindow(new LauncherSettings { Language = language, StartLocalServer = false, RememberAccount = false });
         if (scenario == "register-error") { Call(window, "SwitchTab", true); Call(window, "Feedback", Localizer.Msg("Error.ConfirmPassword"), false); }
-        if (scenario is "settings" or "mods") Call(window, "ShowPage", scenario);
+        if (scenario is "settings" or "mods" or "plugins") Call(window, "ShowPage", scenario);
         Call(window, "RenderServer", new ServerStatus(ServerState.Ready, Localizer.Msg("Server.ReadyOwned"), true));
         var root = (Grid)window.Content; window.Content = null;
         root.Background = window.Background;
@@ -124,7 +124,7 @@ internal static class Program
         System.Windows.Documents.TextElement.SetFontSize(root, window.FontSize);
         root.Measure(new Size(width, height)); root.Arrange(new Rect(0, 0, width, height)); root.UpdateLayout();
         Point At(FrameworkElement e) => e.TransformToAncestor(root).Transform(new Point());
-        if (scenario is not ("settings" or "mods"))
+        if (scenario is not ("settings" or "mods" or "plugins"))
         {
             var card = Named<Border>(window, "LoginCard"); var server = Named<Border>(window, "ServerControlCard"); var art = Named<Border>(window, "LoginArtwork");
             if (Math.Abs(At(card).Y-At(art).Y)>0.1 || Math.Abs(At(card).Y+card.ActualHeight-At(server).Y-server.ActualHeight)>0.1)

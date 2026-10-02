@@ -754,5 +754,69 @@
   "Native.InitError": {
     "Zh": "原生组件初始化返回错误 {0}。",
     "En": "Native component initialization returned error {0}."
+  },
+  "Nav.Plugins": {
+    "Zh": "插件",
+    "En": "Plugins"
+  },
+  "Plugins.Description": {
+    "Zh": "选择游戏功能插件。更改自动保存，并应用于本地服务端。",
+    "En": "Select game-system plugins. Changes are saved automatically and applied to the local server."
+  },
+  "Plugins.Enable": {
+    "Zh": "启用 Class Awakening",
+    "En": "Enable Class Awakening"
+  },
+  "Plugins.Waiting": {
+    "Zh": "等待本地服务端启动；尚未加载。",
+    "En": "Waiting for the local server. Not loaded."
+  },
+  "Plugins.Active": {
+    "Zh": "已加载 C++ 原生插件 · 服务端 PID {0}",
+    "En": "C++ plugin active · Server PID {0}"
+  },
+  "Plugins.Disabled": {
+    "Zh": "已停用修复；已解锁槽位和已有装备保留。",
+    "En": "Repair disabled. Unlocked slots and equipped traits are preserved."
+  },
+  "Plugins.LocalOnly": {
+    "Zh": "仅支持所选游戏目录的本地服务端；不修改远程服务端。",
+    "En": "Local server only. Remote servers are not modified."
+  },
+  "Plugins.SelectRoot": {
+    "Zh": "请先在 Settings 中选择有效的游戏目录。",
+    "En": "Select a valid game folder in Settings first."
+  },
+  "Plugins.Failed": {
+    "Zh": "插件未就绪：{0}",
+    "En": "Plugin not ready: {0}"
+  },
+  "Plugins.ObserverFailed": {
+    "Zh": "配对武器诊断未就绪（不代表服务端修复停用）：{0}",
+    "En": "Paired-weapon diagnostics unavailable (server repair is separate): {0}"
+  },
+  "Plugins.Count": {
+    "Zh": "已加载 {0} 个插件",
+    "En": "{0} plugins loaded"
+  },
+  "Plugins.CountOne": {
+    "Zh": "已加载 1 个插件",
+    "En": "1 plugin loaded"
+  },
+  "Plugins.ShortActive": {
+    "Zh": "已加载 · Class Awakening 已启用。",
+    "En": "Loaded · Class Awakening is active."
+  },
+  "Plugins.ShortWaiting": {
+    "Zh": "已选择 · 本地服务端就绪后自动加载。",
+    "En": "Selected · Class Awakening will load when the local server is ready."
+  },
+  "Plugins.ShortDisabled": {
+    "Zh": "未选择 · Class Awakening 已停用。",
+    "En": "Not selected · Class Awakening is disabled."
+  },
+  "Plugins.ShortError": {
+    "Zh": "状态异常 · 将鼠标悬停于此查看详情。",
+    "En": "Status unavailable · Hover here for details."
   }
 }

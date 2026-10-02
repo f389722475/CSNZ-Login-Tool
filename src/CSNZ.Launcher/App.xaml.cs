@@ -21,6 +21,12 @@ public partial class App : Application
             catch { result = 2; } // no dialog, settings access, or credential logging in diagnostic mode
             Shutdown(result); return;
         }
+        if (e.Args.Length > 0 && e.Args[0] == "--preview-plugins")
+        {
+            // Credential-free UI preview: no settings reads/writes, server starts or injection.
+            var preview = new MainWindow(new LauncherSettings { StartLocalServer = false, Language = e.Args.Length > 1 ? e.Args[1] : "en" }, previewPlugins: true);
+            MainWindow = preview; preview.Show(); return;
+        }
         var settings = SettingsStore.Load(out var warning);
         Apply(settings.Language);
         instance = new Mutex(true, "Local\\CSNZ_SaaS_Desktop_Launcher", out var created);

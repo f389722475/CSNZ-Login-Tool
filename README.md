@@ -1,4 +1,4 @@
-# CSNZ 桌面登录器 1.0.7
+# CSNZ 桌面登录器 1.0.8
 
 **简体中文** | [English](README.en.md)
 
@@ -6,9 +6,9 @@
 
 ## 使用
 
-右上角服务器地址左侧的 **CN / EN** 按钮可立即切换简体中文 / English，当前语言以紫色标示，选择自动保存。覆盖登录、注册、武器模组、设置、帮助、确认对话框、服务端状态及错误反馈。系统文件夹选择窗口的通用按钮仍遵循 Windows 的显示语言。
+右上角服务器地址左侧的 **CN / EN** 按钮可立即切换简体中文 / English，当前语言以紫色标示，选择自动保存。覆盖登录、注册、武器模组、插件、设置、帮助、确认对话框、服务端状态及错误反馈。系统文件夹选择窗口的通用按钮仍遵循 Windows 的显示语言。
 
-运行 `dist/CSNZ_Launcher_1.0.7/CSNZ登录器.exe`。原生补丁及许可证已内嵌，单独复制此 EXE 也能使用，不再依赖旁边的 `Native` 文件夹。
+运行 `dist/CSNZ_Launcher_1.0.8/CSNZ登录器.exe`。原生补丁及许可证已内嵌，单独复制此 EXE 也能使用，不再依赖旁边的 `Native` 文件夹。
 
 首次启用补丁时，登录器将自己的内嵌文件释放到 `%LOCALAPPDATA%\CSNZLauncher\Native\GigaBreakLE\0.7.4-native-r2`，不需要管理员权限。不会从当前目录或游戏目录搜索未知 DLL；缓存内容不匹配时拒绝加载，不覆盖已存在的文件。补丁运行日志也在此目录。
 
@@ -26,6 +26,18 @@
 * 记住账号、记住密码、显示/隐藏密码、密码二次确认、清除保存凭据、服务端地址/端口/TLS、启动后最小化均可用。
 * 默认加载 `LE 0.7.4-native-r2` 原生补丁，可在「武器模组」关闭。补丁严格核对当前 CSNZ0930 PE 版本与 ABI；不匹配时阻止补丁启动，不尝试强行套用偏移。旧版 LEGuard 不能同时运行。
 
+## Plugins / Class Awakening
+
+侧栏 Plugins 位于 Weapon Mods 与 Settings 之间，使用相同的卡片与文字排版。勾选后自动加载本地 C++ 原生觉醒插件，底部显示真实的“已加载 X 个插件”；中英文同步切换。
+
+- 补齐已拥有角色的 20 个合法槽位，修复材料扣除、词条消耗与提取返还、保护替换、交换和属性重置。
+- 服务端 x64、游戏只读配对诊断 x86，均由内嵌原生加载工具处理，不依赖 Python / Frida。只匹配已验证的 CSNZ0930 构建。
+- 首次启用前在线备份到游戏的 `Server/AwakeningBackups`。停用不会回收槽位或清空已有词条；原 DLL 安全地保留到进程退出。
+- 内嵌组件释放到 `%LOCALAPPDATA%\CSNZLauncher\Native\ClassAwakening\0.3.0-native-r1`，不覆盖原游戏二进制或资源包。旧 Python/Frida 修复服务不能并行运行。
+- 转移功能没有客户端配置，仍不支持；没有把单一配对武器的验证扩展成全部武器或远端联机通过。
+- 悬停异常状态文字可查看诊断；“已勾选”不等于“已加载”。关闭修复后原版交易缺陷会重新出现。
+
+
 ## 密码与网络边界
 
 配置存于 `%LOCALAPPDATA%\CSNZLauncher\settings.json`。账号与偏好可读；密码仅在勾选记住密码时保存为 **Windows DPAPI 当前用户加密**的密文，绑定服务器地址、端口、TLS 模式和账号。更换服务器会清空输入和旧凭据，取消记住密码会移除密文字段内容。
@@ -38,13 +50,13 @@
 
 ## 构建
 
-需要 .NET 8 SDK；内嵌原生组件随源码包提供，如使用 `-RebuildNative` 重新编译，还需要 Visual Studio 2022 C++ x86 Build Tools。
+需要 .NET 8 SDK；内嵌原生组件随源码包提供，如使用 `-RebuildNative` 重新编译，还需要 Visual Studio 2022 C++ x86/x64 Build Tools。
 
     pwsh -NoProfile -File .\build.ps1
 
-输出独立运行的 `dist/CSNZ_Launcher_1.0.7` 目录。运行时默认不要求管理员权限。新登录器源码在 `src/CSNZ.Launcher`；定向测试在 `tests/Launcher.Smoke`（测试明确要求隔离服务端目录，不允许使用正式数据库）。
+输出独立运行的 `dist/CSNZ_Launcher_1.0.8` 目录。运行时默认不要求管理员权限。新登录器源码在 `src/CSNZ.Launcher`；定向测试在 `tests/Launcher.Smoke`（测试明确要求隔离服务端目录，不允许使用正式数据库）。
 
-`assets/Native/GigaBreakLE.dll` 是本项目配套的自有原生武器补丁；完整可重建原生源码收在 `native-mod-source`；自动登录组件源码在 `native-launcher-source`，复用同包的 MinHook。MinHook 授权随包附带。不包含原游戏 DLL、资源包、服务端 EXE、账号数据或上游逆向输出。
+`assets/Native/GigaBreakLE.dll` 是本项目配套的自有原生武器补丁；完整可重建原生源码收在 `native-mod-source`；自动登录组件源码在 `native-launcher-source`，复用同包的 MinHook。角色觉醒、只读观察器及 x86/x64 加载工具源码在 `native-awakening-source`，使用 Windows 自带的 `winsqlite3.dll`；MinHook 与 nlohmann/json 授权随包附带。不包含原游戏 DLL、资源包、服务端 EXE、账号数据或上游逆向输出。
 
 ## 协议依据
 
@@ -57,6 +69,13 @@
 协议：原始 ASCII 横幅 `~SERVERCONNECTED\n` → 可选 TLS 握手 → `0x55 | seq:u8 | bodyLen:u16LE | body`。先发版本包（启动器版本 67 / 游戏版本 26 / 当前 client.dll 时间戳），收到版本成功后发送 UMsg 67、LobbyChat 1、NUL 终止的 `/register` 命令，等待 UMsg 67 / MsgBox 10 中的明确注册结果。接收会处理 TCP 分片与长度上限，未知/超时回复不算成功。
 
 ## 本次验证
+
+### 1.0.8 Plugins 与原生角色觉醒
+
+* 新增双语 **Plugins** 页面，参照 Weapon Mods 排版，提供自动保存的开关及实际已加载插件数量。
+* 内嵌 C++ 原生角色觉醒服务端插件、游戏只读观察器与 x86/x64 加载工具；插件运行不依赖 Python / Frida。完整原生源码与许可证可独立重建。
+* 37 项本地化/排版检查与 17 项隔离原生引擎检查通过；实际游戏验证角色 20/20 槽位、被动词条双向移动，原始属性和库存保持不变；原生停用/重新启用检查通过。
+* 原生观察器已成功加载；迁移 C++ 后没有重新进行此前配对武器的靶场 A/B，不把加载成功当作全部武器或联机验收。
 
 ### 1.0.7 中英文切换
 
