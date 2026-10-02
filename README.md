@@ -8,8 +8,6 @@ A standalone Windows x86 / .NET 8 WPF desktop application with a SaaS-style inte
 
 Use the **CN / EN** button in the top-right corner, to the left of the server address, to switch instantly between Simplified Chinese and English. The active language is highlighted in purple, and your selection is saved automatically. Translation covers login, registration, weapon mods, settings, help, confirmation dialogs, server status, and error messages. Standard buttons in the system folder picker still follow the Windows display language.
 
-Run `dist/CSNZ_Launcher_1.0.7/CSNZ登录器.exe`. The native patch and licenses are embedded, so you can also copy and run the EXE on its own; a separate `Native` folder is no longer required.
-
 When the patch is enabled for the first time, the launcher extracts its embedded files to `%LOCALAPPDATA%\CSNZLauncher\Native\GigaBreakLE\0.7.4-native-r2`. Administrator privileges are not required. It does not search the working directory or game directory for unknown DLLs. If the cached files do not match, loading is refused; existing files are not overwritten. Patch runtime logs are also stored in this directory.
 
 The game directory is no longer hard-coded. Place the EXE in the game root directory (the folder containing `Bin`) or in `Bin` itself. Detection uses the EXE's location, not the startup working directory. If you move it to another complete game installation, the adjacent installation takes priority; an explicitly selected external directory is still retained. If the game cannot be found, select its root directory under **Settings**. A `Bin` directory or `Bin/CSOLauncher.exe` path is also accepted. The launcher does not copy, overwrite, or modify original game files, server configuration, or startup scripts.
@@ -118,7 +116,7 @@ Protocol sequence: raw ASCII banner `~SERVERCONNECTED\n` → optional TLS handsh
 
 - Fixed input-control templates applying Padding twice, which reduced the text area height to zero. Username, masked password, visible password, and settings inputs use black text and carets. Removed the introduction card at the bottom of the sidebar.
 - Embedded the native patch in the EXE while preserving weapon logic and PE/ABI checks. Standalone EXE preflight checks do not read account settings, start the server or game, or install hooks.
-- Run `CSNZ登录器.exe --check-native <game root directory> <absolute path to a new report file>`. Exit codes: 0 for success, 1 for failure, and 2 for invalid arguments or report paths. Existing report files will not be overwritten.
+- Run `CSNZ login tool.exe --check-native <game root directory> <absolute path to a new report file>`. Exit codes: 0 for success, 1 for failure, and 2 for invalid arguments or report paths. Existing report files will not be overwritten.
 - Verified synthetic WPF renders for three input variants (text area restored from 0 to 21 DIP), DLL extraction and preloading from a standalone EXE in a path containing Chinese characters and spaces, preflight against the actual game installation, the updated window, and server `ready`. No real account was submitted and the game was not launched in these checks.
 
 ### 1.0.0 — Earlier Verification
