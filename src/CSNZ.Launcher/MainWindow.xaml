@@ -29,7 +29,7 @@
             <Button x:Name="HelpNav" HorizontalContentAlignment="Left" Click="Help_Click" Background="Transparent" Foreground="#758198" BorderThickness="0"><StackPanel Orientation="Horizontal"><TextBlock Text="&#xE8A5;" FontFamily="Segoe MDL2 Assets" Foreground="#758198" Margin="0,0,12,0" VerticalAlignment="Center"/><TextBlock Text="{DynamicResource Ui.Nav.Help}" Foreground="#758198"/></StackPanel></Button>
           </StackPanel>
           <StackPanel Grid.Row="3">
-            <TextBlock Text="DESKTOP  /  v1.0.8" FontSize="10" Foreground="#A4ADBC" Margin="10,0"/>
+            <TextBlock Text="DESKTOP  /  v1.1.1 LOCAL" FontSize="10" Foreground="#A4ADBC" Margin="10,0"/>
           </StackPanel>
         </Grid>
       </Border>
@@ -106,16 +106,22 @@
             <StackPanel x:Name="WeaponModsPage" Visibility="Collapsed" MaxWidth="770" HorizontalAlignment="Stretch">
               <TextBlock Text="{DynamicResource Ui.Nav.Mods}" FontSize="27" FontWeight="Bold"/>
               <TextBlock Text="{DynamicResource Ui.Mods.Description}" TextWrapping="Wrap" Foreground="#8793A9" FontSize="12" Margin="0,9,0,24"/>
-              <Border Background="White" BorderBrush="#E5E8F0" BorderThickness="1" CornerRadius="13" Padding="25">
-                <StackPanel>
-                  <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                    <StackPanel><TextBlock Text="Giga Break LE" FontSize="23" FontWeight="Bold"/><TextBlock Text="WEAPON REPAIR  /  ID 726" FontFamily="Consolas" FontSize="10" Foreground="#99A3B5" Margin="0,8,0,0"/></StackPanel>
-                    <Border Grid.Column="1" Background="#F0EDFF" CornerRadius="6" Padding="10,6" VerticalAlignment="Top"><TextBlock Text="{DynamicResource Ui.Mods.Native}" Foreground="#7163CC" FontSize="11" FontWeight="SemiBold"/></Border>
-                  </Grid>
-                  <CheckBox x:Name="GigaBreakLEBox" Content="{DynamicResource Ui.Mods.Enable}" FontSize="14" Margin="0,24,0,0" Checked="WeaponMod_Changed" Unchecked="WeaponMod_Changed"/>
-                  <TextBlock x:Name="GigaBreakLEStatus" Foreground="#8174BD" FontSize="11" Margin="24,9,0,0" TextWrapping="Wrap"/>
-                </StackPanel>
-              </Border>
+              <TextBlock x:Name="WeaponRuntimeText" Foreground="#8174BD" FontSize="12" TextWrapping="Wrap" Margin="0,0,0,14"/>
+              <ItemsControl x:Name="WeaponChoices">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <Border Background="White" BorderBrush="#E5E8F0" BorderThickness="1" CornerRadius="10" Padding="18,14" Margin="0,0,0,9">
+                      <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                        <StackPanel>
+                          <CheckBox Content="{Binding Name}" Tag="{Binding Id}" IsChecked="{Binding Enabled, Mode=TwoWay}" FontSize="15" FontWeight="SemiBold" Checked="WeaponMod_Changed" Unchecked="WeaponMod_Changed"/>
+                          <TextBlock Text="{Binding Detail}" FontFamily="Consolas" FontSize="10" Foreground="#99A3B5" Margin="24,6,0,0"/>
+                        </StackPanel>
+                        <Border Grid.Column="1" Background="#F0EDFF" CornerRadius="6" Padding="9,5" VerticalAlignment="Center"><TextBlock Text="{DynamicResource Ui.Mods.Native}" Foreground="#7163CC" FontSize="10"/></Border>
+                      </Grid>
+                    </Border>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
               <TextBlock x:Name="ModsFeedback" Foreground="#8A6AAB" FontSize="12" TextWrapping="Wrap" Margin="0,15,0,0"/>
             </StackPanel>
             <StackPanel x:Name="PluginsPage" Visibility="Collapsed" MaxWidth="770" HorizontalAlignment="Stretch">
@@ -139,6 +145,17 @@
                 <TextBlock Text="{DynamicResource Ui.Settings.GameRoot}" Style="{StaticResource Label}"/><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="110"/></Grid.ColumnDefinitions><TextBox x:Name="GamePathBox" AutomationProperties.Name="{DynamicResource Ui.Settings.GameRoot}"/><Button Grid.Column="1" Content="{DynamicResource Ui.Settings.Browse}" Margin="10,0,0,0" Click="Browse_Click"/></Grid>
                 <TextBlock Text="{DynamicResource Ui.Settings.PathHelp}" TextWrapping="Wrap" FontSize="11" Foreground="#8A95A8" Margin="0,8,0,21"/>
                 <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="20"/><ColumnDefinition Width="125"/></Grid.ColumnDefinitions><StackPanel><TextBlock Text="{DynamicResource Ui.Settings.Host}" Style="{StaticResource Label}"/><TextBox x:Name="HostBox" AutomationProperties.Name="{DynamicResource Ui.Settings.Host}"/></StackPanel><StackPanel Grid.Column="2"><TextBlock Text="{DynamicResource Ui.Settings.Port}" Style="{StaticResource Label}"/><TextBox x:Name="PortBox" MaxLength="5" AutomationProperties.Name="{DynamicResource Ui.Settings.Port}"/></StackPanel></Grid>
+                <TextBlock Text="{DynamicResource Ui.Network.Mode}" Style="{StaticResource Label}" Margin="0,20,0,8"/>
+                <ComboBox x:Name="NetworkModeBox" FontSize="13" Padding="10" SelectionChanged="NetworkMode_Changed" AutomationProperties.Name="{DynamicResource Ui.Network.Mode}">
+                  <ComboBoxItem Content="{DynamicResource Ui.Network.Mode.Local}"/><ComboBoxItem Content="{DynamicResource Ui.Network.Mode.Lan}"/>
+                  <ComboBoxItem Content="{DynamicResource Ui.Network.Mode.Internet}"/><ComboBoxItem Content="{DynamicResource Ui.Network.Mode.Join}"/>
+                </ComboBox>
+                <Grid Margin="0,16,0,0"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="20"/><ColumnDefinition Width="125"/></Grid.ColumnDefinitions>
+                  <StackPanel><TextBlock Text="{DynamicResource Ui.Network.Advertised}" Style="{StaticResource Label}"/><TextBox x:Name="AdvertisedAddressBox" AutomationProperties.Name="{DynamicResource Ui.Network.Advertised}"/></StackPanel>
+                  <StackPanel Grid.Column="2"><TextBlock Text="{DynamicResource Ui.Network.GamePort}" Style="{StaticResource Label}"/><TextBox x:Name="DedicatedPortBox" MaxLength="5" AutomationProperties.Name="{DynamicResource Ui.Network.GamePort}"/></StackPanel>
+                </Grid>
+                <StackPanel Orientation="Horizontal" Margin="0,12,0,0"><Button x:Name="DetectAddressButton" Content="{DynamicResource Ui.Network.Detect}" Click="DetectAddress_Click"/><Button Content="{DynamicResource Ui.Network.Copy}" Click="CopyConnection_Click" Margin="10,0,0,0"/></StackPanel>
+                <TextBlock x:Name="NetworkHelpText" TextWrapping="Wrap" Foreground="#8A83AC" FontSize="11" Margin="0,12,0,0" LineHeight="19"/>
                 <CheckBox x:Name="TlsBox" Content="{DynamicResource Ui.Settings.Tls}" Margin="0,18,0,0"/>
                 <Border Height="1" Background="#EDF0F5" Margin="0,23"/>
                 <CheckBox x:Name="AutoServerBox" Content="{DynamicResource Ui.Settings.AutoServer}" FontSize="13"/>

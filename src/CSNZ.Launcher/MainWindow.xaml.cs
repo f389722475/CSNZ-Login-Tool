@@ -15,6 +15,7 @@ public partial class MainWindow : Window
     private LauncherSettings settings;
     private readonly ServerManager server = new();
     private readonly AwakeningPlugin awakening = new();
+    private readonly NativeWeaponServer weapons = new();
     private readonly bool previewPlugins;
     private UiText? pluginFailure;
     private readonly CancellationTokenSource lifetime = new();
@@ -42,13 +43,13 @@ public partial class MainWindow : Window
         }
         initialized = true; UpdateHints(); RefreshLocalizedUi();
         if (warning != null) Feedback(warning, false);
-        timer.Tick += async (_, _) => { if (!busy && !closing) { try { await server.RefreshAsync(settings, lifetime.Token); await SyncPluginsAsync(); } catch (OperationCanceledException) { } catch { } } };
+        timer.Tick += async (_, _) => { if (!busy && !closing) { try { await server.RefreshAsync(settings, lifetime.Token); await SyncPluginsAsync(); await RefreshWeaponsAsync(); } catch (OperationCanceledException) { } catch { } } };
     }
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
         if (previewPlugins) { ShowPage("plugins"); ClassAwakeningBox.IsEnabled = false; return; }
         timer.Start();
-        if (settings.StartLocalServer && CsnzProtocol.IsLoopback(settings.Host)) await StartServerAsync();
+        if (settings.StartLocalServer && Multiplayer.IsHost(settings)) await StartServerAsync();
         else { try { await server.RefreshAsync(settings, lifetime.Token); } catch { } }
     }
     private void RenderServer(ServerStatus s)
@@ -63,7 +64,7 @@ public partial class MainWindow : Window
         ServerBadge.BorderBrush = Brush(s.State switch { ServerState.Ready => "#D5EDE1", ServerState.Starting or ServerState.Stopping => "#F2E5BF", _ => "#F8D9DF" });
         ServerBadge.ToolTip = s.Detail; ServerDetail.Text = s.Detail;
         StartServerButton.IsEnabled = !busy && s.State == ServerState.Stop;
-        StopServerButton.IsEnabled = !busy && !closing && s.Owned && !transitioning;
+        StopServerButton.IsEnabled = !busy && !closing && (s.Owned || weapons.Owned) && !transitioning;
         StopServerButton.Content = Text(s.State == ServerState.Stopping ? "Server.StoppingButton" : "Server.Stop");
     }
     private void SetBusy(bool value)
@@ -71,14 +72,14 @@ public partial class MainWindow : Window
         busy = value; SubmitButton.IsEnabled = !value; LoginTab.IsEnabled = !value; RegisterTab.IsEnabled = !value;
         AccountBox.IsEnabled = !value; PasswordInput.IsEnabled = !value; PasswordVisible.IsEnabled = !value; ConfirmInput.IsEnabled = !value;
         PluginsNav.IsEnabled = !value; ClassAwakeningBox.IsEnabled = !value;
-        SettingsNav.IsEnabled = !value; WeaponModsNav.IsEnabled = !value; GigaBreakLEBox.IsEnabled = !value; RememberRow.IsEnabled = !value; RevealButton.IsEnabled = !value;
+        SettingsNav.IsEnabled = !value; WeaponModsNav.IsEnabled = !value; WeaponChoices.IsEnabled = !value && !weapons.Owned; RememberRow.IsEnabled = !value; RevealButton.IsEnabled = !value;
         SubmitButton.Content = value ? Text("Form.Busy") : registering ? Text("Form.Create") : Text("Form.Submit");
         RenderServer(server.Status);
     }
     private async Task StartServerAsync()
     {
         if (busy) return; SetBusy(true);
-        try { await server.EnsureReadyAsync(settings, lifetime.Token); await SyncPluginsAsync(true); }
+        try { if (!await PrepareWeaponsAsync()) return; await server.EnsureReadyAsync(settings, lifetime.Token); await weapons.EnsureReadyAsync(settings, lifetime.Token); await SyncPluginsAsync(true); UpdateModHints(); }
         catch (OperationCanceledException) { }
         catch (Exception e) { Feedback(Explain(e), false); }
         finally { SetBusy(false); }
@@ -89,7 +90,7 @@ public partial class MainWindow : Window
         if (GameIsRunning()) { Feedback(Msg("Server.GameRunning"), false); return; }
         if (UiDialog.Show(this, Msg("Server.ConfirmStop"), Msg("Server.Stop"), MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
         SetBusy(true);
-        try { await server.StopOwnedAsync(lifetime.Token); Feedback(Msg("Server.StoppedFeedback"), true); }
+        try { await weapons.StopOwnedAsync(lifetime.Token); if (server.Status.Owned) await server.StopOwnedAsync(lifetime.Token); UpdateModHints(); RenderServer(server.Status); Feedback(Msg("Server.StoppedFeedback"), true); }
         catch (Exception error) { Feedback(Explain(error), false); }
         finally { SetBusy(false); }
     }
@@ -104,24 +105,27 @@ public partial class MainWindow : Window
             if (register && password != ConfirmInput.Password) throw Error<InvalidOperationException>("Error.ConfirmPassword");
             if (!register) GameLauncher.CheckGame(settings);
             SetBusy(true); FeedbackBox.Visibility = Visibility.Collapsed;
+            if (!await PrepareWeaponsAsync()) return;
             await server.EnsureReadyAsync(settings, lifetime.Token);
+            await weapons.EnsureReadyAsync(settings, lifetime.Token);
             await SyncPluginsAsync(true);
+            if (!settings.UseTls && !CsnzProtocol.IsLoopback(settings.Host) && UiDialog.Show(this,
+                Msg("Connection.Unencrypted"), Msg("Connection.UnencryptedTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
             if (register)
             {
                 var timestamp = NativePatch.ReadPeTimestamp(Path.Combine(settings.GameRoot, "Bin", "client.dll"));
-                var result = await CsnzProtocol.RegisterAsync(settings, account, password, timestamp, lifetime.Token);
+                var result = await CsnzProtocol.RegisterAsync(settings, account, password, timestamp, lifetime.Token, allowUnencryptedRemote: true);
                 if (result.Success) { SwitchTab(false); ConfirmInput.Clear(); SaveCredentials(); }
                 Feedback(result.MessageText, result.Success);
             }
             else
             {
-                if (!settings.UseTls && !CsnzProtocol.IsLoopback(settings.Host) && UiDialog.Show(this,
-                    Msg("Connection.Unencrypted"), Msg("Connection.UnencryptedTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
-                game = await GameLauncher.StartAsync(settings, account, password, text => Dispatcher.BeginInvoke(() => Feedback(text, true)), lifetime.Token);
+                UpdateModHints();
+                game = await GameLauncher.StartAsync(settings, account, password, text => Dispatcher.BeginInvoke(() => Feedback(text, true)), lifetime.Token, weapons);
                 SaveCredentials();
                 _ = MonitorAuthenticationAsync(game);
                 _ = MonitorAwakeningObserverAsync();
-                if (settings.EnableNativePatch) _ = MonitorPatchAsync(game);
+                _ = RefreshWeaponsAsync();
                 if (settings.MinimizeOnLaunch) WindowState = WindowState.Minimized;
             }
         }
@@ -138,15 +142,22 @@ public partial class MainWindow : Window
         catch (OperationCanceledException) { }
         catch (Exception error) { if (!closing) Feedback(Msg("Auth.CheckFailed", Explain(error)), false); }
     }
-    private async Task MonitorPatchAsync(Process process)
+    private async Task<bool> PrepareWeaponsAsync()
     {
-        try
-        {
-            bool ready = await NativePatch.WaitReadyAsync(process, GameLauncher.NativeDll, lifetime.Token);
-            if (!closing) Feedback(ready ? Msg("Patch.Ready") : Msg("Patch.NotReady", Path.Combine(NativeBundle.DirectoryPath, "native-runtime.log")), ready);
-        }
+        if (Multiplayer.IsHost(settings) && !Multiplayer.NeedsDedicated(settings)) return true;
+        if (Multiplayer.IsHost(settings)) WeaponBundle.ValidateGame(settings.GameRoot);
+        var plan = await Task.Run(() => WeaponAssets.Inspect(settings), lifetime.Token);
+        if (!plan.Required) return true;
+        if (UiDialog.Show(this, Msg(Multiplayer.IsHost(settings) ? "Weapons.PreparePrompt" : "Network.JoinAssetsPrompt", settings.GameRoot), Msg("Nav.Mods"), MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return false;
+        var backup = await Task.Run(() => WeaponAssets.Apply(plan), lifetime.Token);
+        Feedback(Msg("Weapons.Prepared", backup), true); return true;
+    }
+    private async Task RefreshWeaponsAsync()
+    {
+        try { await weapons.RefreshAsync(lifetime.Token); modFailure = weapons.RuntimeStatus == 100 ? Msg("Weapons.NativeFailed", weapons.LogPath) : null; }
         catch (OperationCanceledException) { }
-        catch (Exception e) { if (!closing) Feedback(Msg("Patch.CheckFailed", Explain(e)), false); }
+        catch (Exception error) { modFailure = Msg("Weapons.StatusFailed", Explain(error)); }
+        finally { UpdateModHints(); }
     }
     private static UiText Explain(Exception e) => Describe(e);
     private void Feedback(UiText message, bool success)
@@ -197,33 +208,52 @@ public partial class MainWindow : Window
     private void LoadSettingsFields()
     {
         GamePathBox.Text = settings.GameRoot; HostBox.Text = settings.Host; PortBox.Text = settings.Port.ToString(); TlsBox.IsChecked = settings.UseTls;
+        NetworkModeBox.SelectedIndex = (int)Multiplayer.Mode(settings); AdvertisedAddressBox.Text = settings.AdvertisedGameAddress; DedicatedPortBox.Text = settings.DedicatedWeaponPort.ToString();
+        UpdateNetworkHelp();
         AutoServerBox.IsChecked = settings.StartLocalServer; MinimizeBox.IsChecked = settings.MinimizeOnLaunch;
-        syncing = true; GigaBreakLEBox.IsChecked = settings.EnableNativePatch; ClassAwakeningBox.IsChecked = settings.EnableClassAwakening; syncing = false;
+        syncing = true; LoadWeaponChoices(); ClassAwakeningBox.IsChecked = settings.EnableClassAwakening; syncing = false;
         ServerAddressHeader.Text = $"{settings.Host}:{settings.Port}"; UpdateModHints();
     }
     private void UpdateModHints()
     {
-        GigaBreakLEStatus.Text = settings.EnableNativePatch ? Text("Mods.Enabled") : Text("Mods.Disabled");
-        ModsFeedback.Text = modFailure?.ToString() ?? Text("Mods.Count", settings.EnableNativePatch ? 1 : 0);
+        var selected = WeaponBundle.Selected(settings).Length;
+        WeaponRuntimeText.Text = !Multiplayer.IsHost(settings) ? Text("Network.RemoteWeapons") : weapons.Owned && selected == 0 ? Text("Network.DedicatedOnly") : weapons.RuntimeStatus == 3 ? Text("Weapons.Active", weapons.LoadedCount) : weapons.RuntimeStatus == 2 ? Text("Weapons.WaitingMap") : Text("Weapons.Idle");
+        ModsFeedback.Text = modFailure?.ToString() ?? Text("Weapons.Selected", selected, WeaponBundle.Catalog.Weapons.Length);
+        WeaponChoices.IsEnabled = !busy && !weapons.Owned;
+    }
+    private sealed class WeaponChoice
+    {
+        public int Id { get; init; } public string Name { get; init; } = ""; public string Detail { get; init; } = ""; public bool Enabled { get; set; }
+    }
+    private void LoadWeaponChoices()
+    {
+        var selected = WeaponBundle.Selected(settings).Select(w => w.Id).ToHashSet();
+        WeaponChoices.ItemsSource = WeaponBundle.Catalog.Weapons.Select(w => new WeaponChoice { Id = w.Id, Name = w.Name, Detail = w.Detail, Enabled = selected.Contains(w.Id) }).ToArray();
     }
     private void WeaponMod_Changed(object sender, RoutedEventArgs e)
     {
-        if (!initialized || syncing) return;
-        bool previous = settings.EnableNativePatch;
+        if (!initialized || syncing || previewPlugins) return;
+        if (sender is not System.Windows.Controls.CheckBox box || box.Tag is not int id) return;
+        if (WeaponBundle.Selected(settings).Any(w => w.Id == id) == (box.IsChecked == true)) return;
+        var previous = settings.EnabledWeaponIds; bool legacy = settings.EnableNativePatch;
         try
         {
-            settings.EnableNativePatch = GigaBreakLEBox.IsChecked == true;
+            if (weapons.Owned) throw Error<InvalidOperationException>("Weapons.RestartRequired");
+            var ids = WeaponBundle.Selected(settings).Select(w => w.Id).ToHashSet();
+            if (box.IsChecked == true) ids.Add(id); else ids.Remove(id);
+            settings.EnabledWeaponIds = WeaponBundle.Catalog.Weapons.Where(w => ids.Contains(w.Id)).Select(w => w.Id).ToArray();
+            settings.EnableNativePatch = settings.EnabledWeaponIds.Length != 0;
             SettingsStore.Save(settings); modFailure = null; UpdateModHints();
         }
         catch (Exception error)
         {
-            settings.EnableNativePatch = previous; syncing = true; GigaBreakLEBox.IsChecked = previous; syncing = false;
+            settings.EnabledWeaponIds = previous; settings.EnableNativePatch = legacy; syncing = true; LoadWeaponChoices(); syncing = false;
             modFailure = Msg("Settings.SaveFailed", Explain(error)); UpdateModHints();
         }
     }
     private void UpdatePluginHints()
     {
-        ClassAwakeningStatus.Text = Text(pluginFailure != null ? "Plugins.ShortError" : awakening.Active ? "Plugins.ShortActive" : settings.EnableClassAwakening ? "Plugins.ShortWaiting" : "Plugins.ShortDisabled");
+        ClassAwakeningStatus.Text = Text(!Multiplayer.IsHost(settings) ? "Plugins.LocalOnly" : pluginFailure != null ? "Plugins.ShortError" : awakening.Active ? "Plugins.ShortActive" : settings.EnableClassAwakening ? "Plugins.ShortWaiting" : "Plugins.ShortDisabled");
         ClassAwakeningStatus.ToolTip = pluginFailure?.ToString();
         PluginsFeedback.Text = awakening.Active ? Text("Plugins.CountOne") : Text("Plugins.Count", 0);
         PluginsFeedback.ToolTip = pluginFailure?.ToString();
@@ -289,16 +319,52 @@ public partial class MainWindow : Window
             if (!File.Exists(Path.Combine(root, "Bin", "CSOLauncher.exe"))) throw Error<InvalidOperationException>("Error.SettingsGameMissing");
             if (Uri.CheckHostName(host) == UriHostNameType.Unknown) throw Error<InvalidOperationException>("Error.Host");
             if (!int.TryParse(PortBox.Text, out int port) || port is < 1 or > 65535) throw Error<InvalidOperationException>("Error.Port");
-            if (server.Status.Owned && (!string.Equals(root, settings.GameRoot, StringComparison.OrdinalIgnoreCase) || host != settings.Host || port != settings.Port || TlsBox.IsChecked != settings.UseTls))
+            if (!int.TryParse(DedicatedPortBox.Text, out int dedicatedPort)) throw Error<InvalidOperationException>("Error.Port");
+            var networkMode = (MultiplayerMode)NetworkModeBox.SelectedIndex; var advertised = AdvertisedAddressBox.Text.Trim();
+            Multiplayer.Validate(new LauncherSettings { NetworkMode = networkMode, Host = host, Port = port, DedicatedWeaponPort = dedicatedPort, AdvertisedGameAddress = advertised });
+            if ((server.Status.Owned || weapons.Owned) && (networkMode != Multiplayer.Mode(settings) || advertised != settings.AdvertisedGameAddress || dedicatedPort != settings.DedicatedWeaponPort)) throw Error<InvalidOperationException>("Error.StopBeforeSwitch");
+            if ((server.Status.Owned || weapons.Owned) && (!string.Equals(root, settings.GameRoot, StringComparison.OrdinalIgnoreCase) || host != settings.Host || port != settings.Port || TlsBox.IsChecked != settings.UseTls))
                 throw Error<InvalidOperationException>("Error.StopBeforeSwitch");
             bool endpointChanged = host != settings.Host || port != settings.Port || TlsBox.IsChecked != settings.UseTls;
             settings.GameRootIsManual = !string.Equals(root, GamePaths.ResolveRoot("", false, AppContext.BaseDirectory), StringComparison.OrdinalIgnoreCase);
+            settings.NetworkMode = networkMode; settings.AdvertisedGameAddress = advertised; settings.DedicatedWeaponPort = dedicatedPort;
             settings.GameRoot = root; settings.Host = host; settings.Port = port; settings.UseTls = TlsBox.IsChecked == true;
             settings.StartLocalServer = AutoServerBox.IsChecked == true; settings.MinimizeOnLaunch = MinimizeBox.IsChecked == true;
             if (endpointChanged) { AccountBox.Clear(); PasswordInput.Clear(); ConfirmInput.Clear(); RememberPasswordBox.IsChecked = false; }
             SaveCredentials(); LoadSettingsFields(); SetSettingsFeedback(Msg(endpointChanged ? "Settings.EndpointSaved" : "Settings.Saved"));
-            if (settings.StartLocalServer && CsnzProtocol.IsLoopback(settings.Host)) await StartServerAsync();
+            if (settings.StartLocalServer && Multiplayer.IsHost(settings)) await StartServerAsync();
             else await server.RefreshAsync(settings, lifetime.Token);
+        }
+        catch (Exception error) { SetSettingsFeedback(Explain(error)); }
+    }
+    private void NetworkMode_Changed(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        if (AdvertisedAddressBox == null || NetworkHelpText == null) return;
+        UpdateNetworkHelp();
+    }
+    private void UpdateNetworkHelp()
+    {
+        if (NetworkHelpText == null) return;
+        var mode = (MultiplayerMode)Math.Max(0, NetworkModeBox.SelectedIndex);
+        AdvertisedAddressBox.IsEnabled = mode is MultiplayerMode.Lan or MultiplayerMode.Internet;
+        DedicatedPortBox.IsEnabled = mode != MultiplayerMode.Join;
+        DetectAddressButton.IsEnabled = mode == MultiplayerMode.Lan;
+        NetworkHelpText.Text = Text("Network.Help." + mode);
+    }
+    private void DetectAddress_Click(object sender, RoutedEventArgs e)
+    {
+        var addresses = Multiplayer.LocalAddresses();
+        if (addresses.Length == 1) AdvertisedAddressBox.Text = addresses[0];
+        SetSettingsFeedback(Msg("Network.Addresses", addresses.Length == 0 ? "—" : string.Join(" / ", addresses)));
+    }
+    private void CopyConnection_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            if (Multiplayer.Mode(settings) is not (MultiplayerMode.Lan or MultiplayerMode.Internet)) throw Error<InvalidOperationException>("Network.SaveHostFirst");
+            Multiplayer.Validate(settings);
+            Clipboard.SetText(Text("Network.Invitation", Multiplayer.AdvertisedAddress(settings), settings.Port, settings.DedicatedWeaponPort, Text(settings.UseTls ? "Common.On" : "Common.Off")));
+            SetSettingsFeedback(Msg("Network.Copied"));
         }
         catch (Exception error) { SetSettingsFeedback(Explain(error)); }
     }
@@ -320,7 +386,7 @@ public partial class MainWindow : Window
         try
         {
             SaveCredentials();
-            if (server.Status.Owned)
+            if (server.Status.Owned || weapons.Owned)
             {
                 if (GameIsRunning())
                 {
@@ -330,7 +396,7 @@ public partial class MainWindow : Window
                 {
                     var answer = UiDialog.Show(this, Msg("Close.Confirm"), Msg("Close.Title"), MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
                     if (answer == MessageBoxResult.Cancel) return;
-                    if (answer == MessageBoxResult.Yes) await server.StopOwnedAsync(lifetime.Token);
+                    if (answer == MessageBoxResult.Yes) { await weapons.StopOwnedAsync(lifetime.Token); if (server.Status.Owned) await server.StopOwnedAsync(lifetime.Token); }
                 }
             }
             timer.Stop(); lifetime.Cancel(); allowClose = true;
@@ -354,7 +420,7 @@ public partial class MainWindow : Window
         Breadcrumb.Text = Text(currentPage == "plugins" ? "Nav.Plugins" : currentPage == "mods" ? "Nav.Mods" : currentPage == "settings" ? "Nav.Settings" : "Nav.Login");
         LanguageCn.Foreground = Brush(Localizer.Language == "zh-CN" ? "#6157E8" : "#8F99AC");
         LanguageEn.Foreground = Brush(Localizer.Language == "en" ? "#6157E8" : "#8F99AC");
-        RenderServer(server.Status); UpdateModHints(); UpdatePluginHints();
+        RenderServer(server.Status); UpdateModHints(); UpdatePluginHints(); UpdateNetworkHelp();
         if (feedbackMessage != null) FeedbackText.Text = feedbackMessage.ToString();
         SetSettingsFeedback(settingsMessage);
     }

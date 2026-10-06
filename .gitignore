@@ -12,3 +12,26 @@ evidence/
 *.db3-shm
 *.log
 settings.json
+
+# Installed-game assets are local-only; public release needs an extraction step.
+*.nar
+
+# Skills and private design material are not part of the GitHub project.
+**/skills/
+**/SKILL.md
+**/*_Skill_*.zip
+docs/CSNZ_身份认证与防倒卖系统技术设计.md
+
+# Never publish local account/configuration data or private packaged builds.
+*.db
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-wal
+*.sqlite3-shm
+*.ini
+ServerConfig.json
+*.zip

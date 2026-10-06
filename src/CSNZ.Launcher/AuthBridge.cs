@@ -10,8 +10,10 @@ namespace Csnz.Launcher;
 
 internal static class AuthBridge
 {
-    private static readonly Lazy<string> Payload = new(() => NativeBundle.Extract("LauncherAuth", "1.0.0",
-        new[] { "CSNZLauncherBridge.dll", "MinHook-LICENSE.txt", "NOTICE.txt" }));
+    // Packaging-only revision: the bridge binary is unchanged. A dedicated
+    // notice avoids colliding with the old weapon notice in the 1.0.0 cache.
+    private static readonly Lazy<string> Payload = new(() => NativeBundle.Extract("LauncherAuth", "1.0.0-package2",
+        new[] { "CSNZLauncherBridge.dll", "MinHook-LICENSE.txt", "Auth-NOTICE.txt" }));
     internal static string DllPath => Payload.Value;
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode)] private static extern IntPtr OpenEvent(uint access, bool inherit, string name);
     [DllImport("kernel32.dll")] private static extern uint WaitForSingleObject(IntPtr handle, uint milliseconds);

@@ -6,9 +6,6 @@ namespace Csnz.Launcher;
 // Always use this executable's own payload, never a DLL found in the CWD or game folder.
 public static class NativeBundle
 {
-    private static readonly Lazy<string> Payload = new(() => Extract("GigaBreakLE", "0.7.4-native-r2", new[] { "GigaBreakLE.dll", "MinHook-LICENSE.txt", "NOTICE.txt", "README_NATIVE.md" }));
-    public static string DllPath => Payload.Value;
-    public static string DirectoryPath => Path.GetDirectoryName(DllPath)!;
     internal static string Extract(string component, string version, string[] names)
     {
         var directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),

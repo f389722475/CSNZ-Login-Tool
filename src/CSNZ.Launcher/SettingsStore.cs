@@ -17,6 +17,11 @@ public sealed class LauncherSettings
     public bool UseTls { get; set; }
     public bool StartLocalServer { get; set; } = true;
     public bool EnableNativePatch { get; set; } = true;
+    // Null denotes a pre-1.1 settings file; migrate its old master switch once.
+    public int[]? EnabledWeaponIds { get; set; }
+    public MultiplayerMode? NetworkMode { get; set; }
+    public string AdvertisedGameAddress { get; set; } = "";
+    public int DedicatedWeaponPort { get; set; } = 27015;
     public bool EnableClassAwakening { get; set; } = true;
     public bool MinimizeOnLaunch { get; set; }
     public bool RememberAccount { get; set; } = true;
@@ -41,6 +46,8 @@ public static class SettingsStore
     public static LauncherSettings ResolveGameRoot(LauncherSettings settings, string executableDirectory)
     {
         settings.Language = Normalize(settings.Language);
+        if (settings.EnabledWeaponIds != null) settings.EnabledWeaponIds = settings.EnabledWeaponIds.Where(id => id != 537).ToArray(); // retired reference only
+        settings.EnabledWeaponIds ??= settings.EnableNativePatch ? WeaponBundle.DefaultIds : [];
         settings.GameRoot = GamePaths.ResolveRoot(settings.GameRoot, settings.GameRootIsManual, executableDirectory);
         return settings;
     }

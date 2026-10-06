@@ -1,6 +1,0 @@
-LIBRARY GigaBreakLE
-EXPORTS
-    GigaBreakLE_Start=_GigaBreakLE_Start@4
-    GigaBreakLE_Stop=_GigaBreakLE_Stop@4
-    GigaBreakLE_Status=_GigaBreakLE_Status@4
-    GigaBreakLE_Version

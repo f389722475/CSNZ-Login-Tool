@@ -8,6 +8,8 @@ public partial class App : Application
     private Mutex? instance;
     private void OnStartup(object sender, StartupEventArgs e)
     {
+        if (e.Args.Length > 0 && e.Args[0] == "--hlds-console-stop")
+        { Shutdown(DedicatedConsole.RunStopHelper(e.Args)); return; }
         if (e.Args.Length == 2 && e.Args[0] == "--check-paths")
         {
             int result = 2;

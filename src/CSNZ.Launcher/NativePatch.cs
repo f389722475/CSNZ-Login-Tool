@@ -7,10 +7,9 @@ using System.Text;
 
 namespace Csnz.Launcher;
 
-// x86-only loader for Giga Break LE; never replaces game binaries.
+// Generic x86 remote loader shared by the login bridge and owned dedicated server.
 public static class NativePatch
 {
-    private const uint Synchronize = 0x00100000;
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)] private static extern IntPtr LoadLibraryEx(string file, IntPtr fileHandle, uint flags);
     [DllImport("kernel32.dll", SetLastError = true)] private static extern bool FreeLibrary(IntPtr module);
     [DllImport("kernel32.dll", CharSet = CharSet.Ansi, ExactSpelling = true, SetLastError = true)] private static extern IntPtr GetProcAddress(IntPtr module, string name);
@@ -24,8 +23,6 @@ public static class NativePatch
     [DllImport("kernel32.dll", SetLastError = true)] private static extern uint WaitForSingleObject(IntPtr handle, uint milliseconds);
     [DllImport("kernel32.dll", SetLastError = true)] private static extern bool GetExitCodeThread(IntPtr thread, out uint code);
     [DllImport("kernel32.dll")] private static extern bool CloseHandle(IntPtr handle);
-    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)] private static extern IntPtr OpenEvent(uint access, bool inherit, string name);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate IntPtr VersionDelegate();
     private static InvalidOperationException Failure(UiText message) => Error<InvalidOperationException>("Native.Windows", message, Marshal.GetLastWin32Error());
     public static uint ReadPeTimestamp(string path) => ReadPe(path).Timestamp;
     private static (ushort Machine, uint Timestamp, uint ImageSize) ReadPe(string path)
@@ -40,24 +37,6 @@ public static class NativePatch
         reader.BaseStream.Position = offset + 24;
         if (reader.ReadUInt16() != 0x10b) throw Error<InvalidDataException>("Error.PE32");
         reader.BaseStream.Position = offset + 24 + 56; return (machine, timestamp, reader.ReadUInt32());
-    }
-    public static void Validate(string gameRoot, string dll)
-    {
-        if (IntPtr.Size != 4) throw Error<InvalidOperationException>("Error.Launcher32");
-        void Check(string name, uint stamp, uint size)
-        { var pe = ReadPe(Path.Combine(gameRoot, "Bin", name)); if (pe != ((ushort)0x14c, stamp, size)) throw Error<InvalidOperationException>("Native.BuildMismatch", name); }
-        Check("CSOLauncher.exe", 1790721054, 811008); Check("mp.dll", 1783989892, 38477824); Check("client.dll", 1783989872, 41570304);
-        if (!File.Exists(dll)) throw Error<FileNotFoundException>("Native.Missing", dll);
-        var local = LoadLibraryEx(dll, IntPtr.Zero, 0x100 | 0x800);
-        if (local == IntPtr.Zero) throw Failure(Msg("Native.Preload"));
-        try
-        {
-            var version = GetProcAddress(local, "GigaBreakLE_Version");
-            if (version == IntPtr.Zero || Marshal.PtrToStringAnsi(Marshal.GetDelegateForFunctionPointer<VersionDelegate>(version)()) != "0.7.4-native-r2-partial")
-                throw Error<InvalidOperationException>("Native.Version");
-            foreach (var export in new[] { "GigaBreakLE_Start", "GigaBreakLE_Status", "GigaBreakLE_Stop" }) if (GetProcAddress(local, export) == IntPtr.Zero) throw Error<InvalidOperationException>("Native.Exports");
-        }
-        finally { FreeLibrary(local); }
     }
     private static IntPtr RemoteModule(Process process, string path, CancellationToken ct)
     {
@@ -85,7 +64,7 @@ public static class NativePatch
         }
         finally { CloseHandle(thread); }
     }
-    public static void AttachNewProcess(Process process, string dll, CancellationToken ct, string entryName = "GigaBreakLE_Start", byte[]? argument = null)
+    public static void AttachNewProcess(Process process, string dll, CancellationToken ct, string entryName, byte[]? argument = null, uint expectedResult = 0)
     {
         ct.ThrowIfCancellationRequested();
         var local = LoadLibraryEx(dll, IntPtr.Zero, 0x100 | 0x800);
@@ -122,7 +101,7 @@ public static class NativePatch
                         throw Failure(Msg("Native.Arguments"));
                 }
                 var result = RemoteCall(process, IntPtr.Add(remote, unchecked(entry.ToInt32() - local.ToInt32())), data, out argumentReleased);
-                if (result != 0) throw Error<InvalidOperationException>("Native.InitError", result);
+                if (result != expectedResult) throw Error<InvalidOperationException>("Native.InitError", result);
             }
             finally
             {
@@ -146,30 +125,5 @@ public static class NativePatch
             return RemoteCall(process, IntPtr.Add(remote, unchecked(entry.ToInt32() - local.ToInt32())), IntPtr.Zero, out _);
         }
         finally { FreeLibrary(local); }
-    }
-    public static async Task<bool> WaitReadyAsync(Process process, string dll, CancellationToken ct)
-    {
-        for (int i = 0; i < 305; i++)
-        {
-            await Task.Delay(1000, ct);
-            if (process.HasExited) return false;
-            var signal = OpenEvent(Synchronize, false, $"Local\\CSNZ_GigaBreakLE_Native_Result_{process.Id}");
-            if (signal == IntPtr.Zero) continue;
-            try { if (WaitForSingleObject(signal, 0) != 0) continue; }
-            finally { CloseHandle(signal); }
-            return await Task.Run(() =>
-            {
-                var local = LoadLibraryEx(dll, IntPtr.Zero, 0x100 | 0x800);
-                if (local == IntPtr.Zero) return false;
-                try
-                {
-                    var entry = GetProcAddress(local, "GigaBreakLE_Status"); if (entry == IntPtr.Zero) return false;
-                    var remote = RemoteModule(process, dll, ct);
-                    return RemoteCall(process, IntPtr.Add(remote, unchecked(entry.ToInt32() - local.ToInt32())), IntPtr.Zero, out _) == 2;
-                }
-                finally { FreeLibrary(local); }
-            }, ct);
-        }
-        return false;
     }
 }

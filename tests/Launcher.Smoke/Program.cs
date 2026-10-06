@@ -23,7 +23,7 @@ foreach (var bad in new[] { "abc 123", "\"hello!\"", "12345", "abc\\def" })
 var launch = GameLauncher.CreateStartInfo(settings, "qauser1", "TestPass9!");
 Check(!launch.UseShellExecute && !launch.ArgumentList.Contains("-username") && !launch.ArgumentList.Contains("-password") && launch.WorkingDirectory.EndsWith("Bin"), "direct EXE arguments, no BAT or shell");
 Check(launch.ArgumentList.Contains("-disableauthui"), "automatic game login suppresses duplicate credential dialog");
-NativePatch.Validate(@"D:\CS\CSNZ0930", Path.Combine(Path.GetDirectoryName(root)!, "..", "assets", "Native", "GigaBreakLE.dll"));
+WeaponBundle.ValidateGame(@"D:\CS\CSNZ0930"); WeaponBundle.ValidatePayload();
 Check(true, "current PE profile and native DLL exports/load");
 
 // ServerManager expects GameRoot/Server. Isolated data sits in the provided root,

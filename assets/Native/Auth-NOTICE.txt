@@ -1,0 +1,9 @@
+CSNZ Launcher Authentication Bridge 1.0.0 - packaging revision 2
+
+The authentication bridge binary and protocol behavior are unchanged. This
+package gives its notice an independent name instead of sharing the retired
+GigaBreakLE weapon notice.
+
+MinHook v1.3.4: https://github.com/TsudaKageyu/minhook/tree/v1.3.4
+See MinHook-LICENSE.txt for MinHook and bundled disassembly component terms.
+No new license is assigned to the first-party authentication source.

@@ -1,0 +1,4222 @@
+{
+  "shared": {
+    "modules": {
+      "mp.dll": {
+        "timestamp": 1783989892,
+        "size": 38477824,
+        "preferred_base": 268435456,
+        "sha256": "9680d98c306ef3c1c606e1b22c1bd0123ca861bd0cfb86b25b4da009327e0686",
+        "slots": {}
+      },
+      "hw.dll": {
+        "timestamp": 1783989493,
+        "size": 73768960,
+        "preferred_base": 30408704,
+        "sha256": "52345cbe9b52f75b1c1da70254c718d78f2eff746ac8397d10251a9d134a32e9",
+        "slots": {}
+      }
+    },
+    "hooks": [
+      {
+        "module": "mp.dll",
+        "label": "player_damage",
+        "rva": 21852208,
+        "head": "538bdc83ec0883e4f083c404558b6b04896c24048bec6aff68c5176a1164a100",
+        "relocs": [
+          25
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "base_damage",
+        "rva": 21000832,
+        "head": "558bec6aff68a779691164a10000000050b8e0130000e825de1600a10065d511",
+        "relocs": [
+          6,
+          28
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "rules_slot94",
+        "rva": 8854352,
+        "head": "558bec0f10450c568b750883ec208bc4560f11000f10451c0f114010e8aff4b9",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "default_permission",
+        "rva": 21041184,
+        "head": "558bec807d10000f94c05dc22400cccc558bec83ec0cff7508894df48b0d3c341d12",
+        "relocs": [
+          30
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "base_call_0x14d8978",
+        "rva": 21858675,
+        "head": "e808e9f2ff",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "base_call_0x14d94ed",
+        "rva": 21861608,
+        "head": "e893ddf2ff",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "base_call_0x14dcf7d",
+        "rva": 21876600,
+        "head": "e803a3f2ff",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "predeath_subtract_veto_clamp",
+        "rva": 21002831,
+        "head": "8b460883ec208bbd50ecfffff30f108078010000f30f5f05acb57611f30f1186b0010000f30f108078010000f30f5cc1f30f1180780100008b0d30ac1c120f10078b018b90780100008bc4560f11000f1047100f114010ffd28bbd40ecffff84c0741b8b4608f30f108078010000f30f5f05acb57611f30f118078010000",
+        "relocs": [
+          24,
+          58,
+          114
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "rules_table",
+        "rva": 24653028,
+        "head": "501b8710",
+        "relocs": [
+          0
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "player_damage_slot",
+        "rva": 24689360,
+        "head": "30704d11",
+        "relocs": [
+          0
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "manager",
+        "rva": 9424800,
+        "head": "b8485bf203c3cccccccccccccccccccca1485bf203b9485bf203ff9038020000",
+        "relocs": [
+          1,
+          17,
+          22
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "mode_getter",
+        "rva": 9401680,
+        "head": "8b01568db14a030000ff903802000083f80175168a0684c07507b8060000005e",
+        "relocs": []
+      },
+      {
+        "module": "hw.dll",
+        "label": "secondary_getter",
+        "rva": 9414848,
+        "head": "0fb681d1030000c3cccccccccccccccc558bec0f10051014e3028a45088d5110",
+        "relocs": [
+          22
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "global_frame",
+        "rva": 20941440,
+        "head": "8b0d3c341d1285c974058b01ff5008833d343a1d12000f851c010000e81f32f4",
+        "relocs": [
+          2,
+          17
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "sprite_create",
+        "rva": 21453296,
+        "head": "558bec6aff6816115d1164a1000000005083ec085657a10065d51133c5508d45",
+        "relocs": [
+          6,
+          23
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "precache",
+        "rva": 7606016,
+        "head": "558bec8b450885c0751168accebd02e83c82fdff83c40433c05dc38a08884d0b",
+        "relocs": [
+          11
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "load_file",
+        "rva": 7195632,
+        "head": "558bec81ec14010000a140ace40233c58945fc8b450c8b4d088985f0feffff8d",
+        "relocs": [
+          10
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "free_file",
+        "rva": 7193232,
+        "head": "558bec8d450850ff157c64e1028b450883c40485c0740950e81314050083c404",
+        "relocs": [
+          9
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "set_origin",
+        "rva": 7607040,
+        "head": "558bec8b4d0c8b55088b0189828c0000008b41048982900000008b4108898294",
+        "relocs": []
+      },
+      {
+        "module": "hw.dll",
+        "label": "remove_entity",
+        "rva": 7599616,
+        "head": "e9fb4e0000cccccccccccccccccccccc558bec538b1db8e45804568b7508578b",
+        "relocs": [
+          22
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "message_begin",
+        "rva": 7598464,
+        "head": "558bec538b5d0c568b7508578b7d1483fe01740583fe08751c85ff750e536880d7bd02",
+        "relocs": [
+          31
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "message_end",
+        "rva": 7598688,
+        "head": "5333db391d9c8fd703750d6880d8bd02e84b96050083c4048b15908fd703891d",
+        "relocs": [
+          5,
+          12,
+          26
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "write_byte",
+        "rva": 7601280,
+        "head": "558bec833d9c8fd70300750d68c0d9bd02e82a8c050083c404ff750868a86ae102",
+        "relocs": [
+          5,
+          13,
+          29
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "write_short",
+        "rva": 7601680,
+        "head": "558bec833d9c8fd70300750d6818dabd02e89a8a050083c404ff750868a86ae102",
+        "relocs": [
+          5,
+          13,
+          29
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "event_precache",
+        "rva": 7593968,
+        "head": "558bec51578b7d0c85ff75146824cdbd02e84ab1fdff83c40433c05f8be55dc3",
+        "relocs": [
+          13
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "event_playback",
+        "rva": 7592560,
+        "head": "558bec81ec00010000a140ace40233c58945fcf64508400fb74510538b5d1856",
+        "relocs": [
+          10
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "entity_index",
+        "rva": 7624160,
+        "head": "558bec8b4d0885c9750433c05dc32b0d40dd2604b895804594f7e95603d1c1fa",
+        "relocs": [
+          16
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "divine_initial_write_coord",
+        "rva": 7601376,
+        "head": "558bec833d9c8fd70300750d68d4dabd02e8ca8b050083c404f30f1005fc07e102",
+        "relocs": [
+          5,
+          13,
+          29
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "divine_initial_write_long",
+        "rva": 7601632,
+        "head": "558bec833d9c8fd70300750d6844dabd02e8ca8a050083c404ff750868a86ae102",
+        "relocs": [
+          5,
+          13,
+          29
+        ]
+      }
+    ],
+    "predeath": {
+      "schema": 1,
+      "scope": "PREDEATH_ARMOR_MODE_55",
+      "modules": {
+        "mp.dll": {
+          "timestamp": 1783989892,
+          "size": 38477824,
+          "preferred_base": 268435456,
+          "sha256": "9680d98c306ef3c1c606e1b22c1bd0123ca861bd0cfb86b25b4da009327e0686"
+        },
+        "hw.dll": {
+          "timestamp": 1783989493,
+          "size": 73768960,
+          "preferred_base": 30408704,
+          "sha256": "52345cbe9b52f75b1c1da70254c718d78f2eff746ac8397d10251a9d134a32e9"
+        }
+      },
+      "guards": [
+        {
+          "module": "mp.dll",
+          "label": "player_damage",
+          "rva": 21852208,
+          "head": "538bdc83ec0883e4f083c404558b6b04896c24048bec6aff68c5176a1164a100",
+          "relocs": [
+            25
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "base_damage",
+          "rva": 21000832,
+          "head": "558bec6aff68a779691164a10000000050b8e0130000e825de1600a10065d511",
+          "relocs": [
+            6,
+            28
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "rules_slot94",
+          "rva": 8854352,
+          "head": "558bec0f10450c568b750883ec208bc4560f11000f10451c0f114010e8aff4b9",
+          "relocs": []
+        },
+        {
+          "module": "mp.dll",
+          "label": "default_permission",
+          "rva": 21041184,
+          "head": "558bec807d10000f94c05dc22400cccc558bec83ec0cff7508894df48b0d3c341d12",
+          "relocs": [
+            30
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "base_call_0x14d8978",
+          "rva": 21858675,
+          "head": "e808e9f2ff",
+          "relocs": []
+        },
+        {
+          "module": "mp.dll",
+          "label": "base_call_0x14d94ed",
+          "rva": 21861608,
+          "head": "e893ddf2ff",
+          "relocs": []
+        },
+        {
+          "module": "mp.dll",
+          "label": "base_call_0x14dcf7d",
+          "rva": 21876600,
+          "head": "e803a3f2ff",
+          "relocs": []
+        },
+        {
+          "module": "mp.dll",
+          "label": "predeath_subtract_veto_clamp",
+          "rva": 21002831,
+          "head": "8b460883ec208bbd50ecfffff30f108078010000f30f5f05acb57611f30f1186b0010000f30f108078010000f30f5cc1f30f1180780100008b0d30ac1c120f10078b018b90780100008bc4560f11000f1047100f114010ffd28bbd40ecffff84c0741b8b4608f30f108078010000f30f5f05acb57611f30f118078010000",
+          "relocs": [
+            24,
+            58,
+            114
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "rules_table",
+          "rva": 24653028,
+          "head": "501b8710",
+          "relocs": [
+            0
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "player_damage_slot",
+          "rva": 24689360,
+          "head": "30704d11",
+          "relocs": [
+            0
+          ]
+        },
+        {
+          "module": "hw.dll",
+          "label": "manager",
+          "rva": 9424800,
+          "head": "b8485bf203c3cccccccccccccccccccca1485bf203b9485bf203ff9038020000",
+          "relocs": [
+            1,
+            17,
+            22
+          ]
+        },
+        {
+          "module": "hw.dll",
+          "label": "mode_getter",
+          "rva": 9401680,
+          "head": "8b01568db14a030000ff903802000083f80175168a0684c07507b8060000005e",
+          "relocs": []
+        },
+        {
+          "module": "hw.dll",
+          "label": "secondary_getter",
+          "rva": 9414848,
+          "head": "0fb681d1030000c3cccccccccccccccc558bec0f10051014e3028a45088d5110",
+          "relocs": [
+            22
+          ]
+        }
+      ],
+      "max_records": 1024,
+      "manager": {
+        "callback_slot": 35470572,
+        "callback_rva": 9424800,
+        "object_rva": 35806024,
+        "mode_getter_rva": 9401680,
+        "secondary_getter_rva": 9414848
+      },
+      "rules_vtable": 24652652,
+      "player_vtables": [
+        24689292
+      ],
+      "weapon_vtables": {
+        "597": [
+          25444448,
+          25445492
+        ],
+        "568": [
+          25837116,
+          25836080
+        ],
+        "692": [
+          25840136,
+          25839220
+        ],
+        "725": [
+          25278128,
+          25279024
+        ],
+        "726": [
+          25282896,
+          25283972
+        ]
+      },
+      "base_return_addresses": [
+        21858680,
+        21861613,
+        21876605
+      ]
+    },
+    "network_assets": {
+      "models/ef_beamgun_wingman.mdl": {
+        "bytes": 91736,
+        "head16": "494453540a00000065665f6265616d67",
+        "type": "studio"
+      },
+      "models/ef_beamgunle_wingman.mdl": {
+        "bytes": 91736,
+        "head16": "494453540a00000065665f6265616d67",
+        "type": "studio"
+      },
+      "models/ef_divinespear.mdl": {
+        "bytes": 89432,
+        "head16": "494453540a00000065665f646976696e",
+        "type": "studio"
+      },
+      "models/ef_divinespear_chrg.mdl": {
+        "bytes": 135052,
+        "head16": "494453540a00000065665f646976696e",
+        "type": "studio"
+      },
+      "models/ef_divinespear_cyclone.mdl": {
+        "bytes": 219956,
+        "head16": "494453540a00000065665f646976696e",
+        "type": "studio"
+      },
+      "models/ef_divinespearex.mdl": {
+        "bytes": 372812,
+        "head16": "494453540a00000065665f646976696e",
+        "type": "studio"
+      },
+      "models/ef_divinespearex_chrg.mdl": {
+        "bytes": 220212,
+        "head16": "494453540a00000065665f646976696e",
+        "type": "studio"
+      },
+      "models/ef_divinespearex_cyclone.mdl": {
+        "bytes": 163056,
+        "head16": "494453540a00000065665f646976696e",
+        "type": "studio"
+      },
+      "models/ef_divinespearexle.mdl": {
+        "bytes": 376360,
+        "head16": "494453540a00000065665f646976696e",
+        "type": "studio"
+      },
+      "models/ef_divinespearexle_chrg.mdl": {
+        "bytes": 220212,
+        "head16": "494453540a00000065665f646976696e",
+        "type": "studio"
+      },
+      "models/ef_divinespearexle_cyclone.mdl": {
+        "bytes": 163056,
+        "head16": "494453540a00000065665f646976696e",
+        "type": "studio"
+      },
+      "models/ef_halogunex_projectile.mdl": {
+        "bytes": 157488,
+        "head16": "494453540a00000065665f68616c6f67",
+        "type": "studio"
+      },
+      "models/ef_wolfpack_explo.mdl": {
+        "bytes": 276648,
+        "head16": "494453540a00000065665f776f6c6670",
+        "type": "studio"
+      },
+      "models/ef_wolfpack_wolf.mdl": {
+        "bytes": 145912,
+        "head16": "494453540a00000065665f776f6c6670",
+        "type": "studio"
+      },
+      "models/wolfpack_totem.mdl": {
+        "bytes": 101756,
+        "head16": "494453540a000000776f6c667061636b",
+        "type": "studio"
+      },
+      "models/wolfpack_totem_range.mdl": {
+        "bytes": 67352,
+        "head16": "494453540a000000776f6c667061636b",
+        "type": "studio"
+      },
+      "models/wolfpack_totem_range2.mdl": {
+        "bytes": 67352,
+        "head16": "494453540a000000776f6c667061636b",
+        "type": "studio"
+      },
+      "sprites/ef_divinespear_explo.spr": {
+        "bytes": 1641640,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite"
+      },
+      "sprites/ef_divinespear_mark.spr": {
+        "bytes": 1969960,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite"
+      },
+      "sprites/ef_divinespear_throw.spr": {
+        "bytes": 131368,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite"
+      },
+      "sprites/ef_divinespearex_explo.spr": {
+        "bytes": 1641640,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite"
+      },
+      "sprites/ef_divinespearex_mark.spr": {
+        "bytes": 1969960,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite"
+      },
+      "sprites/ef_divinespearex_throw.spr": {
+        "bytes": 131368,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite"
+      },
+      "sprites/ef_divinespearexle_explo.spr": {
+        "bytes": 1641640,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite"
+      },
+      "sprites/ef_divinespearexle_mark.spr": {
+        "bytes": 1969960,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite"
+      },
+      "sprites/ef_divinespearexle_throw.spr": {
+        "bytes": 131368,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite"
+      },
+      "sprites/ef_halogunex_projectile.spr": {
+        "bytes": 985000,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite"
+      },
+      "sprites/ef_wolfpack_hit.spr": {
+        "bytes": 985000,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite"
+      },
+      "sprites/ef_wolfpack_wolf_explo.spr": {
+        "bytes": 985000,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite"
+      }
+    },
+    "network_events": [
+      "divinespeareffect"
+    ],
+    "family_names": [
+      "giga",
+      "wolf",
+      "divinespear",
+      "halo",
+      "leapstrike",
+      "soul",
+      "frost"
+    ]
+  },
+  "giga": {
+    "modules": {
+      "mp.dll": {
+        "timestamp": 1783989892,
+        "size": 38477824,
+        "preferred_base": 268435456,
+        "sha256": "9680d98c306ef3c1c606e1b22c1bd0123ca861bd0cfb86b25b4da009327e0686",
+        "slots": {
+          "25278128": {
+            "78": 8515280,
+            "111": 12195184,
+            "145": 12196016,
+            "146": 12196240,
+            "147": 12196032,
+            "167": 12192320,
+            "168": 12193776,
+            "169": 12193024,
+            "170": 12193264,
+            "199": 12193552,
+            "202": 12195888,
+            "203": 12195952
+          },
+          "25279024": {
+            "78": 8515280,
+            "111": 12195184,
+            "145": 12196016,
+            "146": 12196240,
+            "147": 12196032,
+            "167": 12192320,
+            "168": 12193776,
+            "169": 12193024,
+            "170": 12193264,
+            "199": 12193552,
+            "202": 12195888,
+            "203": 12195952
+          },
+          "25282896": {
+            "78": 8515280,
+            "111": 12195184,
+            "145": 12196016,
+            "146": 12196240,
+            "147": 12196032,
+            "167": 12192320,
+            "168": 12193776,
+            "169": 12193024,
+            "170": 12193264,
+            "199": 12193552,
+            "202": 12195888,
+            "203": 12195952
+          },
+          "25283972": {
+            "78": 8515280,
+            "111": 12195184,
+            "145": 12196016,
+            "146": 12196240,
+            "147": 12196032,
+            "167": 12192320,
+            "168": 12193776,
+            "169": 12193024,
+            "170": 12193264,
+            "199": 12193552,
+            "202": 12195888,
+            "203": 12195952
+          }
+        }
+      },
+      "hw.dll": {
+        "timestamp": 1783989493,
+        "size": 73768960,
+        "preferred_base": 30408704,
+        "sha256": "52345cbe9b52f75b1c1da70254c718d78f2eff746ac8397d10251a9d134a32e9",
+        "slots": {}
+      }
+    },
+    "hooks": [
+      {
+        "module": "mp.dll",
+        "label": "acquire",
+        "rva": 12196800,
+        "head": "558bec56ff75088bf1e8220a980085c0743cc786c001000000000000e80f61ab",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "acquire_le",
+        "rva": 12259520,
+        "head": "558becff7508e8f50afffff7d81bc0f7d85dc20400cccccccccccccccccccccc",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "normal",
+        "rva": 12236064,
+        "head": "558bec83e4f883ec0c538bd956576a008b83a00100008bf08bbb040200000faf",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "primary",
+        "rva": 12192320,
+        "head": "558bec83ec0c578bf98b87c001000083f8010f846701000083f8020f845e0100",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "secondary",
+        "rva": 12193776,
+        "head": "558bec83ec08578bf98b87c001000083f8010f84b802000083f8020f84af0200",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "frame",
+        "rva": 12195184,
+        "head": "558bec83ec08568bf1e8b2729800837e64000f841f010000f30f1086dc010000",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "deploy",
+        "rva": 12193552,
+        "head": "558bec83ec085356578bf98b87c001000083f801740583f802752af30f1087cc",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "global_frame",
+        "rva": 20941440,
+        "head": "8b0d3c341d1285c974058b01ff5008833d343a1d12000f851c010000e81f32f4",
+        "relocs": [
+          2,
+          17
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "take_health",
+        "rva": 21878096,
+        "head": "558bec6aff682d645c1164a1000000005083ec34a10065d51133c58945f05356",
+        "relocs": [
+          6,
+          21
+        ]
+      }
+    ],
+    "version": "accepted-0.1.4-server-only-unified-v1"
+  },
+  "wolf": {
+    "modules": {
+      "mp.dll": {
+        "timestamp": 1783989892,
+        "size": 38477824,
+        "preferred_base": 268435456,
+        "sha256": "9680d98c306ef3c1c606e1b22c1bd0123ca861bd0cfb86b25b4da009327e0686",
+        "slots": {
+          "26330756": {
+            "78": 19402256,
+            "111": 19403600,
+            "147": 6648896,
+            "165": 22204464,
+            "167": 19402864,
+            "168": 19403232,
+            "169": 6648896,
+            "199": 19402368,
+            "200": 19403648,
+            "209": 19401968,
+            "213": 19404080,
+            "214": 6648896
+          },
+          "26329852": {
+            "78": 19402256,
+            "111": 19403600,
+            "147": 6648896,
+            "165": 22204464,
+            "167": 19402864,
+            "168": 19403232,
+            "169": 6648896,
+            "199": 19402368,
+            "200": 19403648,
+            "209": 19401968,
+            "213": 19404080,
+            "214": 6648896
+          }
+        }
+      },
+      "hw.dll": {
+        "timestamp": 1783989493,
+        "size": 73768960,
+        "preferred_base": 30408704,
+        "sha256": "52345cbe9b52f75b1c1da70254c718d78f2eff746ac8397d10251a9d134a32e9",
+        "slots": {}
+      }
+    },
+    "hooks": [
+      {
+        "module": "mp.dll",
+        "label": "primary",
+        "rva": 19402864,
+        "head": "558bec83ec0c568bf1c745fc000000000f57c0f30f1145f8f68634020000010f",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "secondary",
+        "rva": 19403232,
+        "head": "558bec83ec0c568bf1c745fc000000000f57c0f30f1145f88b86d0000000f780",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "frame",
+        "rva": 19403600,
+        "head": "568bf1e8d8742a008b86d00000008bce8b80c40e00008986340200008b06ff90",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "owned",
+        "rva": 19403648,
+        "head": "558bec807d0800568bf18b8618020000750a83f803740d83f804740885c00f85",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "global_frame",
+        "rva": 20941440,
+        "head": "8b0d3c341d1285c974058b01ff5008833d343a1d12000f851c010000e81f32f4",
+        "relocs": [
+          2,
+          17
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "eligibility",
+        "rva": 19404080,
+        "head": "558bec83ec08568bf18b06ff90ec0200008b8e0402000081c1281200006a0066",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "deploy_guard",
+        "rva": 19402368,
+        "head": "558bec83ec085356578bf9c745fc00000000be010000008d871c0200008945f8",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "holster_guard",
+        "rva": 19401968,
+        "head": "c6812002000000c7814c010000ffff7f7fc7813402000000000000c3cccccccc",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "mode_guard",
+        "rva": 6719680,
+        "head": "56ff15ec3c1d128bc88b10ff92880100008bf0ff15ec3c1d126afe6a386a3c6a",
+        "relocs": [
+          3,
+          21
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "ctor_guard",
+        "rva": 19404160,
+        "head": "558bec51568bf18975fce8312684ffc70684c691118bc6c78618020000000000",
+        "relocs": [
+          17
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "howl_precache_guard",
+        "rva": 19402120,
+        "head": "6888ca9111ff15603a1d1268a8ca9111ff15603a1d1268c8ca9111ff15603a1d12",
+        "relocs": [
+          1,
+          7,
+          12,
+          18,
+          23,
+          29
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "emit_sound_abi_guard",
+        "rva": 22014430,
+        "head": "ff7520f30f1045188d45d4ff751c83ec08f30f11442404f30f104514f30f1104",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "native_weapon_prediction_data",
+        "rva": 20914144,
+        "head": "558bec8b450883ec2c8b80bc020000565785c07514a1803b1d126a00ffd083c4",
+        "relocs": [
+          22
+        ]
+      }
+    ],
+    "vtables": {
+      "mp.dll": {
+        "613": [
+          26330756,
+          26329852
+        ]
+      }
+    },
+    "trace_limit": 128,
+    "features": [
+      "combat",
+      "visuals"
+    ],
+    "version": "0.5.0-unified-hlds",
+    "rush_motion": {
+      "model": "models/ef_wolfpack_wolf.mdl",
+      "bytes": 145912,
+      "forward_axis": "+X",
+      "sequences": [
+        {
+          "frames": 42,
+          "fps": 30,
+          "start": [
+            -185.52657,
+            0.00322,
+            6.1005
+          ],
+          "x": [
+            -185.52657,
+            -153.6222,
+            -83.44958,
+            -13.2713,
+            -9.74964,
+            -6.0638,
+            -2.22508,
+            1.74386,
+            5.84301,
+            10.04975,
+            14.35839,
+            18.74064,
+            23.19084,
+            27.69765,
+            32.23843,
+            36.80186,
+            41.37661,
+            45.9457,
+            50.4978,
+            55.01594,
+            59.48878,
+            63.89367,
+            68.23063,
+            72.47133,
+            76.61013,
+            80.62436,
+            84.51403,
+            88.25083,
+            91.8291,
+            95.2262,
+            98.43645,
+            101.44288,
+            104.23416,
+            106.78764,
+            109.09766,
+            111.14158,
+            112.91373,
+            114.39146,
+            115.56912,
+            116.42406,
+            116.95061,
+            117.13179
+          ],
+          "y": [
+            0.00322,
+            0.00322,
+            0.00322,
+            0.00322,
+            -0.14736,
+            -0.48815,
+            -0.82894,
+            -0.97952,
+            -0.97952,
+            -0.97159,
+            -0.93197,
+            -0.86064,
+            -0.74176,
+            -0.5674,
+            -0.32172,
+            0.00322,
+            0.39948,
+            0.85915,
+            1.35845,
+            1.90529,
+            2.49176,
+            3.10201,
+            3.74396,
+            4.40176,
+            5.08334,
+            5.76491,
+            6.45441,
+            7.13599,
+            7.80964,
+            8.47537,
+            9.11731,
+            9.72756,
+            10.31403,
+            10.86088,
+            11.3681,
+            11.81984,
+            12.22403,
+            12.56482,
+            12.83428,
+            13.04034,
+            13.16714,
+            13.21469
+          ],
+          "z": [
+            6.1005,
+            6.1005,
+            6.1005,
+            6.1005,
+            5.83487,
+            5.22157,
+            4.53014,
+            4.04185,
+            3.74887,
+            3.47152,
+            3.2176,
+            2.99103,
+            2.80353,
+            2.65899,
+            2.56524,
+            2.53399,
+            2.58086,
+            2.71759,
+            2.93244,
+            3.22541,
+            3.58089,
+            3.99888,
+            4.46764,
+            4.98328,
+            5.53017,
+            6.10831,
+            6.7099,
+            7.3271,
+            7.95212,
+            8.57323,
+            9.19044,
+            9.79202,
+            10.37407,
+            10.92487,
+            11.4366,
+            11.90537,
+            12.32335,
+            12.67883,
+            12.97181,
+            13.18666,
+            13.32338,
+            13.37026
+          ]
+        },
+        {
+          "frames": 43,
+          "fps": 30,
+          "start": [
+            -185.52657,
+            0.00322,
+            6.1005
+          ],
+          "x": [
+            -185.52657,
+            -144.77843,
+            -65.55822,
+            -12.4107,
+            -6.211,
+            -3.18193,
+            -0.21514,
+            5.62786,
+            11.2727,
+            16.76467,
+            19.43705,
+            22.05281,
+            27.18242,
+            32.09688,
+            36.85847,
+            39.16284,
+            41.39926,
+            45.78151,
+            49.96559,
+            53.94019,
+            57.73927,
+            59.56238,
+            61.32321,
+            64.72596,
+            67.91357,
+            70.91433,
+            72.33545,
+            73.69429,
+            76.2874,
+            78.65404,
+            80.83385,
+            81.84165,
+            82.78717,
+            84.53668,
+            86.06537,
+            87.39024,
+            87.9734,
+            88.48863,
+            89.37187,
+            90.03431,
+            90.47027,
+            90.68542,
+            90.69674
+          ],
+          "y": [
+            0.00322,
+            0.01114,
+            0.08247,
+            0.26475,
+            2.23023,
+            3.22882,
+            4.25118,
+            6.34346,
+            8.47537,
+            10.65482,
+            11.74851,
+            12.85806,
+            15.09299,
+            17.32793,
+            19.58664,
+            20.7041,
+            21.8295,
+            24.07236,
+            26.29144,
+            28.4709,
+            30.62658,
+            31.68857,
+            32.72678,
+            34.77944,
+            36.76076,
+            38.67868,
+            39.60594,
+            40.50943,
+            42.25299,
+            43.89353,
+            45.43104,
+            46.16017,
+            46.84967,
+            48.15734,
+            49.31444,
+            50.34472,
+            50.80439,
+            51.20858,
+            51.92978,
+            52.47663,
+            52.84119,
+            53.02348,
+            53.03933
+          ],
+          "z": [
+            6.1005,
+            6.1005,
+            6.07316,
+            6.00284,
+            5.27626,
+            4.92078,
+            4.56921,
+            3.87387,
+            3.20198,
+            2.53789,
+            2.21366,
+            1.89725,
+            1.26832,
+            0.66284,
+            0.07297,
+            -0.21219,
+            -0.49345,
+            -1.04425,
+            -1.57161,
+            -2.07944,
+            -2.56382,
+            -2.80211,
+            -3.02868,
+            -3.4701,
+            -3.88418,
+            -4.27872,
+            -4.46623,
+            -4.64592,
+            -4.98968,
+            -5.3061,
+            -5.59907,
+            -5.7358,
+            -5.86471,
+            -6.103,
+            -6.31003,
+            -6.49363,
+            -6.57176,
+            -6.64207,
+            -6.76708,
+            -6.86083,
+            -6.91943,
+            -6.95068,
+            -6.95068
+          ]
+        },
+        {
+          "frames": 42,
+          "fps": 30,
+          "start": [
+            -185.52657,
+            28.30447,
+            20.50719
+          ],
+          "x": [
+            -185.52657,
+            -156.95701,
+            -97.46825,
+            1e-05,
+            4.92014,
+            9.72702,
+            14.40369,
+            18.96146,
+            23.39466,
+            27.70331,
+            31.8874,
+            35.94126,
+            39.87623,
+            43.68097,
+            47.36115,
+            50.91112,
+            54.33652,
+            57.6317,
+            60.80232,
+            63.83706,
+            66.74723,
+            69.52719,
+            72.17126,
+            74.69077,
+            77.0744,
+            79.3278,
+            81.44532,
+            83.43262,
+            85.28404,
+            87.00523,
+            88.58488,
+            90.03431,
+            91.34785,
+            92.52551,
+            93.56728,
+            94.46751,
+            95.23186,
+            95.86032,
+            96.3529,
+            96.69827,
+            96.91342,
+            96.98136
+          ],
+          "y": [
+            28.30447,
+            28.08256,
+            26.56882,
+            0.00322,
+            -2.59628,
+            -5.22748,
+            -7.88245,
+            -10.56121,
+            -13.24788,
+            -15.95041,
+            -18.65294,
+            -21.35546,
+            -24.04214,
+            -26.72882,
+            -29.38379,
+            -32.02292,
+            -34.63034,
+            -37.20606,
+            -39.73423,
+            -42.22278,
+            -44.65585,
+            -47.03344,
+            -49.34762,
+            -51.59841,
+            -53.76994,
+            -55.86222,
+            -57.87525,
+            -59.79317,
+            -61.62391,
+            -63.3437,
+            -64.96046,
+            -66.46627,
+            -67.8532,
+            -69.12125,
+            -70.26249,
+            -71.26108,
+            -72.12494,
+            -72.84614,
+            -73.41676,
+            -73.82887,
+            -74.08248,
+            -74.16966
+          ],
+          "z": [
+            20.50719,
+            17.68289,
+            11.4366,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266,
+            0.00266
+          ]
+        }
+      ]
+    },
+    "visual_assets": {
+      "totem": {
+        "path": "models/wolfpack_totem.mdl",
+        "type": "studio",
+        "bytes": 101756,
+        "sequences": 1,
+        "frames": 2,
+        "fps": 30.0,
+        "duration": 0.06666666666666667
+      },
+      "wolf": {
+        "path": "models/ef_wolfpack_wolf.mdl",
+        "type": "studio",
+        "bytes": 145912,
+        "sequences": 3,
+        "frames": 42,
+        "fps": 30.0,
+        "duration": 1.4
+      },
+      "groundA": {
+        "path": "models/wolfpack_totem_range.mdl",
+        "type": "studio",
+        "bytes": 67352,
+        "sequences": 1,
+        "frames": 2,
+        "fps": 30.0,
+        "duration": 0.06666666666666667
+      },
+      "groundB": {
+        "path": "models/wolfpack_totem_range2.mdl",
+        "type": "studio",
+        "bytes": 67352,
+        "sequences": 1,
+        "frames": 2,
+        "fps": 30.0,
+        "duration": 0.06666666666666667
+      },
+      "hit": {
+        "path": "sprites/ef_wolfpack_hit.spr",
+        "type": "sprite",
+        "bytes": 985000,
+        "version": 3,
+        "frames": 15,
+        "duration": 0.5
+      },
+      "wolfExplo": {
+        "path": "sprites/ef_wolfpack_wolf_explo.spr",
+        "type": "sprite",
+        "bytes": 985000,
+        "version": 3,
+        "frames": 15,
+        "duration": 0.5
+      },
+      "rushExplo": {
+        "path": "models/ef_wolfpack_explo.mdl",
+        "type": "studio",
+        "bytes": 276648,
+        "sequences": 1,
+        "frames": 18,
+        "fps": 30.0,
+        "duration": 0.6
+      }
+    }
+  },
+  "divinespear": {
+    "visuals": {
+      "models/ef_divinespear.mdl": {
+        "frames": 2,
+        "fps": 30.0,
+        "loop": true,
+        "sprite": false
+      },
+      "models/ef_divinespear_cyclone.mdl": {
+        "frames": 31,
+        "fps": 30.0,
+        "loop": true,
+        "sprite": false
+      },
+      "models/ef_divinespear_chrg.mdl": {
+        "frames": 31,
+        "fps": 30.0,
+        "loop": true,
+        "sprite": false
+      },
+      "sprites/ef_divinespear_explo.spr": {
+        "frames": 25,
+        "fps": 30,
+        "loop": false,
+        "sprite": true
+      },
+      "sprites/ef_divinespear_mark.spr": {
+        "frames": 30,
+        "fps": 30,
+        "loop": true,
+        "sprite": true
+      },
+      "models/ef_divinespearex.mdl": {
+        "frames": 30,
+        "fps": 30.0,
+        "loop": true,
+        "sprite": false
+      },
+      "models/ef_divinespearex_cyclone.mdl": {
+        "frames": 31,
+        "fps": 30.0,
+        "loop": true,
+        "sprite": false
+      },
+      "models/ef_divinespearex_chrg.mdl": {
+        "frames": 30,
+        "fps": 30.0,
+        "loop": true,
+        "sprite": false
+      },
+      "sprites/ef_divinespearex_explo.spr": {
+        "frames": 25,
+        "fps": 30,
+        "loop": false,
+        "sprite": true
+      },
+      "sprites/ef_divinespearex_mark.spr": {
+        "frames": 30,
+        "fps": 30,
+        "loop": true,
+        "sprite": true
+      },
+      "models/ef_divinespearexle.mdl": {
+        "frames": 30,
+        "fps": 30.0,
+        "loop": true,
+        "sprite": false
+      },
+      "models/ef_divinespearexle_cyclone.mdl": {
+        "frames": 31,
+        "fps": 30.0,
+        "loop": true,
+        "sprite": false
+      },
+      "models/ef_divinespearexle_chrg.mdl": {
+        "frames": 30,
+        "fps": 30.0,
+        "loop": true,
+        "sprite": false
+      },
+      "sprites/ef_divinespearexle_explo.spr": {
+        "frames": 25,
+        "fps": 30,
+        "loop": false,
+        "sprite": true
+      },
+      "sprites/ef_divinespearexle_mark.spr": {
+        "frames": 30,
+        "fps": 30,
+        "loop": true,
+        "sprite": true
+      }
+    },
+    "version": "0.3.8-unified-hlds",
+    "modules": {
+      "mp.dll": {
+        "timestamp": 1783989892,
+        "size": 38477824,
+        "preferred_base": 268435456,
+        "slots": {
+          "25553436": {
+            "0": 13936064,
+            "1": 6608880,
+            "2": 13936336,
+            "3": 6652368,
+            "4": 13936608,
+            "5": 13936896,
+            "6": 13936736,
+            "7": 13936992,
+            "8": 13936992,
+            "9": 13936992,
+            "10": 13936992,
+            "11": 6652368,
+            "12": 6622336,
+            "13": 6648912,
+            "14": 6648928,
+            "15": 6648928,
+            "16": 6648928,
+            "17": 13937040,
+            "18": 6649920,
+            "19": 6649920,
+            "20": 6649920,
+            "21": 6649920,
+            "22": 6649920,
+            "23": 13935952,
+            "24": 6649920,
+            "25": 13936992,
+            "26": 6648928,
+            "27": 13935952,
+            "28": 13935952,
+            "29": 6649920,
+            "30": 13935856,
+            "31": 13936992,
+            "32": 6649920,
+            "33": 6649920,
+            "34": 6673168,
+            "35": 6649920,
+            "36": 6649920
+          },
+          "25555556": {
+            "0": 13975280,
+            "1": 6608880,
+            "2": 13936336,
+            "3": 6652368,
+            "4": 13936608,
+            "5": 13936896,
+            "6": 13936736,
+            "7": 13936992,
+            "8": 13936992,
+            "9": 13936992,
+            "10": 13936992,
+            "11": 6652368,
+            "12": 6622336,
+            "13": 6648912,
+            "14": 6648928,
+            "15": 6648928,
+            "16": 6648928,
+            "17": 13937040,
+            "18": 6649920,
+            "19": 6649920,
+            "20": 6649920,
+            "21": 6649920,
+            "22": 6649920,
+            "23": 13935952,
+            "24": 6649920,
+            "25": 13936992,
+            "26": 6648928,
+            "27": 13935952,
+            "28": 13935952,
+            "29": 6649920,
+            "30": 13975184,
+            "31": 13936992,
+            "32": 6649920,
+            "33": 6649920,
+            "34": 6673168,
+            "35": 6649920,
+            "36": 6649920
+          },
+          "25555708": {
+            "0": 13975648,
+            "1": 6608880,
+            "2": 13936336,
+            "3": 6652368,
+            "4": 13936608,
+            "5": 13936896,
+            "6": 13936736,
+            "7": 13936992,
+            "8": 13936992,
+            "9": 13936992,
+            "10": 13936992,
+            "11": 6652368,
+            "12": 6622336,
+            "13": 6648912,
+            "14": 6648928,
+            "15": 6648928,
+            "16": 6648928,
+            "17": 13937040,
+            "18": 6649920,
+            "19": 6649920,
+            "20": 6649920,
+            "21": 6649920,
+            "22": 6649920,
+            "23": 13935952,
+            "24": 6649920,
+            "25": 13936992,
+            "26": 6648928,
+            "27": 13935952,
+            "28": 13935952,
+            "29": 6649920,
+            "30": 13975552,
+            "31": 13936992,
+            "32": 6649920,
+            "33": 6649920,
+            "34": 6673168,
+            "35": 6649920,
+            "36": 6649920
+          },
+          "26037756": {
+            "78": 8254576,
+            "111": 17461744,
+            "165": 22204464,
+            "167": 17462944,
+            "168": 17463104,
+            "176": 17463184,
+            "178": 17461440
+          },
+          "25553600": {
+            "0": 6649504,
+            "1": 8125008,
+            "2": 8125040,
+            "3": 7066304,
+            "4": 8125072,
+            "5": 8125104
+          },
+          "25555876": {
+            "0": 6649504,
+            "1": 8125008,
+            "2": 13975920,
+            "3": 7066304,
+            "4": 8125072,
+            "5": 13975968
+          },
+          "25555528": {
+            "0": 6649504,
+            "1": 8125008,
+            "2": 13975088,
+            "3": 7066304,
+            "4": 8125072,
+            "5": 13975136
+          }
+        },
+        "sha256": "9680d98c306ef3c1c606e1b22c1bd0123ca861bd0cfb86b25b4da009327e0686"
+      },
+      "hw.dll": {
+        "timestamp": 1783989493,
+        "size": 73768960,
+        "preferred_base": 30408704,
+        "sha256": "52345cbe9b52f75b1c1da70254c718d78f2eff746ac8397d10251a9d134a32e9",
+        "slots": {}
+      }
+    },
+    "hooks": [
+      {
+        "module": "mp.dll",
+        "label": "knife_effective_buttons",
+        "rva": 17461440,
+        "head": "568bf18b86d000000085c0750fe8fea80000",
+        "relocs": [],
+        "attach": true
+      },
+      {
+        "module": "mp.dll",
+        "label": "input_callsite",
+        "rva": 22186318,
+        "head": "8b07ff90c80200008bde8bcf81e3fff7ffff",
+        "relocs": [],
+        "attach": false
+      },
+      {
+        "module": "mp.dll",
+        "label": "helper_lookup",
+        "rva": 17463664,
+        "head": "558bec578bf9ff15ec3c1d128bc88b10",
+        "relocs": [
+          8
+        ],
+        "attach": true
+      },
+      {
+        "module": "mp.dll",
+        "label": "knife_frame",
+        "rva": 17461744,
+        "head": "558bec83ec08568bf18b86d000000085c0",
+        "relocs": [],
+        "attach": true
+      },
+      {
+        "module": "mp.dll",
+        "label": "global_frame",
+        "rva": 20941440,
+        "head": "8b0d3c341d1285c974058b01ff5008833d343a1d1200",
+        "relocs": [
+          2,
+          17
+        ],
+        "attach": true
+      },
+      {
+        "module": "mp.dll",
+        "label": "player_damage",
+        "rva": 21852208,
+        "head": "538bdc83ec0883e4f083c404558b6b04",
+        "relocs": [],
+        "attach": false
+      },
+      {
+        "module": "mp.dll",
+        "label": "zombie_mode",
+        "rva": 6719680,
+        "head": "56ff15ec3c1d128bc88b10ff9288010000",
+        "relocs": [
+          3
+        ],
+        "attach": false
+      },
+      {
+        "module": "mp.dll",
+        "label": "weapon_anim",
+        "rva": 22204464,
+        "head": "558bec837d0c00568bf1578b7d088b86d0000000",
+        "relocs": [],
+        "attach": false
+      },
+      {
+        "module": "mp.dll",
+        "label": "emit_sound",
+        "rva": 22014256,
+        "head": "558bec83ec34a10065d51133c58945fc",
+        "relocs": [
+          7
+        ],
+        "attach": false
+      }
+    ],
+    "helpers": {
+      "mp.dll": {
+        "4088": 25553436,
+        "4128": 25555556,
+        "4129": 25555708
+      }
+    },
+    "knife": {
+      "mp.dll": 26037756
+    },
+    "variants": {
+      "4088": 90,
+      "4128": 132,
+      "4129": 133
+    },
+    "properties": {
+      "4088": 25553600,
+      "4128": 25555876,
+      "4129": 25555528
+    },
+    "input_sample_return_rva": 22186326,
+    "diagnostic_only": false,
+    "input_diagnostic": false
+  },
+  "halo": {
+    "modules": {
+      "mp.dll": {
+        "timestamp": 1783989892,
+        "size": 38477824,
+        "preferred_base": 268435456,
+        "sha256": "9680d98c306ef3c1c606e1b22c1bd0123ca861bd0cfb86b25b4da009327e0686",
+        "slots": {
+          "25496380": {
+            "78": 13501040,
+            "111": 22186032,
+            "147": 6648896,
+            "167": 13426720,
+            "168": 13427072,
+            "169": 13426272,
+            "200": 13426064
+          },
+          "25495252": {
+            "78": 13501040,
+            "111": 22186032,
+            "147": 6648896,
+            "167": 13426720,
+            "168": 13427072,
+            "169": 13426272,
+            "200": 13426064
+          },
+          "25493008": {
+            "78": 13425008,
+            "111": 22186032,
+            "147": 6648896,
+            "167": 13426720,
+            "168": 13427072,
+            "169": 13426272,
+            "200": 13426064
+          },
+          "25491692": {
+            "78": 13425008,
+            "111": 22186032,
+            "147": 6648896,
+            "167": 13426720,
+            "168": 13427072,
+            "169": 13426272,
+            "200": 13426064
+          }
+        }
+      },
+      "hw.dll": {
+        "timestamp": 1783989493,
+        "size": 73768960,
+        "preferred_base": 30408704,
+        "sha256": "52345cbe9b52f75b1c1da70254c718d78f2eff746ac8397d10251a9d134a32e9",
+        "slots": {}
+      }
+    },
+    "hooks": [
+      {
+        "module": "mp.dll",
+        "label": "halo_primary",
+        "rva": 13426720,
+        "head": "558bec83ec08538bd983bb60010000007f6e8b03ff908c0200008b8b04020000",
+        "relocs": [],
+        "attach": true
+      },
+      {
+        "module": "mp.dll",
+        "label": "halo_secondary",
+        "rva": 13427072,
+        "head": "558bec51568bf18b86d0000000c6868c020000008b48088b81a4010000a80174",
+        "relocs": [],
+        "attach": true
+      },
+      {
+        "module": "mp.dll",
+        "label": "halo_combo",
+        "rva": 13484992,
+        "head": "558bec83ec4c578bf983bfc0010000000f8e1d06000056e8441f00008b378bcf",
+        "relocs": [],
+        "attach": true
+      },
+      {
+        "module": "mp.dll",
+        "label": "halo_owned",
+        "rva": 13426064,
+        "head": "558bec538b5d08568bf18b86d00000008b40088b804802000083f8047c1383f8",
+        "relocs": [],
+        "attach": true
+      },
+      {
+        "module": "mp.dll",
+        "label": "bullet",
+        "rva": 20957552,
+        "head": "558bec83e4f881ece000000056578bd1895424148b453489442444a1ac3d1d12",
+        "relocs": [
+          28
+        ],
+        "attach": true
+      },
+      {
+        "module": "mp.dll",
+        "label": "entity_create",
+        "rva": 20867392,
+        "head": "558beca1ac3d1d128b0dbc3a1d12568b75082bb0980000000fb64518575056ff",
+        "relocs": [
+          4,
+          10
+        ],
+        "attach": true
+      },
+      {
+        "module": "mp.dll",
+        "label": "halo_projectile_think",
+        "rva": 13483184,
+        "head": "558bec83e4f883ec44a1ac3d1d1253568bf1f30f100057897424240f2f86f400",
+        "relocs": [
+          10
+        ],
+        "attach": true
+      },
+      {
+        "module": "hw.dll",
+        "label": "setmodel_guard",
+        "rva": 7606864,
+        "head": "558bec53568b750c5756e8811018008bf883c40483ffff7513803e00740e5668",
+        "relocs": [],
+        "attach": false
+      },
+      {
+        "module": "hw.dll",
+        "label": "asset_precache",
+        "rva": 7606016,
+        "head": "558bec8b450885c0751168accebd02e83c82fdff83c40433c05dc38a08884d0b",
+        "relocs": [
+          11
+        ],
+        "attach": true
+      }
+    ],
+    "vtables": {
+      "mp.dll": {
+        "591": [
+          25496380,
+          25495252
+        ],
+        "537": [
+          25493008,
+          25491692
+        ]
+      },
+      "hw.dll": {}
+    },
+    "trace_limit": 128,
+    "version": "0.0.4-unified-hlds"
+  },
+  "leapstrike": {
+    "modules": {
+      "mp.dll": {
+        "timestamp": 1783989892,
+        "size": 38477824,
+        "preferred_base": 268435456,
+        "sha256": "9680d98c306ef3c1c606e1b22c1bd0123ca861bd0cfb86b25b4da009327e0686",
+        "slots": {
+          "25634820": {
+            "78": 8515280,
+            "111": 22186032,
+            "147": 6648896,
+            "167": 15098048,
+            "168": 6648896
+          },
+          "25635688": {
+            "78": 8515280,
+            "111": 22186032,
+            "147": 6648896,
+            "167": 15098048,
+            "168": 6648896
+          },
+          "25637216": {
+            "78": 8515280,
+            "111": 22186032,
+            "147": 6648896,
+            "167": 15098048,
+            "168": 6648896
+          },
+          "25638056": {
+            "78": 8515280,
+            "111": 22186032,
+            "147": 6648896,
+            "167": 15098048,
+            "168": 6648896
+          }
+        }
+      },
+      "hw.dll": {
+        "timestamp": 1783989493,
+        "size": 73768960,
+        "preferred_base": 30408704,
+        "sha256": "52345cbe9b52f75b1c1da70254c718d78f2eff746ac8397d10251a9d134a32e9",
+        "slots": {}
+      }
+    },
+    "hooks": [
+      {
+        "module": "mp.dll",
+        "label": "primary",
+        "rva": 15098048,
+        "head": "558bec83e4f851538bd956578b836001000085c07f4c83bb1c010000000f84f5",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "frame",
+        "rva": 22186032,
+        "head": "558beca1ac3d1d1283ec145356578bf98b8fd0000000f30f1081042000000f2f",
+        "relocs": [
+          4
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "global_frame",
+        "rva": 20941440,
+        "head": "8b0d3c341d1285c974058b01ff5008833d343a1d12000f851c010000e81f32f4",
+        "relocs": [
+          2,
+          17
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "bullet_observe",
+        "rva": 20957552,
+        "head": "558bec83e4f881ece000000056578bd1895424148b453489442444a1ac3d1d12",
+        "relocs": [
+          28
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "create_observe",
+        "rva": 20867120,
+        "head": "558bec510fb6450c8b0dbc3a1d12568b7508575056ffd18bf883c408897dfc85",
+        "relocs": [
+          10
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "module_get",
+        "rva": 8906464,
+        "head": "558bec83ec10538b5d080fb6c335c59d1c81895d0869d0930100018bc3c1e808",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "module_deactivate",
+        "rva": 8910240,
+        "head": "558bec83ec08538b5d080fb6c335c59d1c8169d0930100018bc3c1f8080fb6c0",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "module_move",
+        "rva": 8227728,
+        "head": "558bec568bf18b461083e8010f84cd00000083e801743883e8010f85cc000000",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "module_collision",
+        "rva": 8228448,
+        "head": "558bec6aff688dad591164a1000000005081ec8c000000a10065d51133c58945",
+        "relocs": [
+          6,
+          24
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "module_cleanup",
+        "rva": 8228112,
+        "head": "558bec6aff68cd90591164a1000000005083ec20a10065d51133c58945f05650",
+        "relocs": [
+          6,
+          21
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "module_init",
+        "rva": 8227664,
+        "head": "833da0fde4110075148b0dbc2bb711890da0fde4118d4101a3bc2bb711833da4fde411",
+        "relocs": [
+          2,
+          11,
+          17,
+          25,
+          31
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "player_damage",
+        "rva": 21852208,
+        "head": "538bdc83ec0883e4f083c404558b6b04896c24048bec6aff68c5176a1164a100",
+        "relocs": [
+          25
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "mode",
+        "rva": 6719680,
+        "head": "56ff15ec3c1d128bc88b10ff92880100008bf0ff15ec3c1d126afe6a386a3c6a",
+        "relocs": [
+          3,
+          21
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "check_velocity",
+        "rva": 21954336,
+        "head": "8b0d705f1d12565733ffbe5c000000908b040e230528e8d3113b0528e8d31175",
+        "relocs": [
+          2,
+          21,
+          27
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "default_deploy",
+        "rva": 22167856,
+        "head": "558bec538bd9568b03ff909001000085c00f84d30200008b4308f780c8010000",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "leap_deploy_guard",
+        "rva": 15097552,
+        "head": "558bec568bf18b06ff90c40200008b4d08f7d81bc083ec08f7d8c74424040000",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "deploy_callsite_guard",
+        "rva": 15097608,
+        "head": "e823e26b005e5dc20400cccccccccccccccccccccccccccc558bec83ec14578b",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "sprite_create",
+        "rva": 21453296,
+        "head": "558bec6aff6816115d1164a1000000005083ec085657a10065d51133c5508d45",
+        "relocs": [
+          6,
+          23
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "sprite_spawn",
+        "rva": 21452768,
+        "head": "558bec51538bd98b4308c7801c010000000000008b4308c78018010000000000",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "property_ctor",
+        "rva": 8209312,
+        "head": "538bdc83ec0883e4f883c404558b6b04896c24048bec6aff685f815b1164a100",
+        "relocs": [
+          25
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "property_ex_ctor",
+        "rva": 15099824,
+        "head": "558bec6aff68793b611164a100000000505156a10065d51133c5508d45f464a3",
+        "relocs": [
+          6,
+          20
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "precache_model",
+        "rva": 7606016,
+        "head": "558bec8b450885c0751168accebd02e83c82fdff83c40433c05dc38a08884d0b",
+        "relocs": [
+          11
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "precache_sound",
+        "rva": 7606608,
+        "head": "558bec578b7d0885ff7512689ccbbd02e8eb7ffdff83c40433c05f5dc38a073c",
+        "relocs": [
+          12
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "emit_sound",
+        "rva": 7607328,
+        "head": "558becf30f1045140f57c90f2fc877090f2f05d450b502761b0f5ac083ec08f2",
+        "relocs": [
+          19
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "ambient_sound",
+        "rva": 7602864,
+        "head": "558bec83ec0853568b7510803e21752e8b5d1c465683cb10e813f6f9ff83c404",
+        "relocs": []
+      },
+      {
+        "module": "hw.dll",
+        "label": "load_file",
+        "rva": 7195632,
+        "head": "558bec81ec14010000a140ace40233c58945fc8b450c8b4d088985f0feffff8d",
+        "relocs": [
+          10
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "free_file",
+        "rva": 7193232,
+        "head": "558bec8d450850ff157c64e1028b450883c40485c0740950e81314050083c404",
+        "relocs": [
+          9
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "set_origin",
+        "rva": 7607040,
+        "head": "558bec8b4d0c8b55088b0189828c0000008b41048982900000008b4108898294",
+        "relocs": []
+      },
+      {
+        "module": "hw.dll",
+        "label": "remove_entity",
+        "rva": 7599616,
+        "head": "e9fb4e0000cccccccccccccccccccccc558bec538b1db8e45804568b7508578b",
+        "relocs": [
+          22
+        ]
+      }
+    ],
+    "vtables": {
+      "mp.dll": {
+        "547": [
+          25634820,
+          25635688
+        ],
+        "609": [
+          25637216,
+          25638056
+        ]
+      },
+      "hw.dll": {}
+    },
+    "module_vtable": 24824052,
+    "trace_limit": 2048,
+    "features": [
+      "primary",
+      "flight",
+      "visuals"
+    ],
+    "version": "0.5.5-unified-hlds",
+    "visual_assets": {
+      "547/projectile": {
+        "path": "sprites/ef_leapstrikegun_projectile.spr",
+        "bytes": 985000,
+        "kind": "projectile",
+        "id": 547,
+        "type": "sprite",
+        "version": 3,
+        "orientation": 2,
+        "texture_format": 0,
+        "width": 256,
+        "height": 256,
+        "frames": 15,
+        "fps": 30,
+        "duration": 0.5,
+        "loop": false,
+        "head16": "49445350030000000200000000000000"
+      },
+      "547/fall": {
+        "path": "models/ef_leapstrikegun_fall.mdl",
+        "bytes": 140580,
+        "kind": "fall",
+        "id": 547,
+        "type": "studio",
+        "version": 10,
+        "sequences": [
+          {
+            "index": 0,
+            "name": "idle",
+            "fps": 30.0,
+            "frames": 31,
+            "duration": 1.0333333333333334
+          }
+        ],
+        "fps": 30.0,
+        "frames": 31,
+        "duration": 1.0,
+        "loop": false,
+        "head16": "494453540a00000065665f6c65617073"
+      },
+      "547/flying": {
+        "path": "models/ef_leapstrikegun_flying.mdl",
+        "bytes": 69952,
+        "kind": "flying",
+        "id": 547,
+        "type": "studio",
+        "version": 10,
+        "sequences": [
+          {
+            "index": 0,
+            "name": "idle",
+            "fps": 30.0,
+            "frames": 91,
+            "duration": 3.033333333333333
+          }
+        ],
+        "fps": 30.0,
+        "frames": 91,
+        "duration": 3.0,
+        "loop": false,
+        "head16": "494453540a00000065665f6c65617073"
+      },
+      "547/jumpdash": {
+        "path": "models/ef_leapstrikegun_jumpdash.mdl",
+        "bytes": 136808,
+        "kind": "jumpdash",
+        "id": 547,
+        "type": "studio",
+        "version": 10,
+        "sequences": [
+          {
+            "index": 0,
+            "name": "idle",
+            "fps": 30.0,
+            "frames": 30,
+            "duration": 1.0
+          }
+        ],
+        "fps": 30.0,
+        "frames": 30,
+        "duration": 0.9666666666666667,
+        "loop": true,
+        "head16": "494453540a00000065665f6c65617073"
+      },
+      "547/jumpfx": {
+        "path": "models/ef_leapstrikegun_jumpfx.mdl",
+        "bytes": 141844,
+        "kind": "jumpfx",
+        "id": 547,
+        "type": "studio",
+        "version": 10,
+        "sequences": [
+          {
+            "index": 0,
+            "name": "idle",
+            "fps": 30.0,
+            "frames": 30,
+            "duration": 1.0
+          }
+        ],
+        "fps": 30.0,
+        "frames": 30,
+        "duration": 0.9666666666666667,
+        "loop": false,
+        "head16": "494453540a00000065665f6c65617073"
+      },
+      "547/landing": {
+        "path": "models/ef_leapstrikegun_landing.mdl",
+        "bytes": 282676,
+        "kind": "landing",
+        "id": 547,
+        "type": "studio",
+        "version": 10,
+        "sequences": [
+          {
+            "index": 0,
+            "name": "idle",
+            "fps": 30.0,
+            "frames": 30,
+            "duration": 1.0
+          }
+        ],
+        "fps": 30.0,
+        "frames": 30,
+        "duration": 0.9666666666666667,
+        "loop": false,
+        "head16": "494453540a00000065665f6c65617073"
+      },
+      "609/projectile": {
+        "path": "sprites/ef_leapstrikegunex_projectile.spr",
+        "bytes": 919336,
+        "kind": "projectile",
+        "id": 609,
+        "type": "sprite",
+        "version": 3,
+        "orientation": 2,
+        "texture_format": 0,
+        "width": 256,
+        "height": 256,
+        "frames": 14,
+        "fps": 30,
+        "duration": 0.4666666666666667,
+        "loop": false,
+        "head16": "49445350030000000200000000000000"
+      },
+      "609/fall": {
+        "path": "models/ef_leapstrikegunex_fall.mdl",
+        "bytes": 140576,
+        "kind": "fall",
+        "id": 609,
+        "type": "studio",
+        "version": 10,
+        "sequences": [
+          {
+            "index": 0,
+            "name": "idle",
+            "fps": 30.0,
+            "frames": 31,
+            "duration": 1.0333333333333334
+          }
+        ],
+        "fps": 30.0,
+        "frames": 31,
+        "duration": 1.0,
+        "loop": false,
+        "head16": "494453540a00000065665f6c65617073"
+      },
+      "609/flying": {
+        "path": "models/ef_leapstrikegunex_flying.mdl",
+        "bytes": 69948,
+        "kind": "flying",
+        "id": 609,
+        "type": "studio",
+        "version": 10,
+        "sequences": [
+          {
+            "index": 0,
+            "name": "idle",
+            "fps": 30.0,
+            "frames": 91,
+            "duration": 3.033333333333333
+          }
+        ],
+        "fps": 30.0,
+        "frames": 91,
+        "duration": 3.0,
+        "loop": false,
+        "head16": "494453540a00000065665f6c65617073"
+      },
+      "609/jumpdash": {
+        "path": "models/ef_leapstrikegunex_jumpdash.mdl",
+        "bytes": 136808,
+        "kind": "jumpdash",
+        "id": 609,
+        "type": "studio",
+        "version": 10,
+        "sequences": [
+          {
+            "index": 0,
+            "name": "idle",
+            "fps": 30.0,
+            "frames": 30,
+            "duration": 1.0
+          }
+        ],
+        "fps": 30.0,
+        "frames": 30,
+        "duration": 0.9666666666666667,
+        "loop": true,
+        "head16": "494453540a00000065665f6c65617073"
+      },
+      "609/jumpfx": {
+        "path": "models/ef_leapstrikegunex_jumpfx.mdl",
+        "bytes": 141844,
+        "kind": "jumpfx",
+        "id": 609,
+        "type": "studio",
+        "version": 10,
+        "sequences": [
+          {
+            "index": 0,
+            "name": "idle",
+            "fps": 30.0,
+            "frames": 30,
+            "duration": 1.0
+          }
+        ],
+        "fps": 30.0,
+        "frames": 30,
+        "duration": 0.9666666666666667,
+        "loop": false,
+        "head16": "494453540a00000065665f6c65617073"
+      },
+      "609/landing": {
+        "path": "models/ef_leapstrikegunex_landing.mdl",
+        "bytes": 282676,
+        "kind": "landing",
+        "id": 609,
+        "type": "studio",
+        "version": 10,
+        "sequences": [
+          {
+            "index": 0,
+            "name": "idle",
+            "fps": 30.0,
+            "frames": 30,
+            "duration": 1.0
+          }
+        ],
+        "fps": 30.0,
+        "frames": 30,
+        "duration": 0.9666666666666667,
+        "loop": false,
+        "head16": "494453540a00000065665f6c65617073"
+      },
+      "547/hit": {
+        "path": "sprites/ef_leapstrikegun_hit.spr",
+        "kind": "hit",
+        "id": 547,
+        "type": "sprite",
+        "bytes": 985000,
+        "head16": "49445350030000000200000000000000",
+        "frames": 15,
+        "fps": 30,
+        "duration": 0.5,
+        "loop": false
+      },
+      "547/pulse": {
+        "path": "sprites/wr_repulsor_v052_547_pulse.spr",
+        "kind": "pulse",
+        "id": 547,
+        "type": "sprite",
+        "bytes": 985000,
+        "head16": "49445350030000000300000000000000",
+        "frames": 15,
+        "fps": 30,
+        "duration": 0.5,
+        "loop": false
+      },
+      "609/hit": {
+        "path": "sprites/ef_leapstrikegunex_hit.spr",
+        "kind": "hit",
+        "id": 609,
+        "type": "sprite",
+        "bytes": 1575976,
+        "head16": "49445350030000000200000000000000",
+        "frames": 24,
+        "fps": 30,
+        "duration": 0.8,
+        "loop": false
+      },
+      "609/pulse": {
+        "path": "sprites/wr_repulsor_v052_609_pulse.spr",
+        "kind": "pulse",
+        "id": 609,
+        "type": "sprite",
+        "bytes": 985000,
+        "head16": "49445350030000000300000000000000",
+        "frames": 15,
+        "fps": 30,
+        "duration": 0.5,
+        "loop": false
+      }
+    },
+    "sound_assets": {
+      "547/impact": {
+        "path": "weapons/leapstrikegun-1_exp.wav",
+        "file": "sound/weapons/leapstrikegun-1_exp.wav",
+        "bytes": 132966,
+        "head16": "524946465e07020057415645666d7420"
+      },
+      "609/impact": {
+        "path": "weapons/leapstrikegunex-1_exp.wav",
+        "file": "sound/weapons/leapstrikegunex-1_exp.wav",
+        "bytes": 108842,
+        "head16": "5249464622a9010057415645666d7420"
+      },
+      "landing": {
+        "path": "weapons/leapstrikegun_change_fly_exp.wav",
+        "file": "sound/weapons/leapstrikegun_change_fly_exp.wav",
+        "bytes": 222790,
+        "head16": "524946463e66030057415645666d7420"
+      },
+      "547/fire": {
+        "path": "weapons/leapstrikegun-1.wav",
+        "file": "sound/weapons/leapstrikegun-1.wav",
+        "bytes": 69212,
+        "head16": "52494646540e010057415645666d7420"
+      },
+      "609/fire": {
+        "path": "weapons/leapstrikegunex-1.wav",
+        "file": "sound/weapons/leapstrikegunex-1.wav",
+        "bytes": 72850,
+        "head16": "524946468a1c010057415645666d7420"
+      }
+    }
+  },
+  "soul": {
+    "modules": {
+      "mp.dll": {
+        "timestamp": 1783989892,
+        "size": 38477824,
+        "preferred_base": 268435456,
+        "sha256": "9680d98c306ef3c1c606e1b22c1bd0123ca861bd0cfb86b25b4da009327e0686",
+        "slots": {
+          "25837116": {
+            "97": 22160880,
+            "111": 11985248,
+            "165": 22204464,
+            "167": 16169488,
+            "168": 6648896,
+            "170": 16169712,
+            "199": 16170048,
+            "209": 16170336
+          },
+          "25836080": {
+            "97": 11247728,
+            "111": 11985248,
+            "165": 22204464,
+            "167": 16169488,
+            "168": 6648896,
+            "170": 16169712,
+            "199": 16170048,
+            "209": 16170336
+          },
+          "25840136": {
+            "97": 22160880,
+            "111": 11985248,
+            "165": 22204464,
+            "167": 16200752,
+            "168": 6648896,
+            "170": 16200784,
+            "199": 16200896,
+            "209": 16170336
+          },
+          "25839220": {
+            "97": 11247728,
+            "111": 11985248,
+            "165": 22204464,
+            "167": 16200752,
+            "168": 6648896,
+            "170": 16200784,
+            "199": 16200896,
+            "209": 16170336
+          }
+        }
+      },
+      "hw.dll": {
+        "timestamp": 1783989493,
+        "size": 73768960,
+        "preferred_base": 30408704,
+        "sha256": "52345cbe9b52f75b1c1da70254c718d78f2eff746ac8397d10251a9d134a32e9",
+        "slots": {}
+      }
+    },
+    "hooks": [
+      {
+        "module": "mp.dll",
+        "label": "normal",
+        "rva": 16193952,
+        "head": "558bec83e4f883ec34538bd9565783bb60010000007f4c83bb1c010000000f84",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "primary_dispatch",
+        "rva": 16169488,
+        "head": "83b9c0010000000f84835f0000c3cccc558bec51578bf98b97580100008b87d0",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "send_weapon_anim",
+        "rva": 22204464,
+        "head": "558bec837d0c00568bf1578b7d088b86d00000008b400889b848020000741e8b",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "global_frame",
+        "rva": 20941440,
+        "head": "8b0d3c341d1285c974058b01ff5008833d343a1d12000f851c010000e81f32f4",
+        "relocs": [
+          2,
+          17
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "player_damage",
+        "rva": 21852208,
+        "head": "538bdc83ec0883e4f083c404558b6b04896c24048bec6aff68c5176a1164a100",
+        "relocs": [
+          25
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "mode_native",
+        "rva": 6719680,
+        "head": "56ff15ec3c1d128bc88b10ff92880100008bf0ff15ec3c1d126afe6a386a3c6a",
+        "relocs": [
+          3,
+          21
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "weapon_time",
+        "rva": 6651120,
+        "head": "d9eec3cccccccccccccccccccccccccc8b410883c008c3cccccccccccccccccc",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "soul_tail",
+        "rva": 16170336,
+        "head": "558bec568bf18b4608c78024010000000000008b450883e800744183e801741a",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "take_health",
+        "rva": 21878096,
+        "head": "558bec6aff682d645c1164a1000000005083ec34a10065d51133c58945f05356",
+        "relocs": [
+          6,
+          21
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "player_assist",
+        "rva": 21768416,
+        "head": "558bec6aff687d116a1164a1000000005083ec74a10065d51133c58945f05356",
+        "relocs": [
+          6,
+          21
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "velocity_native",
+        "rva": 20870080,
+        "head": "558bec83ec0c807d1400568bf18b4608f30f104020f30f1145fcf30f104024f3",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "acquire",
+        "rva": 22160880,
+        "head": "558bec6aff68a73e6a1164a1000000005083ec34535657a10065d51133c5508d",
+        "relocs": [
+          6,
+          24
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "accepted_input",
+        "rva": 21707744,
+        "head": "558bec53568b750832db578bf985f60f84cf0000008b068bceff90a801000085",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "secondary_callsite_guard",
+        "rva": 22187618,
+        "head": "e879adf8ff8b8fa001000033c08bb76001000085c96afe0f49c18987a0010000",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "sprite_create",
+        "rva": 21453296,
+        "head": "558bec6aff6816115d1164a1000000005083ec085657a10065d51133c5508d45",
+        "relocs": [
+          6,
+          23
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "sprite_spawn",
+        "rva": 21452768,
+        "head": "558bec51538bd98b4308c7801c010000000000008b4308c78018010000000000",
+        "relocs": []
+      },
+      {
+        "module": "hw.dll",
+        "label": "precache_model",
+        "rva": 7606016,
+        "head": "558bec8b450885c0751168accebd02e83c82fdff83c40433c05dc38a08884d0b",
+        "relocs": [
+          11
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "precache_sound",
+        "rva": 7606608,
+        "head": "558bec578b7d0885ff7512689ccbbd02e8eb7ffdff83c40433c05f5dc38a073c",
+        "relocs": [
+          12
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "ambient_sound",
+        "rva": 7602864,
+        "head": "558bec83ec0853568b7510803e21752e8b5d1c465683cb10e813f6f9ff83c404",
+        "relocs": []
+      },
+      {
+        "module": "hw.dll",
+        "label": "load_file",
+        "rva": 7195632,
+        "head": "558bec81ec14010000a140ace40233c58945fc8b450c8b4d088985f0feffff8d",
+        "relocs": [
+          10
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "free_file",
+        "rva": 7193232,
+        "head": "558bec8d450850ff157c64e1028b450883c40485c0740950e81314050083c404",
+        "relocs": [
+          9
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "set_origin",
+        "rva": 7607040,
+        "head": "558bec8b4d0c8b55088b0189828c0000008b41048982900000008b4108898294",
+        "relocs": []
+      },
+      {
+        "module": "hw.dll",
+        "label": "remove_entity",
+        "rva": 7599616,
+        "head": "e9fb4e0000cccccccccccccccccccccc558bec538b1db8e45804568b7508578b",
+        "relocs": [
+          22
+        ]
+      }
+    ],
+    "vtables": {
+      "mp.dll": {
+        "568": [
+          25837116,
+          25836080
+        ],
+        "692": [
+          25840136,
+          25839220
+        ]
+      },
+      "hw.dll": {}
+    },
+    "role": "server",
+    "version": "0.3.5-soul-hlds",
+    "property_contract": {
+      "568": {
+        "AModeDamage": 26,
+        "AModeDamageZombie": 590,
+        "AModeDamageScenario": 2300,
+        "AModeReloadTime": 2,
+        "AModeCycleTime": 0.1850000023841858,
+        "AModeAccuracy": 0.10000000149011612,
+        "AModeAccuracyDiv": 240,
+        "AModeAccuracyAdd": 0.30000001192092896,
+        "AModeAccuracyLimit": 0.800000011920929,
+        "AModeSpreadJump": 0.20000000298023224,
+        "AModeSpreadStand": 0.009999999776482582,
+        "AModeDistance": 8192,
+        "AModePenetration": 3,
+        "AModeRangeMod": 0.9700000286102295,
+        "AModeFanAttackMeter": 9,
+        "AModeFanAttackAngle": 120,
+        "AModeFanAttackDamage": 6,
+        "AModeFanAttackDamageZombie": 240,
+        "AModeFanAttackDamageScenario": 1024,
+        "BModeToAModeDelay": 0.20000000298023224,
+        "BModeToBModeDelay": 0.6000000238418579,
+        "BModeToCModeDelay": 1,
+        "BModeMaxEnergy": 60,
+        "BModeChargeEnergy": 2,
+        "BModeMakeProjEnergy": 20,
+        "BModeFindTargetRadius": 5,
+        "BModeFireProjCycleTime": 0.8500000238418579,
+        "BModeProjExpDist": 1,
+        "BModeProjSpeed": 1900,
+        "BModeProjExploRadius": 3.5,
+        "BModeProjExploDamage": 22,
+        "BModeProjExploDamageZombie": 5800,
+        "BModeProjExploDamageScenario": 14000,
+        "BModeProjExploKnockbackSide": 0,
+        "BModeProjExploKnockbackUp": 0,
+        "BModeProjExploKnockbackSideZombie": 1500,
+        "BModeProjExploKnockbackUpZombie": 100,
+        "BModeProjExploKnockbackSideScenario": 200,
+        "BModeProjExploKnockbackUpScenario": 100,
+        "BModeProjExploKnockbackDuration": 0,
+        "BModeProjExploKnockbackDurationZombie": 0.5,
+        "BModeProjExploKnockbackDurationScenario": 0.5,
+        "CModeChargeMax": 100,
+        "CModeChargeAmount": 2,
+        "CModeChargeAmountZombie": 2,
+        "CModeChargeAmountScenario": 2,
+        "CModeChargeAmountWhenKill": 4,
+        "CModeChargeAmountWhenKillZombie": 4,
+        "CModeChargeAmountWhenKillScenario": 1,
+        "CModeChargeAmountWhenAssist": 2,
+        "CModeChargeAmountWhenAssistZombie": 2,
+        "CModeChargeAmountWhenAssistScenario": 1,
+        "CModeChargeInterval": 0.6700000166893005,
+        "CModeChargeIntervalZombie": 0.6700000166893005,
+        "CModeChargeIntervalScenario": 0.6700000166893005,
+        "CModeChargeDelay": 1,
+        "CModeConsumeInterval": 0.05400000140070915,
+        "CModeCanChangeGauge": 30,
+        "CModeChangeUseGauge": 20,
+        "CModeReloadTime": 2,
+        "CModeCycleTime": 1.149999976158142,
+        "CModeActivatedAttackRadius": 6,
+        "CModeActivatedAttackDamage": 10,
+        "CModeActivatedAttackDamageZombie": 1200,
+        "CModeActivatedAttackDamageScenario": 2400,
+        "CModeActivatedAttackKnockbackSide": 0,
+        "CModeActivatedAttackKnockbackUp": 0,
+        "CModeActivatedAttackKnockbackSideZombie": 1700,
+        "CModeActivatedAttackKnockbackUpZombie": 100,
+        "CModeActivatedAttackKnockbackSideScenario": 200,
+        "CModeActivatedAttackKnockbackUpScenario": 100,
+        "CModeActivatedAttackKnockbackDuration": 0.25,
+        "CModeDistance": 51,
+        "CModeRadius": 4,
+        "CModeDamage": 32,
+        "CModeDamageZombie": 11263,
+        "CModeDamageScenario": 30400,
+        "CModeFixedMoveTime": 2,
+        "CModeFixedMoveSpeed": 50,
+        "CModeFixedMoveGravity": 2,
+        "CModePullingDuration": 0,
+        "CModePullingDurationZombie": 0.30000001192092896,
+        "CModePullingDurationScenario": 0.30000001192092896,
+        "KillEvasionShotCount": 99999,
+        "KillEvasionShotCountZombie": 20,
+        "KillEvasionShotCountScenario": 20,
+        "KillEvasionWeaponCooltime": 99999,
+        "KillEvasionWeaponCooltimeZombie": 80,
+        "KillEvasionWeaponCooltimeScenario": 60,
+        "KillEvasionPlayerCooltime": 99999,
+        "KillEvasionPlayerCooltimeZombie": 80,
+        "KillEvasionPlayerCooltimeScenario": 60,
+        "KillEvasionGodTime": 2,
+        "KillEvasionDamage": 0,
+        "KillEvasionDamageZombie": 5200,
+        "KillEvasionDamageScenario": 16000,
+        "KillEvasionAttackRadius": 7,
+        "KillEvasionKnockbackSide": 0,
+        "KillEvasionKnockbackSideZombie": 1700,
+        "KillEvasionKnockbackSideScenario": 500,
+        "KillEvasionKnockbackUp": 0,
+        "KillEvasionKnockbackUpZombie": 150,
+        "KillEvasionKnockbackUpScenario": 100,
+        "KillEvasionFixedMoveDuration": 2.5,
+        "KillEvasionFixedMoveSpeed": 100,
+        "KillEvasionFixedMoveGravity": 1,
+        "KillEvasionAttackHeal": 0,
+        "KillEvasionAttackHealZombie": 300,
+        "KillEvasionAttackHealScenario": 200,
+        "KillEvasionAttackHealMax": 0,
+        "KillEvasionAttackHealMaxZombie": 1200,
+        "KillEvasionAttackHealMaxScenario": 2000,
+        "KickJump": 0.3199999928474426,
+        "KickMove": 0.2199999988079071,
+        "KickDuck": 0.18000000715255737,
+        "KickStand": 0.20000000298023224
+      },
+      "692": {
+        "AModeDamage": 27,
+        "AModeDamageZombie": 620,
+        "AModeDamageScenario": 2415,
+        "AModeReloadTime": 2,
+        "AModeCycleTime": 0.1850000023841858,
+        "AModeAccuracy": 0.10000000149011612,
+        "AModeAccuracyDiv": 240,
+        "AModeAccuracyAdd": 0.30000001192092896,
+        "AModeAccuracyLimit": 0.800000011920929,
+        "AModeSpreadJump": 0.20000000298023224,
+        "AModeSpreadStand": 0.009999999776482582,
+        "AModeDistance": 8192,
+        "AModePenetration": 3,
+        "AModeRangeMod": 0.9700000286102295,
+        "AModeFanAttackMeter": 11,
+        "AModeFanAttackAngle": 130,
+        "AModeFanAttackDamage": 7,
+        "AModeFanAttackDamageZombie": 252,
+        "AModeFanAttackDamageScenario": 1075,
+        "BModeToAModeDelay": 0.20000000298023224,
+        "BModeToBModeDelay": 0.6000000238418579,
+        "BModeToCModeDelay": 1,
+        "BModeMaxEnergy": 27,
+        "BModeChargeEnergy": 1,
+        "BModeMakeProjEnergy": 9,
+        "BModeFindTargetRadius": 5,
+        "BModeFireProjCycleTime": 0.8500000238418579,
+        "BModeProjExpDist": 1,
+        "BModeProjSpeed": 1900,
+        "BModeProjExploRadius": 3.5,
+        "BModeProjExploDamage": 23,
+        "BModeProjExploDamageZombie": 6090,
+        "BModeProjExploDamageScenario": 14700,
+        "BModeProjExploKnockbackSide": 0,
+        "BModeProjExploKnockbackUp": 0,
+        "BModeProjExploKnockbackSideZombie": 1500,
+        "BModeProjExploKnockbackUpZombie": 100,
+        "BModeProjExploKnockbackSideScenario": 200,
+        "BModeProjExploKnockbackUpScenario": 100,
+        "BModeProjExploKnockbackDuration": 0,
+        "BModeProjExploKnockbackDurationZombie": 0.5,
+        "BModeProjExploKnockbackDurationScenario": 0.5,
+        "CModeChargeMax": 110,
+        "CModeChargeAmount": 2,
+        "CModeChargeAmountZombie": 2,
+        "CModeChargeAmountScenario": 2,
+        "CModeChargeAmountWhenKill": 4,
+        "CModeChargeAmountWhenKillZombie": 4,
+        "CModeChargeAmountWhenKillScenario": 1,
+        "CModeChargeAmountWhenAssist": 2,
+        "CModeChargeAmountWhenAssistZombie": 2,
+        "CModeChargeAmountWhenAssistScenario": 1,
+        "CModeChargeInterval": 0.6700000166893005,
+        "CModeChargeIntervalZombie": 0.6700000166893005,
+        "CModeChargeIntervalScenario": 0.6700000166893005,
+        "CModeChargeDelay": 1,
+        "CModeConsumeInterval": 0.05400000140070915,
+        "CModeCanChangeGauge": 30,
+        "CModeChangeUseGauge": 20,
+        "CModeReloadTime": 2,
+        "CModeCycleTime": 1.149999976158142,
+        "CModeActivatedAttackRadius": 6,
+        "CModeActivatedAttackDamage": 11,
+        "CModeActivatedAttackDamageZombie": 1296,
+        "CModeActivatedAttackDamageScenario": 2592,
+        "CModeActivatedAttackKnockbackSide": 0,
+        "CModeActivatedAttackKnockbackUp": 0,
+        "CModeActivatedAttackKnockbackSideZombie": 1700,
+        "CModeActivatedAttackKnockbackUpZombie": 100,
+        "CModeActivatedAttackKnockbackSideScenario": 200,
+        "CModeActivatedAttackKnockbackUpScenario": 100,
+        "CModeActivatedAttackKnockbackDuration": 0.25,
+        "CModeDistance": 51,
+        "CModeRadius": 4,
+        "CModeDamage": 33,
+        "CModeDamageZombie": 12164,
+        "CModeDamageScenario": 32832,
+        "CModeFixedMoveTime": 2,
+        "CModeFixedMoveSpeed": 50,
+        "CModeFixedMoveGravity": 2,
+        "CModePullingDuration": 0,
+        "CModePullingDurationZombie": 0.30000001192092896,
+        "CModePullingDurationScenario": 0.30000001192092896,
+        "KillEvasionShotCount": 99999,
+        "KillEvasionShotCountZombie": 20,
+        "KillEvasionShotCountScenario": 20,
+        "KillEvasionWeaponCooltime": 99999,
+        "KillEvasionWeaponCooltimeZombie": 80,
+        "KillEvasionWeaponCooltimeScenario": 60,
+        "KillEvasionPlayerCooltime": 99999,
+        "KillEvasionPlayerCooltimeZombie": 80,
+        "KillEvasionPlayerCooltimeScenario": 60,
+        "KillEvasionGodTime": 2,
+        "KillEvasionDamage": 0,
+        "KillEvasionDamageZombie": 5200,
+        "KillEvasionDamageScenario": 16000,
+        "KillEvasionAttackRadius": 7,
+        "KillEvasionKnockbackSide": 0,
+        "KillEvasionKnockbackSideZombie": 1700,
+        "KillEvasionKnockbackSideScenario": 500,
+        "KillEvasionKnockbackUp": 0,
+        "KillEvasionKnockbackUpZombie": 150,
+        "KillEvasionKnockbackUpScenario": 100,
+        "KillEvasionFixedMoveDuration": 2.5,
+        "KillEvasionFixedMoveSpeed": 100,
+        "KillEvasionFixedMoveGravity": 1,
+        "KillEvasionAttackHeal": 0,
+        "KillEvasionAttackHealZombie": 300,
+        "KillEvasionAttackHealScenario": 200,
+        "KillEvasionAttackHealMax": 0,
+        "KillEvasionAttackHealMaxZombie": 1200,
+        "KillEvasionAttackHealMaxScenario": 2000,
+        "KickJump": 0.3199999928474426,
+        "KickMove": 0.2199999988079071,
+        "KickDuck": 0.18000000715255737,
+        "KickStand": 0.20000000298023224
+      }
+    },
+    "visual_assets": {
+      "568/orb": {
+        "path": "sprites/ef_soulreaper_bmode.spr",
+        "format": "IDSP",
+        "version": 3,
+        "width": 256,
+        "height": 256,
+        "frames": 32,
+        "fps": 30,
+        "kind": 2,
+        "asset_basis": "Native SoulOrbVisual uses this as local hand charge burst. v030-v032 wrongly reused it for flight. Flight rendering disabled in v033; resource retained for original client event.",
+        "fps_basis": "30 is candidate timing, not a field in the IDSP header.",
+        "bytes": 2101288,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite",
+        "duration": 1.0666666666666667
+      },
+      "568/impact": {
+        "path": "sprites/ef_soulreaper_exp.spr",
+        "format": "IDSP",
+        "version": 3,
+        "width": 256,
+        "height": 256,
+        "frames": 32,
+        "fps": 30,
+        "kind": 2,
+        "fps_basis": "30 is candidate timing, not a field in the IDSP header.",
+        "bytes": 2101288,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite",
+        "duration": 1.0666666666666667,
+        "renderMode": 4,
+        "render_basis": "hw.dll R_DrawSpriteModel +6ff9c8: mode4 uses SRC_ALPHA/ONE_MINUS_SRC_ALPHA; mode5 +6ff95f uses ONE/ONE and exposes RGB under alpha zero. Original DDS unchanged. Original impact scale/timing still reference-derived."
+      },
+      "568/armor": {
+        "path": "models/ef_soulreaper_skill.mdl",
+        "format": "IDST",
+        "version": 10,
+        "sequences": [
+          {
+            "label": "idle",
+            "fps": 30.0,
+            "frames": 40
+          }
+        ],
+        "frames": 40,
+        "fps": 30.0,
+        "bbox": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bytes": 159144,
+        "head16": "494453540a00000065665f736f756c72",
+        "type": "studio",
+        "duration": 1.3
+      },
+      "692/orb": {
+        "path": "sprites/ef_soulreaperex_bmode.spr",
+        "format": "IDSP",
+        "version": 3,
+        "width": 256,
+        "height": 256,
+        "frames": 32,
+        "fps": 30,
+        "kind": 2,
+        "asset_basis": "Native SoulOrbVisual uses this as local hand charge burst. v030-v032 wrongly reused it for flight. Flight rendering disabled in v033; resource retained for original client event.",
+        "fps_basis": "30 is candidate timing, not a field in the IDSP header.",
+        "bytes": 2101288,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite",
+        "duration": 1.0666666666666667
+      },
+      "692/impact": {
+        "path": "sprites/ef_soulreaperex_exp.spr",
+        "format": "IDSP",
+        "version": 3,
+        "width": 256,
+        "height": 256,
+        "frames": 31,
+        "fps": 30,
+        "kind": 2,
+        "fps_basis": "30 is candidate timing, not a field in the IDSP header.",
+        "bytes": 2035624,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite",
+        "duration": 1.0333333333333334,
+        "renderMode": 4,
+        "render_basis": "hw.dll R_DrawSpriteModel +6ff9c8: mode4 uses SRC_ALPHA/ONE_MINUS_SRC_ALPHA; mode5 +6ff95f uses ONE/ONE and exposes RGB under alpha zero. Original DDS unchanged. Original impact scale/timing still reference-derived."
+      },
+      "692/armor": {
+        "path": "models/ef_soulreaperex_skill.mdl",
+        "format": "IDST",
+        "version": 10,
+        "sequences": [
+          {
+            "label": "idle",
+            "fps": 30.0,
+            "frames": 40
+          }
+        ],
+        "frames": 40,
+        "fps": 30.0,
+        "bbox": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bytes": 159176,
+        "head16": "494453540a00000065665f736f756c72",
+        "type": "studio",
+        "duration": 1.3
+      },
+      "568/orbit": {
+        "path": "sprites/ef_soulreaper_sphere.spr",
+        "bytes": 2954920,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite",
+        "width": 256,
+        "frames": 45,
+        "fps": 30,
+        "duration": 1.5,
+        "native_only": true
+      },
+      "692/orbit": {
+        "path": "sprites/ef_soulreaperex_sphere.spr",
+        "bytes": 2954920,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite",
+        "width": 256,
+        "frames": 45,
+        "fps": 30,
+        "duration": 1.5,
+        "native_only": true
+      }
+    },
+    "sound_assets": {
+      "impact": {
+        "path": "weapons/soulreaper-2_exp.wav",
+        "file": "sound/weapons/soulreaper-2_exp.wav",
+        "bytes": 187796,
+        "head16": "524946468cdd020057415645666d7420"
+      }
+    },
+    "predeath": {
+      "schema": 1,
+      "scope": "PREDEATH_ARMOR_MODE_55",
+      "modules": {
+        "mp.dll": {
+          "timestamp": 1783989892,
+          "size": 38477824,
+          "preferred_base": 268435456,
+          "sha256": "9680d98c306ef3c1c606e1b22c1bd0123ca861bd0cfb86b25b4da009327e0686"
+        },
+        "hw.dll": {
+          "timestamp": 1783989493,
+          "size": 73768960,
+          "preferred_base": 30408704,
+          "sha256": "52345cbe9b52f75b1c1da70254c718d78f2eff746ac8397d10251a9d134a32e9"
+        }
+      },
+      "guards": [
+        {
+          "module": "mp.dll",
+          "label": "player_damage",
+          "rva": 21852208,
+          "head": "538bdc83ec0883e4f083c404558b6b04896c24048bec6aff68c5176a1164a100",
+          "relocs": [
+            25
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "base_damage",
+          "rva": 21000832,
+          "head": "558bec6aff68a779691164a10000000050b8e0130000e825de1600a10065d511",
+          "relocs": [
+            6,
+            28
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "rules_slot94",
+          "rva": 8854352,
+          "head": "558bec0f10450c568b750883ec208bc4560f11000f10451c0f114010e8aff4b9",
+          "relocs": []
+        },
+        {
+          "module": "mp.dll",
+          "label": "default_permission",
+          "rva": 21041184,
+          "head": "558bec807d10000f94c05dc22400cccc558bec83ec0cff7508894df48b0d3c341d12",
+          "relocs": [
+            30
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "base_call_0x14d8978",
+          "rva": 21858675,
+          "head": "e808e9f2ff",
+          "relocs": []
+        },
+        {
+          "module": "mp.dll",
+          "label": "base_call_0x14d94ed",
+          "rva": 21861608,
+          "head": "e893ddf2ff",
+          "relocs": []
+        },
+        {
+          "module": "mp.dll",
+          "label": "base_call_0x14dcf7d",
+          "rva": 21876600,
+          "head": "e803a3f2ff",
+          "relocs": []
+        },
+        {
+          "module": "mp.dll",
+          "label": "predeath_subtract_veto_clamp",
+          "rva": 21002831,
+          "head": "8b460883ec208bbd50ecfffff30f108078010000f30f5f05acb57611f30f1186b0010000f30f108078010000f30f5cc1f30f1180780100008b0d30ac1c120f10078b018b90780100008bc4560f11000f1047100f114010ffd28bbd40ecffff84c0741b8b4608f30f108078010000f30f5f05acb57611f30f118078010000",
+          "relocs": [
+            24,
+            58,
+            114
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "rules_table",
+          "rva": 24653028,
+          "head": "501b8710",
+          "relocs": [
+            0
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "player_damage_slot",
+          "rva": 24689360,
+          "head": "30704d11",
+          "relocs": [
+            0
+          ]
+        },
+        {
+          "module": "hw.dll",
+          "label": "manager",
+          "rva": 9424800,
+          "head": "b8485bf203c3cccccccccccccccccccca1485bf203b9485bf203ff9038020000",
+          "relocs": [
+            1,
+            17,
+            22
+          ]
+        },
+        {
+          "module": "hw.dll",
+          "label": "mode_getter",
+          "rva": 9401680,
+          "head": "8b01568db14a030000ff903802000083f80175168a0684c07507b8060000005e",
+          "relocs": []
+        },
+        {
+          "module": "hw.dll",
+          "label": "secondary_getter",
+          "rva": 9414848,
+          "head": "0fb681d1030000c3cccccccccccccccc558bec0f10051014e3028a45088d5110",
+          "relocs": [
+            22
+          ]
+        }
+      ],
+      "max_records": 1024,
+      "manager": {
+        "callback_slot": 35470572,
+        "callback_rva": 9424800,
+        "object_rva": 35806024,
+        "mode_getter_rva": 9401680,
+        "secondary_getter_rva": 9414848
+      },
+      "rules_vtable": 24652652,
+      "player_vtables": [
+        24689292
+      ],
+      "weapon_vtables": {
+        "568": [
+          25837116,
+          25836080
+        ],
+        "692": [
+          25840136,
+          25839220
+        ]
+      },
+      "base_return_addresses": [
+        21858680,
+        21861613,
+        21876605
+      ]
+    },
+    "world_visuals": true,
+    "special_events": true,
+    "render_projectile": false,
+    "diagnostics": false,
+    "external_damage_broker": true
+  },
+  "frost": {
+    "modules": {
+      "mp.dll": {
+        "timestamp": 1783989892,
+        "size": 38477824,
+        "preferred_base": 268435456,
+        "sha256": "9680d98c306ef3c1c606e1b22c1bd0123ca861bd0cfb86b25b4da009327e0686",
+        "slots": {
+          "25444448": {
+            "97": 11247728,
+            "111": 11985248,
+            "165": 22204464,
+            "167": 13123984,
+            "168": 13125216,
+            "170": 13124752,
+            "199": 13125040,
+            "209": 6651120
+          },
+          "25445492": {
+            "97": 22160880,
+            "111": 11985248,
+            "165": 22204464,
+            "167": 13123984,
+            "168": 13125216,
+            "170": 13124752,
+            "199": 13125040,
+            "209": 6651120
+          }
+        }
+      },
+      "hw.dll": {
+        "timestamp": 1783989493,
+        "size": 73768960,
+        "preferred_base": 30408704,
+        "sha256": "52345cbe9b52f75b1c1da70254c718d78f2eff746ac8397d10251a9d134a32e9",
+        "slots": {}
+      }
+    },
+    "hooks": [
+      {
+        "module": "mp.dll",
+        "label": "primary",
+        "rva": 13123984,
+        "head": "558bec83e4f851a1ac3d1d125356578bf98b8fd0000000f30f1081242e00000f",
+        "relocs": [
+          8
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "normal",
+        "rva": 13156416,
+        "head": "558bec83e4f883ec4c53568bf1578974241483be60010000007f4e83be1c0100",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "secondary",
+        "rva": 13125216,
+        "head": "558bec83ec08578bf96a00660f6e87680100008b8f040200000f5bc081c1880f",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "owned",
+        "rva": 13125712,
+        "head": "558beca1ac3d1d1283ec08f30f1000568bf1570f2f861c0200000f86bb000000",
+        "relocs": [
+          4
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "shield_native",
+        "rva": 13156288,
+        "head": "558bec51568bf10f57c06a008b8e0402000081c1f81600000f2f862c02000076",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "global_frame",
+        "rva": 20941440,
+        "head": "8b0d3c341d1285c974058b01ff5008833d343a1d12000f851c010000e81f32f4",
+        "relocs": [
+          2,
+          17
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "player_damage",
+        "rva": 21852208,
+        "head": "538bdc83ec0883e4f083c404558b6b04896c24048bec6aff68c5176a1164a100",
+        "relocs": [
+          25
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "mode_native",
+        "rva": 6719680,
+        "head": "56ff15ec3c1d128bc88b10ff92880100008bf0ff15ec3c1d126afe6a386a3c6a",
+        "relocs": [
+          3,
+          21
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "weapon_time",
+        "rva": 6651120,
+        "head": "d9eec3cccccccccccccccccccccccccc8b410883c008c3cccccccccccccccccc",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "send_weapon_anim",
+        "rva": 22204464,
+        "head": "558bec837d0c00568bf1578b7d088b86d00000008b400889b848020000741e8b",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "acquire",
+        "rva": 22160880,
+        "head": "558bec6aff68a73e6a1164a1000000005083ec34535657a10065d51133c5508d",
+        "relocs": [
+          6,
+          24
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "accepted_input",
+        "rva": 21707744,
+        "head": "558bec53568b750832db578bf985f60f84cf0000008b068bceff90a801000085",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "secondary_callsite_guard",
+        "rva": 22187618,
+        "head": "e879adf8ff8b8fa001000033c08bb76001000085c96afe0f49c18987a0010000",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "secondary_skip_predicate",
+        "rva": 10894352,
+        "head": "ff15ec3c1d128bc88b10ff928801000083f8350f94c0c3cccccccccccccccccc",
+        "relocs": [
+          2
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "sprite_create",
+        "rva": 21453296,
+        "head": "558bec6aff6816115d1164a1000000005083ec085657a10065d51133c5508d45",
+        "relocs": [
+          6,
+          23
+        ]
+      },
+      {
+        "module": "mp.dll",
+        "label": "sprite_spawn",
+        "rva": 21452768,
+        "head": "558bec51538bd98b4308c7801c010000000000008b4308c78018010000000000",
+        "relocs": []
+      },
+      {
+        "module": "mp.dll",
+        "label": "frost_message_registration",
+        "rva": 21415546,
+        "head": "6aff68f4ce9611ffd083c440a38c2a1d12a1983b1d126aff6800cf9611ffd0a3",
+        "relocs": [
+          3,
+          13,
+          18,
+          25
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "precache_model",
+        "rva": 7606016,
+        "head": "558bec8b450885c0751168accebd02e83c82fdff83c40433c05dc38a08884d0b",
+        "relocs": [
+          11
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "precache_sound",
+        "rva": 7606608,
+        "head": "558bec578b7d0885ff7512689ccbbd02e8eb7ffdff83c40433c05f5dc38a073c",
+        "relocs": [
+          12
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "ambient_sound",
+        "rva": 7602864,
+        "head": "558bec83ec0853568b7510803e21752e8b5d1c465683cb10e813f6f9ff83c404",
+        "relocs": []
+      },
+      {
+        "module": "hw.dll",
+        "label": "load_file",
+        "rva": 7195632,
+        "head": "558bec81ec14010000a140ace40233c58945fc8b450c8b4d088985f0feffff8d",
+        "relocs": [
+          10
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "free_file",
+        "rva": 7193232,
+        "head": "558bec8d450850ff157c64e1028b450883c40485c0740950e81314050083c404",
+        "relocs": [
+          9
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "set_origin",
+        "rva": 7607040,
+        "head": "558bec8b4d0c8b55088b0189828c0000008b41048982900000008b4108898294",
+        "relocs": []
+      },
+      {
+        "module": "hw.dll",
+        "label": "remove_entity",
+        "rva": 7599616,
+        "head": "e9fb4e0000cccccccccccccccccccccc558bec538b1db8e45804568b7508578b",
+        "relocs": [
+          22
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "message_begin",
+        "rva": 7598464,
+        "head": "558bec538b5d0c568b7508578b7d1483fe01740583fe08751c85ff750e536880d7bd02",
+        "relocs": [
+          31
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "message_end",
+        "rva": 7598688,
+        "head": "5333db391d9c8fd703750d6880d8bd02e84b96050083c4048b15908fd703891d",
+        "relocs": [
+          5,
+          12,
+          26
+        ]
+      },
+      {
+        "module": "hw.dll",
+        "label": "write_byte",
+        "rva": 7601280,
+        "head": "558bec833d9c8fd70300750d68c0d9bd02e82a8c050083c404ff750868a86ae102",
+        "relocs": [
+          5,
+          13,
+          29
+        ]
+      }
+    ],
+    "vtables": {
+      "mp.dll": {
+        "597": [
+          25444448,
+          25445492
+        ]
+      },
+      "hw.dll": {}
+    },
+    "role": "server",
+    "version": "0.6.2-frost-server",
+    "property_contract": {
+      "AModeDamage": 30,
+      "AModeDamageZombie": 1130,
+      "AModeDamageScenario": 4554,
+      "AModeCycleTime": 0.2800000011920929,
+      "Accuracy": 0.10000000149011612,
+      "AccuracyDiv": 240,
+      "AccuracyAdd": 0.25,
+      "AccuracyLimit": 0.800000011920929,
+      "SpreadBase": 0,
+      "SpreadMod": 0.014999999664723873,
+      "SpreadBaseJump": 0.009999999776482582,
+      "SpreadModJump": 0.029999999329447746,
+      "SpreadBaseMove": 0.009999999776482582,
+      "SpreadModMove": 0.019999999552965164,
+      "SpreadBaseDuck": 0,
+      "SpreadModDuck": 0.009999999776482582,
+      "ReloadTime": 2,
+      "AModeRangeMod": 0.9750000238418579,
+      "AModeFanAttackMeter": 6,
+      "AModeFanAttackAngle": 150,
+      "AModeFanAttackDamage": 8,
+      "AModeFanAttackDamageZombie": 519,
+      "AModeFanAttackDamageScenario": 2499,
+      "AutoAimDegree": 5,
+      "AutoAimMaxDist": 35,
+      "BModeCycleTime": 1,
+      "BModeLifeTime": 4,
+      "BModeSpeed": 1800,
+      "BModeRadius": 3,
+      "BModeHeight": 2.5,
+      "BModeHitboxSize": 0.30000001192092896,
+      "BModeDamage": 14,
+      "BModeDamageZombie": 7718,
+      "BModeDamageScenario": 9964,
+      "BModeFixedMoveTime": 0,
+      "BModeFixedMoveSpeed": 0,
+      "BModeFixedMoveGravity": 0,
+      "BModeFixedMoveTimeZombie": 1.5,
+      "BModeFixedMoveSpeedZombie": 120,
+      "BModeFixedMoveGravityZombie": 7,
+      "BModeFixedMoveTimeScenario": 1.5,
+      "BModeFixedMoveSpeedScenario": 120,
+      "BModeFixedMoveGravityScenario": 2,
+      "AModeFastShootTime": 0.30000001192092896,
+      "BModeFastShootTime": 0.2750000059604645,
+      "CModeFastShootTime": 0.15000000596046448,
+      "CModeCycleTime": 0.75,
+      "CModeMaxDistance": 51,
+      "CModeRadius": 4,
+      "CModeDamage": 35,
+      "CModeDamageZombie": 16666,
+      "CModeDamageScenario": 46520,
+      "CModeFixedMoveTime": 0,
+      "CModeFixedMoveSpeed": 0,
+      "CModeFixedMoveGravity": 0,
+      "CModeFixedMoveTimeZombie": 2,
+      "CModeFixedMoveSpeedZombie": 50,
+      "CModeFixedMoveGravityZombie": 7,
+      "CModeFixedMoveTimeScenario": 2,
+      "CModeFixedMoveSpeedScenario": 50,
+      "CModeFixedMoveGravityScenario": 2,
+      "MaxSpecialClip": 100,
+      "SpecialClipChargeAmount": 1,
+      "SpecialClipChargeAmountZombie": 2,
+      "SpecialClipChargeAmountScenario": 2,
+      "SpecialClipChargeInterval": 0.6000000238418579,
+      "SpecialClipChargeDelayAfterAttack": 0.6000000238418579,
+      "AModePassiveProb": 2,
+      "BModePassiveProb": 16,
+      "CModePassiveProb": 100,
+      "BModeCost": 10,
+      "CModeCost": 30,
+      "KillEvasionShotCount": 99999,
+      "KillEvasionShotCountZombie": 20,
+      "KillEvasionShotCountScenario": 20,
+      "KillEvasionWeaponCooltime": 99999,
+      "KillEvasionWeaponCooltimeZombie": 80,
+      "KillEvasionWeaponCooltimeScenario": 60,
+      "KillEvasionPlayerCooltime": 99999,
+      "KillEvasionPlayerCooltimeZombie": 80,
+      "KillEvasionPlayerCooltimeScenario": 60,
+      "KillEvasionGodTime": 2,
+      "KillEvasionDamage": 0,
+      "KillEvasionDamageZombie": 6000,
+      "KillEvasionDamageScenario": 16000,
+      "KillEvasionAttackRadius": 7,
+      "KillEvasionKnockbackSide": 0,
+      "KillEvasionKnockbackSideZombie": 1700,
+      "KillEvasionKnockbackSideScenario": 500,
+      "KillEvasionKnockbackUp": 0,
+      "KillEvasionKnockbackUpZombie": 150,
+      "KillEvasionKnockbackUpScenario": 100,
+      "KillEvasionKnockbackDuration": 0,
+      "KillEvasionKnockbackDurationZombie": 0.5,
+      "KillEvasionKnockbackDurationScenario": 0.5,
+      "KillEvasionFixedMoveDuration": 0,
+      "KillEvasionFixedMoveSpeed": 0,
+      "KillEvasionFixedMoveGravity": 0,
+      "KillEvasionFixedMoveDurationZombie": 2.5,
+      "KillEvasionFixedMoveSpeedZombie": 100,
+      "KillEvasionFixedMoveGravityZombie": 1,
+      "KillEvasionFixedMoveDurationScenario": 2.5,
+      "KillEvasionFixedMoveSpeedScenario": 100,
+      "KillEvasionFixedMoveGravityScenario": 1,
+      "ShieldTime": 4,
+      "ShieldRadius": 5.5,
+      "ShieldAttackRadius": 2.5,
+      "ShieldAttackTick": 0.10000000149011612,
+      "ShieldAttackCoolTime": 1.5,
+      "ShieldAttackDamage": 10,
+      "ShieldAttackDamageZombie": 2410,
+      "ShieldAttackDamageScenario": 6120,
+      "ShieldAttackFixedMoveTime": 0,
+      "ShieldAttackFixedMoveSpeed": 0,
+      "ShieldAttackFixedMoveTimeZombie": 1.5,
+      "ShieldAttackFixedMoveSpeedZombie": 140,
+      "ShieldAttackFixedMoveTimeScenario": 1.5,
+      "ShieldAttackFixedMoveSpeedScenario": 140,
+      "ShieldAttackKnockbackSide": 0,
+      "ShieldAttackKnockbackUp": 0,
+      "ShieldAttackKnockbackSideZombie": 1500,
+      "ShieldAttackKnockbackUpZombie": 100,
+      "ShieldAttackKnockbackSideScenario": 200,
+      "ShieldAttackKnockbackUpScenario": 100,
+      "ShieldAttackKnockbackDuration": 0,
+      "ShieldAttackKnockbackDurationZombie": 0.5,
+      "ShieldAttackKnockbackDurationScenario": 0.5,
+      "ShieldAttackKnockbackRadius": 2.5,
+      "ShieldAttackKnockbackRadiusZombie": 2.5,
+      "ShieldAttackKnockbackRadiusScenario": 2.5,
+      "ShieldEffectSize": 3,
+      "DebuffChargingGauge": 1,
+      "DebuffChargingGaugeZombie": 2,
+      "DebuffChargingGaugeScenario": 2,
+      "DebuffFixedMoveTime": 0,
+      "DebuffFixedMoveSpeed": 0,
+      "DebuffFixedMoveTimeZombie": 1.5,
+      "DebuffFixedMoveSpeedZombie": 120,
+      "DebuffFixedMoveTimeScenario": 1.5,
+      "DebuffFixedMoveSpeedScenario": 120,
+      "DebuffExpRadius": 2.5,
+      "DebuffExpDamage": 8,
+      "DebuffExpDamageZombie": 8610,
+      "DebuffExpDamageScenario": 22280,
+      "DebuffExpFixedMoveTime": 0,
+      "DebuffExpFixedMoveSpeed": 0,
+      "DebuffExpFixedMoveGravity": 0,
+      "DebuffExpFixedMoveTimeZombie": 1.5,
+      "DebuffExpFixedMoveSpeedZombie": 150,
+      "DebuffExpFixedMoveGravityZombie": 1,
+      "DebuffExpFixedMoveTimeScenario": 1.5,
+      "DebuffExpFixedMoveSpeedScenario": 150,
+      "DebuffExpFixedMoveGravityScenario": 1,
+      "DebuffDuration": 7,
+      "KickJump": 0.3199999928474426,
+      "KickMove": 0.2199999988079071,
+      "KickDuck": 0.18000000715255737,
+      "KickStand": 0.20000000298023224
+    },
+    "visual_assets": {
+      "597/orb": {
+        "path": "models/ef_frostbite_projectile.mdl",
+        "bytes": 388708,
+        "head16": "494453540a00000065665f66726f7374",
+        "type": "studio",
+        "width": null,
+        "frames": 51,
+        "fps": 30.0,
+        "duration": 1.6666666666666667
+      },
+      "597/fan": {
+        "path": "models/ef_frostbite_Amode.mdl",
+        "bytes": 68064,
+        "head16": "494453540a00000065665f66726f7374",
+        "type": "studio",
+        "width": null,
+        "frames": 18,
+        "fps": 30.0,
+        "duration": 0.5666666666666667
+      },
+      "597/shield_burst": {
+        "path": "models/ef_frostbite_shield.mdl",
+        "bytes": 240904,
+        "head16": "494453540a00000065665f66726f7374",
+        "type": "studio",
+        "width": null,
+        "frames": 21,
+        "fps": 30.0,
+        "duration": 0.6666666666666666
+      },
+      "597/shield": {
+        "path": "models/ef_frostbite_shield02.mdl",
+        "bytes": 203732,
+        "head16": "494453540a00000065665f66726f7374",
+        "type": "studio",
+        "width": null,
+        "frames": 11,
+        "fps": 30.0,
+        "duration": 0.3333333333333333
+      },
+      "597/armor": {
+        "path": "models/ef_frostbite_skill.mdl",
+        "bytes": 336312,
+        "head16": "494453540a00000065665f66726f7374",
+        "type": "studio",
+        "width": null,
+        "frames": 41,
+        "fps": 30.0,
+        "duration": 1.3333333333333333
+      },
+      "597/beam_start": {
+        "path": "models/ef_frostbite_shoot_c.mdl",
+        "bytes": 104032,
+        "head16": "494453540a00000065665f66726f7374",
+        "type": "studio",
+        "width": null,
+        "frames": 31,
+        "fps": 30.0,
+        "duration": 1.0
+      },
+      "597/beam_segment": {
+        "path": "models/ef_frostbite_shoot_c02.mdl",
+        "bytes": 94772,
+        "head16": "494453540a00000065665f66726f7374",
+        "type": "studio",
+        "width": null,
+        "frames": 31,
+        "fps": 30.0,
+        "duration": 1.0
+      },
+      "597/laser": {
+        "path": "sprites/ef_frostbite_laser.spr",
+        "bytes": 1969960,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite",
+        "width": 256,
+        "frames": 30,
+        "fps": 30,
+        "duration": 1.0
+      },
+      "597/orb_impact": {
+        "path": "sprites/ef_frostbite_bmode_exp.spr",
+        "bytes": 1641640,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite",
+        "width": 256,
+        "frames": 25,
+        "fps": 30,
+        "duration": 0.8333333333333334
+      },
+      "597/spike_burst": {
+        "path": "sprites/ef_frostbite_debuff_exp.spr",
+        "bytes": 1969960,
+        "head16": "49445350030000000200000000000000",
+        "type": "sprite",
+        "width": 256,
+        "frames": 30,
+        "fps": 30,
+        "duration": 1.0
+      },
+      "597/spike": {
+        "path": "sprites/frostbite_attack.spr",
+        "bytes": 4926,
+        "head16": "49445350020000000200000001000000",
+        "type": "sprite",
+        "width": 64,
+        "frames": 1,
+        "fps": 30,
+        "duration": 0.03333333333333333
+      }
+    },
+    "sound_assets": {
+      "frostbite-1": {
+        "path": "weapons/frostbite-1.wav",
+        "file": "sound/weapons/frostbite-1.wav",
+        "bytes": 125514,
+        "head16": "5249464642ea010057415645666d7420"
+      },
+      "frostbite-1_exp1": {
+        "path": "weapons/frostbite-1_exp1.wav",
+        "file": "sound/weapons/frostbite-1_exp1.wav",
+        "bytes": 83878,
+        "head16": "524946469e47010057415645666d7420"
+      },
+      "frostbite-1_exp2": {
+        "path": "weapons/frostbite-1_exp2.wav",
+        "file": "sound/weapons/frostbite-1_exp2.wav",
+        "bytes": 173718,
+        "head16": "524946468ea6020057415645666d7420"
+      },
+      "frostbite-2": {
+        "path": "weapons/frostbite-2.wav",
+        "file": "sound/weapons/frostbite-2.wav",
+        "bytes": 172674,
+        "head16": "524946467aa2020057415645666d7420"
+      },
+      "frostbite-2_exp": {
+        "path": "weapons/frostbite-2_exp.wav",
+        "file": "sound/weapons/frostbite-2_exp.wav",
+        "bytes": 277404,
+        "head16": "52494646943b040057415645666d7420"
+      },
+      "frostbite-3": {
+        "path": "weapons/frostbite-3.wav",
+        "file": "sound/weapons/frostbite-3.wav",
+        "bytes": 410848,
+        "head16": "52494646d844060057415645666d7420"
+      },
+      "frostbite_draw": {
+        "path": "weapons/frostbite_draw.wav",
+        "file": "sound/weapons/frostbite_draw.wav",
+        "bytes": 55082,
+        "head16": "5249464622d7000057415645666d7420"
+      },
+      "frostbite_fx_exp": {
+        "path": "weapons/frostbite_fx_exp.wav",
+        "file": "sound/weapons/frostbite_fx_exp.wav",
+        "bytes": 150020,
+        "head16": "52494646fc49020057415645666d7420"
+      },
+      "frostbite_fx_loop": {
+        "path": "weapons/frostbite_fx_loop.wav",
+        "file": "sound/weapons/frostbite_fx_loop.wav",
+        "bytes": 101302,
+        "head16": "52494646ae8b010057415645666d7420"
+      },
+      "frostbite_fx_loop_end": {
+        "path": "weapons/frostbite_fx_loop_end.wav",
+        "file": "sound/weapons/frostbite_fx_loop_end.wav",
+        "bytes": 90104,
+        "head16": "52494646f05f010057415645666d7420"
+      },
+      "frostbite_idle": {
+        "path": "weapons/frostbite_idle.wav",
+        "file": "sound/weapons/frostbite_idle.wav",
+        "bytes": 235258,
+        "head16": "52494646f296030057415645666d7420"
+      },
+      "frostbite_reload": {
+        "path": "weapons/frostbite_reload.wav",
+        "file": "sound/weapons/frostbite_reload.wav",
+        "bytes": 137426,
+        "head16": "52494646ca18020057415645666d7420"
+      }
+    },
+    "predeath": {
+      "schema": 1,
+      "scope": "PREDEATH_ARMOR_MODE_55",
+      "modules": {
+        "mp.dll": {
+          "timestamp": 1783989892,
+          "size": 38477824,
+          "preferred_base": 268435456,
+          "sha256": "9680d98c306ef3c1c606e1b22c1bd0123ca861bd0cfb86b25b4da009327e0686"
+        },
+        "hw.dll": {
+          "timestamp": 1783989493,
+          "size": 73768960,
+          "preferred_base": 30408704,
+          "sha256": "52345cbe9b52f75b1c1da70254c718d78f2eff746ac8397d10251a9d134a32e9"
+        }
+      },
+      "guards": [
+        {
+          "module": "mp.dll",
+          "label": "player_damage",
+          "rva": 21852208,
+          "head": "538bdc83ec0883e4f083c404558b6b04896c24048bec6aff68c5176a1164a100",
+          "relocs": [
+            25
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "base_damage",
+          "rva": 21000832,
+          "head": "558bec6aff68a779691164a10000000050b8e0130000e825de1600a10065d511",
+          "relocs": [
+            6,
+            28
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "rules_slot94",
+          "rva": 8854352,
+          "head": "558bec0f10450c568b750883ec208bc4560f11000f10451c0f114010e8aff4b9",
+          "relocs": []
+        },
+        {
+          "module": "mp.dll",
+          "label": "default_permission",
+          "rva": 21041184,
+          "head": "558bec807d10000f94c05dc22400cccc558bec83ec0cff7508894df48b0d3c341d12",
+          "relocs": [
+            30
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "base_call_0x14d8978",
+          "rva": 21858675,
+          "head": "e808e9f2ff",
+          "relocs": []
+        },
+        {
+          "module": "mp.dll",
+          "label": "base_call_0x14d94ed",
+          "rva": 21861608,
+          "head": "e893ddf2ff",
+          "relocs": []
+        },
+        {
+          "module": "mp.dll",
+          "label": "base_call_0x14dcf7d",
+          "rva": 21876600,
+          "head": "e803a3f2ff",
+          "relocs": []
+        },
+        {
+          "module": "mp.dll",
+          "label": "predeath_subtract_veto_clamp",
+          "rva": 21002831,
+          "head": "8b460883ec208bbd50ecfffff30f108078010000f30f5f05acb57611f30f1186b0010000f30f108078010000f30f5cc1f30f1180780100008b0d30ac1c120f10078b018b90780100008bc4560f11000f1047100f114010ffd28bbd40ecffff84c0741b8b4608f30f108078010000f30f5f05acb57611f30f118078010000",
+          "relocs": [
+            24,
+            58,
+            114
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "rules_table",
+          "rva": 24653028,
+          "head": "501b8710",
+          "relocs": [
+            0
+          ]
+        },
+        {
+          "module": "mp.dll",
+          "label": "player_damage_slot",
+          "rva": 24689360,
+          "head": "30704d11",
+          "relocs": [
+            0
+          ]
+        },
+        {
+          "module": "hw.dll",
+          "label": "manager",
+          "rva": 9424800,
+          "head": "b8485bf203c3cccccccccccccccccccca1485bf203b9485bf203ff9038020000",
+          "relocs": [
+            1,
+            17,
+            22
+          ]
+        },
+        {
+          "module": "hw.dll",
+          "label": "mode_getter",
+          "rva": 9401680,
+          "head": "8b01568db14a030000ff903802000083f80175168a0684c07507b8060000005e",
+          "relocs": []
+        },
+        {
+          "module": "hw.dll",
+          "label": "secondary_getter",
+          "rva": 9414848,
+          "head": "0fb681d1030000c3cccccccccccccccc558bec0f10051014e3028a45088d5110",
+          "relocs": [
+            22
+          ]
+        }
+      ],
+      "max_records": 1024,
+      "manager": {
+        "callback_slot": 35470572,
+        "callback_rva": 9424800,
+        "object_rva": 35806024,
+        "mode_getter_rva": 9401680,
+        "secondary_getter_rva": 9414848
+      },
+      "rules_vtable": 24652652,
+      "player_vtables": [
+        24689292
+      ],
+      "weapon_vtables": {
+        "597": [
+          25444448,
+          25445492
+        ]
+      },
+      "base_return_addresses": [
+        21858680,
+        21861613,
+        21876605
+      ]
+    },
+    "world_visuals": true,
+    "special_events": true,
+    "diagnostics": false,
+    "external_damage_broker": true
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "path": "local-assets/fixtrike.nar",
+  "bytes": 106455965,
+  "sha256": "c87be26bc1a9fff042d8a8add157638ade076190ef587b180f5312b41d2e4d20",
+  "replaceableBaseHashes": [
+    "efe99cc188106053f18f5a53ce794d9e6c47c11b5f273aabcfad7d3263805e5c"
+  ],
+  "entries": 174,
+  "distribution": "local-build-only; original installed-game assets are not cleared for public redistribution"
+}

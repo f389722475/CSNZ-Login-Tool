@@ -1,0 +1,8 @@
+LIBRARY CSNZWeaponCore
+EXPORTS
+    CSNZWeapons_Api=_CSNZWeapons_Api@4
+    CSNZWeapons_Register=_CSNZWeapons_Register@4
+    CSNZWeapons_Start=_CSNZWeapons_Start@4
+    CSNZWeapons_Stop=_CSNZWeapons_Stop@4
+    CSNZWeapons_Status=_CSNZWeapons_Status@4
+    CSNZWeapons_IsClean=_CSNZWeapons_IsClean@4

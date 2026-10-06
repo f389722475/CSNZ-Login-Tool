@@ -7,11 +7,11 @@ if ($RebuildNative -or -not (Test-Path -LiteralPath (Join-Path $root 'assets\Nat
     if ($LASTEXITCODE -ne 0) { throw 'Authentication bridge build failed.' }
     Copy-Item -LiteralPath (Join-Path $root 'native-launcher-source\build\bin\CSNZLauncherBridge.dll') -Destination (Join-Path $root 'assets\Native\CSNZLauncherBridge.dll')
 }
-if ($RebuildNative) {
-    & (Join-Path $root 'native-mod-source\build.cmd')
+if ($RebuildNative -or -not (Test-Path -LiteralPath (Join-Path $root 'weapon-mods\shared\CSNZWeaponCore.dll'))) {
+    & (Join-Path $root 'weapon-mods\build-native.cmd')
     if ($LASTEXITCODE -ne 0) { throw 'Native build failed.' }
-    Copy-Item -LiteralPath (Join-Path $root 'native-mod-source\build\bin\GigaBreakLE.dll') -Destination (Join-Path $root 'assets\Native\GigaBreakLE.dll')
 }
+if (-not (Test-Path -LiteralPath (Join-Path $root 'weapon-mods\local-assets\fixtrike.nar'))) { throw 'This local build requires the prepared installed-game asset overlay. Public redistribution is not enabled.' }
 # Class Awakening is authored in the sibling engineering project. Packaged source
 # also includes it as native-awakening-source for a self-contained rebuild.
 $awakening = Join-Path $root 'native-awakening-source'
@@ -25,7 +25,7 @@ if ($RebuildNative -or -not (Test-Path -LiteralPath (Join-Path $root 'assets\Nat
 }
 Push-Location -LiteralPath $root
 try {
-    $out = Join-Path $root 'dist\CSNZ_Launcher_1.0.8'
+    $out = Join-Path $root 'dist\CSNZ_Launcher_1.1.1-local1'
     & dotnet publish (Join-Path $root 'src\CSNZ.Launcher\CSNZ.Launcher.csproj') -c Release --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -o $out --nologo
     if ($LASTEXITCODE -ne 0) { throw 'Launcher build failed.' }
     foreach ($name in @('README.md','README.en.md')) {

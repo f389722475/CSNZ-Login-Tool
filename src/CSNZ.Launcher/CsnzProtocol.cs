@@ -48,10 +48,10 @@ public static class CsnzProtocol
         }
         catch (Exception e) when (e is SocketException or IOException or OperationCanceledException) { return false; }
     }
-    public static async Task<RegistrationResult> RegisterAsync(LauncherSettings settings, string account, string password, uint timestamp, CancellationToken ct)
+    public static async Task<RegistrationResult> RegisterAsync(LauncherSettings settings, string account, string password, uint timestamp, CancellationToken ct, bool allowUnencryptedRemote = false)
     {
         ValidateCredentials(account, password, true);
-        if (!settings.UseTls && !IsLoopback(settings.Host))
+        if (!settings.UseTls && !IsLoopback(settings.Host) && !allowUnencryptedRemote)
             throw Error<InvalidOperationException>("Error.RemoteTls");
         using var deadline = CancellationTokenSource.CreateLinkedTokenSource(ct); deadline.CancelAfter(TimeSpan.FromSeconds(12));
         var token = deadline.Token;

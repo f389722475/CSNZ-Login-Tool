@@ -116,7 +116,8 @@ try
         catch (Exception error) { Console.WriteLine("OBSERVER: " + error.Message); }
     }, ct);
     settings.Port = direct ? 31093 : 31094;
-    settings.EnableNativePatch = mode.Contains("native");
+    if (mode.Contains("native")) throw new InvalidOperationException("The old client weapon E2E route was removed. Validate server-native weapons through an owned CSOHLDS fixture instead.");
+    settings.EnableNativePatch = false; settings.EnabledWeaponIds = [];
     if (args.Length > 2) settings.GameRoot = Path.GetFullPath(args[2]);
     game = await GameLauncher.StartAsync(settings, account, providedPassword, _ => { }, ct);
     Console.WriteLine($"TEST_GAME_PID={game.Id} mode={mode}");
@@ -130,7 +131,7 @@ try
             authenticated = lines.Any(x => x.Contains("User logged in") && x.Contains(account)),
             authRejected = lines.Any(x => x.Contains("Login failed")),
             joinedChannel = lines.Any(x => x.Contains("join") && x.Contains(account)),
-            nativeReady = settings.EnableNativePatch && await NativePatch.WaitReadyAsync(game, GameLauncher.NativeDll, ct) };
+            nativeReady = false };
         var data = JsonSerializer.Serialize(directReport, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText(Path.Combine(reportDirectory, "result.json"), data); Console.WriteLine(data);
         if (game.HasExited) throw new Exception("Game exited during lobby acceptance. Exit code: " + game.ExitCode);
@@ -140,7 +141,7 @@ try
         Console.WriteLine("DIRECT AUTH PASS"); return;
     }
     var outcome = await Task.WhenAny(observed.Task, Task.Delay(90000, ct), game.WaitForExitAsync(ct), relay);
-    bool nativeReady = settings.EnableNativePatch && await NativePatch.WaitReadyAsync(game, GameLauncher.NativeDll, ct);
+    bool nativeReady = false;
     var report = new { mode, loginCommands, accountMatched, passwordMatched, accepted, rejected,
         nativePatchEnabled = settings.EnableNativePatch, nativeReady, gameExited = game.HasExited, packets = ids.ToArray() };
     var json = JsonSerializer.Serialize(report, new JsonSerializerOptions { WriteIndented = true });

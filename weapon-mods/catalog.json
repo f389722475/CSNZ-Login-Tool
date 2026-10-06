@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "version": "1.0.0-native-local1",
+  "api": 65536,
+  "scope": "CSOHLDS.exe only; no client weapon hooks",
+  "core": "shared/CSNZWeaponCore.dll",
+  "weapons": [
+    {
+      "id": 725,
+      "name": "Giga Break",
+      "folder": "GigaBreak",
+      "family": "giga",
+      "repair": true
+    },
+    {
+      "id": 726,
+      "name": "Giga Break LE",
+      "folder": "GigaBreakLE",
+      "family": "giga",
+      "repair": true
+    },
+    {
+      "id": 613,
+      "name": "Lycaon",
+      "folder": "Lycaon",
+      "family": "wolf",
+      "repair": true
+    },
+    {
+      "id": 4088,
+      "name": "Brionac",
+      "folder": "Brionac",
+      "family": "divinespear",
+      "repair": true
+    },
+    {
+      "id": 4128,
+      "name": "Luminous Brionac",
+      "folder": "LuminousBrionac",
+      "family": "divinespear",
+      "repair": true
+    },
+    {
+      "id": 4129,
+      "name": "Luminous Brionac LE",
+      "folder": "LuminousBrionacLE",
+      "family": "divinespear",
+      "repair": true
+    },
+    {
+      "id": 591,
+      "name": "Space Arbalest",
+      "folder": "SpaceArbalest",
+      "family": "halo",
+      "repair": true
+    },
+    {
+      "id": 547,
+      "name": "Gravity Repulsor",
+      "folder": "GravityRepulsor",
+      "family": "leapstrike",
+      "repair": true
+    },
+    {
+      "id": 609,
+      "name": "Abyss Repulsor",
+      "folder": "AbyssRepulsor",
+      "family": "leapstrike",
+      "repair": true
+    },
+    {
+      "id": 568,
+      "name": "Naberius",
+      "folder": "Naberius",
+      "family": "soul",
+      "repair": true
+    },
+    {
+      "id": 692,
+      "name": "Arcane Naberius",
+      "folder": "ArcaneNaberius",
+      "family": "soul",
+      "repair": true
+    },
+    {
+      "id": 597,
+      "name": "Frost Viper",
+      "folder": "FrostViper",
+      "family": "frost",
+      "repair": true
+    }
+  ]
+}

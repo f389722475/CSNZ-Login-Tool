@@ -49,7 +49,7 @@ public sealed class ServerManager : IDisposable
             if (await CsnzProtocol.ProbeAsync(settings.Host, settings.Port, ct))
             { Publish(ServerState.Ready, owned is { HasExited: false } ? Msg("Server.ReadyOwned") : Msg("Server.ReadyExisting")); return; }
             if (!CsnzProtocol.IsLoopback(settings.Host)) throw Error<InvalidOperationException>("Error.RemoteNotReady");
-            if (!settings.StartLocalServer) throw Error<InvalidOperationException>("Error.AutoStartOff");
+            if (!Multiplayer.IsHost(settings) || !settings.StartLocalServer) throw Error<InvalidOperationException>("Error.AutoStartOff");
             string exe = Path.Combine(GamePaths.NormalizeRoot(settings.GameRoot), "Server", "CSNZ_Server.exe");
             if (!File.Exists(exe)) throw Error<FileNotFoundException>("Error.ServerMissing");
             CheckLocalConfig(settings);
@@ -174,7 +174,6 @@ public static class ProcessTools
 
 public static class GameLauncher
 {
-    public static string NativeDll => NativeBundle.DllPath;
     public static ProcessStartInfo CreateStartInfo(LauncherSettings settings, string account, string password)
     {
         CsnzProtocol.ValidateCredentials(account, password, false);
@@ -195,11 +194,12 @@ public static class GameLauncher
         if (ProcessTools.IsRunning(exe, "CSOLauncher")) throw Error<InvalidOperationException>("Error.GameRunning");
         foreach (var p in Process.GetProcessesByName("CSNZ_LEGuard")) { p.Dispose(); throw Error<InvalidOperationException>("Error.LegacyPatch"); }
         AuthBridge.Validate(s.GameRoot);
-        if (s.EnableNativePatch) NativePatch.Validate(s.GameRoot, NativeDll);
+        if (Multiplayer.NeedsDedicated(s)) WeaponBundle.ValidateGame(s.GameRoot);
     }
-    public static async Task<Process> StartAsync(LauncherSettings settings, string account, string password, Action<UiText> progress, CancellationToken ct)
+    public static async Task<Process> StartAsync(LauncherSettings settings, string account, string password, Action<UiText> progress, CancellationToken ct, NativeWeaponServer? weaponServer = null)
     {
         CheckGame(settings);
+        if (Multiplayer.NeedsDedicated(settings) && weaponServer?.ReadyFor(settings) != true) throw Error<InvalidOperationException>("Weapons.PrepareFirst");
         var start = CreateStartInfo(settings, account, password);
         Process process;
         try { process = Process.Start(start) ?? throw Error<IOException>("Error.GameStart"); }
@@ -208,12 +208,7 @@ public static class GameLauncher
         try { await Task.Run(() => AuthBridge.Attach(process, account, password, ct), ct); }
         catch (Exception e) { throw WithText(new InvalidOperationException(Text("Error.AuthAttach", e), e), Msg("Error.AuthAttach", Describe(e))); }
         progress(Msg("Game.AutoLogin", account));
-        if (settings.EnableNativePatch)
-        {
-            try { await Task.Run(() => NativePatch.AttachNewProcess(process, NativeDll, ct), ct); }
-            catch (Exception e) { throw WithText(new InvalidOperationException(Text("Error.PatchAttach", e), e), Msg("Error.PatchAttach", Describe(e))); }
-            progress(Msg("Game.PatchLoaded"));
-        }
+        // Weapon modules are owned by NativeWeaponServer, never by this client.
         return process;
     }
 }

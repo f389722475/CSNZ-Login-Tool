@@ -39,7 +39,7 @@ public sealed class AwakeningPlugin
         await gate.WaitAsync(ct);
         try
         {
-            if (!CsnzProtocol.IsLoopback(settings.Host)) { Active = false; Status = Msg("Plugins.LocalOnly"); return; }
+            if (!Multiplayer.IsHost(settings)) { Active = false; Status = Msg("Plugins.LocalOnly"); return; }
             if (!GamePaths.IsGameRoot(settings.GameRoot)) { Active = false; Status = Msg("Plugins.SelectRoot"); return; }
             var s = await RunAsync(settings, "status", false, ct);
             if (!s.TryGetProperty("pid", out var pid) || pid.ValueKind == JsonValueKind.Null)
@@ -61,7 +61,7 @@ public sealed class AwakeningPlugin
 
     public async Task SyncObserverAsync(LauncherSettings settings, CancellationToken ct)
     {
-        if (!CsnzProtocol.IsLoopback(settings.Host) || !GamePaths.IsGameRoot(settings.GameRoot) || !await observerGate.WaitAsync(0, ct)) return;
+        if (!Multiplayer.IsHost(settings) || !GamePaths.IsGameRoot(settings.GameRoot) || !await observerGate.WaitAsync(0, ct)) return;
         try
         {
             var s = await RunAsync(settings, "status", true, ct);

@@ -1,13 +1,14 @@
-CSNZ Giga Break LE Native 0.7.4-r2
+CSNZ Launcher Native Components
 
-The mod source is a native port of the existing user-directed weapon repair.
-The publisher determines the license of the first-party mod source. No new
-open-source license is assigned to that work by this package.
+The login bridge and Class Awakening retain their existing implementations.
+Weapon repairs are now in weapon-mods/: one shared native C++ server core and
+named per-weapon selection modules. The old client-side GigaBreakLE 0.7.4 is not
+included or loaded by this build.
 
-No original game binaries, decompiled game sources, assets, accounts or personal
-configuration are distributed. The game and its assets remain with their owners.
-
-MinHook v1.3.4 (x86 subset, unmodified upstream files):
+MinHook v1.3.4 (x86 subset):
 https://github.com/TsudaKageyu/minhook/tree/v1.3.4
-Its license includes terms for MinHook and bundled disassembly components.
-See MinHook-LICENSE.txt in Deploy, or third_party/minhook/LICENSE.txt in Source.
+See MinHook-LICENSE.txt and weapon-mods/shared/third_party/minhook/LICENSE.txt.
+
+The first-party mod source has not been assigned a new open-source license.
+This local build includes an overlay prepared from the user's installed-game
+assets. It is not a public redistribution package and must not be published.

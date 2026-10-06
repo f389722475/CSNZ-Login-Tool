@@ -144,12 +144,12 @@
     "En": "Please wait…"
   },
   "Mods.Description": {
-    "Zh": "选择本次旅程的武器修复。勾选后自动保存，在下次启动游戏时加载。",
-    "En": "Select weapon fixes for your next game. Changes are saved automatically and applied on the next launch."
+    "Zh": "开服时按武器选择原生修复模块，仅加载到本地 CSOHLDS，不加载到客户端。更改选择需先停止游戏与服务端；加入模式由远端开服者决定实际功能。",
+    "En": "Choose native weapon repairs when hosting. They load only into local CSOHLDS, never the client. Stop the game and server before changing selections; in Join mode, the remote host controls active features."
   },
   "Mods.Native": {
-    "Zh": "原生 DLL",
-    "En": "Native DLL"
+    "Zh": "原生 C++",
+    "En": "NATIVE C++"
   },
   "Mods.Enable": {
     "Zh": "启用 Giga Break LE",
@@ -180,12 +180,12 @@
     "En": "Choose the game root folder. Selecting Bin will automatically resolve its parent folder."
   },
   "Settings.Host": {
-    "Zh": "服务器地址",
-    "En": "Server address"
+    "Zh": "大厅连接地址",
+    "En": "Lobby connection address"
   },
   "Settings.Port": {
-    "Zh": "端口",
-    "En": "Port"
+    "Zh": "大厅 TCP 端口",
+    "En": "Lobby TCP port"
   },
   "Settings.Tls": {
     "Zh": "使用 TLS 加密连接（必须与服务端 SSL 设置一致）",
@@ -196,8 +196,8 @@
     "En": "Start the local server when the launcher opens"
   },
   "Settings.AutoServerHelp": {
-    "Zh": "仅在本机地址下生效；已有服务端将复用，不会重复启动。",
-    "En": "For loopback addresses only. An existing server is reused, not started again."
+    "Zh": "仅在本机 / 开服模式下生效；加入模式不启动本地服务端。已有大厅将复用，不会重复启动。",
+    "En": "Local/host modes only; Join mode never starts a local server. An existing lobby is reused, not started again."
   },
   "Settings.Minimize": {
     "Zh": "游戏启动后最小化登录器",
@@ -284,8 +284,8 @@
     "En": "The game is still running. Exit the game before stopping the server."
   },
   "Server.ConfirmStop": {
-    "Zh": "停止本登录器启动的服务端？其他已连接的玩家也会断开。",
-    "En": "Stop the server started by this launcher? Other connected players will also be disconnected."
+    "Zh": "停止本登录器管理的大厅和 CSOHLDS？其他正在联机的玩家也会断开连接。",
+    "En": "Stop this launcher’s lobby and CSOHLDS? Other connected players will also be disconnected."
   },
   "Error.SelectRoot": {
     "Zh": "请选择游戏目录，或将登录器放到包含 Bin 的游戏根目录。",
@@ -416,8 +416,8 @@
     "En": "The passwords do not match. Please confirm your password again."
   },
   "Connection.Unencrypted": {
-    "Zh": "该远程服务器未使用 TLS，游戏会通过未加密连接发送登录凭据。是否仍要连接？",
-    "En": "This remote server does not use TLS. The game will send your credentials over an unencrypted connection. Connect anyway?"
+    "Zh": "当前远程大厅未使用 TLS。登录或注册的账号密码将以未加密方式传输；建议使用可信局域网、加密 VPN 或正确配置 TLS。仍要继续吗？",
+    "En": "The remote lobby is not using TLS. Login or registration credentials will be sent unencrypted. Prefer a trusted LAN, encrypted VPN or correctly configured TLS. Continue?"
   },
   "Connection.UnencryptedTitle": {
     "Zh": "未加密的远程连接",
@@ -580,12 +580,12 @@
     "En": "This CSNZ server has no email or SMS password-recovery interface.\n\nContact the server administrator. The launcher will not edit the account database or bypass password verification."
   },
   "Dialog.Help": {
-    "Zh": "1. 若启用了自动启动，打开登录器会启动本地服务端；右上角 Ready 表示协议已响应。\n2. 使用已有游戏账号登录，或通过注册页创建真实服务端账号。\n3. 默认加载 Giga Break LE 原生补丁，可在武器模组中关闭。\n4. 密码记忆仅适用于当前 Windows 用户；切换服务器会清空凭据。\n5. 关闭窗口不会强行终止游戏或第三方启动的服务端。\n6. 右上角 CN / EN 可立即切换语言，下次启动会记住选择。\n\n登录器不包含游戏本体，不修改原游戏文件。首次创建角色仍在游戏内完成。",
-    "En": "1. If automatic startup is enabled, opening the launcher starts the local server. Ready means its protocol has responded.\n2. Sign in with an existing game account, or create an account on the selected server using Register.\n3. The Giga Break LE native patch is enabled by default. You can turn it off under Weapon Mods.\n4. Saved passwords are tied to the current Windows user. Changing servers clears credentials.\n5. Closing the launcher does not force-close the game or a server started by another program.\n6. Use CN / EN at the top right to switch languages instantly. Your choice is remembered.\n\nThe launcher does not include the game or modify its original files. First-time character creation still takes place in-game."
+    "Zh": "1. 设置中选择本机、局域网 / VPN 开服、互联网开服或加入服务器。Ready 仅表示大厅协议响应。\n2. 开服时，大厅连接地址用 127.0.0.1；对局通告地址填玩家可访问的局域网、VPN 或公网 IPv4。\n3. 默认大厅 TCP 30002、对局 UDP 27015；公网需自行映射相同端口并放行防火墙，无公网 IPv4 可用 VPN。\n4. 加入模式只准备本机资源，不启动本地服务端，不加载客户端武器 DLL。未知自定义资源拒绝覆盖，首次更新会询问并备份。\n5. TLS 必须与大厅一致；远程明文登录 / 注册会提示风险。切换服务器会清空已保存凭据。\n6. 安全停止正常关闭本登录器管理的 CSOHLDS 和大厅；其他玩家将断线，不强杀未知进程。\n\n不修改原游戏 EXE/DLL 或账户数据库；首次创建角色仍在游戏内完成。",
+    "En": "1. Choose Local, Host LAN/VPN, Host Internet, or Join in Settings. Ready only confirms the lobby protocol response.\n2. Hosts connect to the local lobby at 127.0.0.1 and advertise a LAN, VPN or public IPv4 reachable by players.\n3. Default ports: lobby TCP 30002 and game UDP 27015. Internet hosts must configure same-port forwarding/firewall rules; use a VPN without public IPv4.\n4. Join mode only prepares local assets, never starts local servers or loads client weapon DLLs. Unknown custom assets are refused; updates ask first and create backups.\n5. TLS must match the lobby. Remote plaintext login/registration requires a risk confirmation. Changing servers clears saved credentials.\n6. Safe stop gracefully closes owned CSOHLDS and the lobby; other players disconnect. Unknown processes are never force-killed.\n\nOriginal game EXE/DLL files and account databases are unchanged; first character creation remains in-game."
   },
   "Close.Confirm": {
-    "Zh": "是否同时安全停止由本登录器启动的服务端？\n\n是：保存并停止服务端，然后退出。\n否：保留服务端运行，仅退出登录器。",
-    "En": "Also stop the server started by this launcher safely?\n\nYes: save and stop the server, then exit.\nNo: leave the server running and exit only the launcher."
+    "Zh": "是否同时安全停止由本登录器启动的服务端？其他联机玩家也会断开连接。\n\n是：保存并停止服务端，然后退出。\n否：保留服务端运行，仅退出登录器。",
+    "En": "Also safely stop the servers started by this launcher? Other connected players will be disconnected.\n\nYes: save and stop the servers, then exit.\nNo: leave the servers running and exit only the launcher."
   },
   "Language.Switch": {
     "Zh": "切换为 English",
@@ -818,5 +818,185 @@
   "Plugins.ShortError": {
     "Zh": "状态异常 · 将鼠标悬停于此查看详情。",
     "En": "Status unavailable · Hover here for details."
+  },
+  "Weapons.UnknownIds": {
+    "Zh": "设置中存在未知武器 ID：{0}。",
+    "En": "Unknown weapon IDs in settings: {0}."
+  },
+  "Weapons.BundleFormat": {
+    "Zh": "原生武器组件清单、API 或资源校验不匹配。",
+    "En": "Native weapon manifest, API or asset validation failed."
+  },
+  "Weapons.DllLoad": {
+    "Zh": "无法验证原生组件 {0}（Windows 错误 {1}）。",
+    "En": "Cannot validate native component {0} (Windows error {1})."
+  },
+  "Weapons.ConfigFormat": {
+    "Zh": "服务端配置缺少 Room 或 DedicatedServerWhitelist，未做任何修改。",
+    "En": "The server configuration is missing Room or DedicatedServerWhitelist; nothing was changed."
+  },
+  "Weapons.UnknownAsset": {
+    "Zh": "发现未知或自定义资源包，已拒绝覆盖：{0}。请先人工合并资源。",
+    "En": "Refusing to overwrite an unknown or custom asset pack: {0}. Merge its assets manually first."
+  },
+  "Weapons.PrepareWhileRunning": {
+    "Zh": "准备武器资源前，请关闭游戏、CSOHLDS 和大厅服务端；不会强行停止外部进程。",
+    "En": "Close the game, CSOHLDS and lobby server before asset preparation. External processes will not be terminated."
+  },
+  "Weapons.PreparationChanged": {
+    "Zh": "准备期间配置或资源发生变化，已取消操作。",
+    "En": "Configuration or assets changed during preparation; the operation was canceled."
+  },
+  "Weapons.RestartRequired": {
+    "Zh": "请先关闭游戏并停止本登录器的本地服务端，再切换武器或安装目录。",
+    "En": "Close the game and stop the local server before changing weapons or the game folder."
+  },
+  "Weapons.NativeFailed": {
+    "Zh": "原生武器模块已拒绝启动或自动停用。请保留日志：{0}。",
+    "En": "Native weapon modules refused startup or disabled themselves. Keep this log: {0}."
+  },
+  "Weapons.PrepareFirst": {
+    "Zh": "尚未完成本地武器资源与专用服务端配置准备。",
+    "En": "Local weapon assets and dedicated server settings have not been prepared."
+  },
+  "Weapons.ExistingServer": {
+    "Zh": "已有 CSOHLDS 运行。本登录器不会向未知实例注入，请先正常关闭它。",
+    "En": "CSOHLDS is already running. This launcher will not inject an unknown instance; close it normally first."
+  },
+  "Weapons.StartFailed": {
+    "Zh": "本地 CSOHLDS 未能启动或提前退出。",
+    "En": "The local CSOHLDS failed to start or exited early."
+  },
+  "Weapons.ModuleTimeout": {
+    "Zh": "等待 CSOHLDS 引擎模块超时，未启动客户端。",
+    "En": "Timed out waiting for CSOHLDS engine modules; the client was not started."
+  },
+  "Weapons.WrongProcess": {
+    "Zh": "服务端进程路径不匹配，已拒绝加载武器模块。",
+    "En": "The server process path does not match; weapon loading was refused."
+  },
+  "Weapons.StopTimeout": {
+    "Zh": "CSOHLDS 尚未退出，已保留进程；请手动检查后再启动。",
+    "En": "CSOHLDS has not exited. The process was preserved; check it manually before restarting."
+  },
+  "Weapons.PreparePrompt": {
+    "Zh": "为 {0} 准备本地武器修复？将备份后更新 Data/fixtrike.nar，并把房间改为专用服务端模式，保留其他配置。不会修改游戏 DLL、账户或背包。未知自定义资源包不会被覆盖。",
+    "En": "Prepare local weapon repairs for {0}? After backing up, this updates Data/fixtrike.nar and switches rooms to dedicated-server mode, preserving other settings. Game DLLs, accounts and inventory remain unchanged. Unknown custom packs are never overwritten."
+  },
+  "Weapons.Prepared": {
+    "Zh": "武器资源准备完成。回退备份：{0}。",
+    "En": "Weapon assets prepared. Rollback backup: {0}."
+  },
+  "Weapons.StatusFailed": {
+    "Zh": "读取原生武器状态失败：{0}。",
+    "En": "Cannot read native weapon status: {0}."
+  },
+  "Weapons.Active": {
+    "Zh": "服务端正在运行 {0} 项模块 · 已完成地图资源预缓存",
+    "En": "Server running {0} modules - map assets precached"
+  },
+  "Weapons.WaitingMap": {
+    "Zh": "专用服务端挂接就绪 · 等待房间首次地图预缓存",
+    "En": "Dedicated server hooks ready - waiting for first map precache"
+  },
+  "Weapons.Idle": {
+    "Zh": "武器服务端尚未运行；勾选仅代表下次启动配置。",
+    "En": "Weapon server is not running; checkboxes configure the next launch only."
+  },
+  "Weapons.Selected": {
+    "Zh": "已选择 {0} / {1} 个修复模块，配置在下次启动服务端时生效。",
+    "En": "Selected {0} / {1} repair modules; changes apply on the next server start."
+  },
+  "Network.Mode": {
+    "Zh": "联机方式",
+    "En": "Multiplayer mode"
+  },
+  "Network.Mode.Local": {
+    "Zh": "本机游玩",
+    "En": "Local play"
+  },
+  "Network.Mode.Lan": {
+    "Zh": "我来开服 · 局域网 / VPN",
+    "En": "Host · LAN / VPN"
+  },
+  "Network.Mode.Internet": {
+    "Zh": "我来开服 · 互联网",
+    "En": "Host · Internet"
+  },
+  "Network.Mode.Join": {
+    "Zh": "加入其他人的服务器",
+    "En": "Join another server"
+  },
+  "Network.Advertised": {
+    "Zh": "向玩家通告的对局 IPv4",
+    "En": "Advertised game IPv4"
+  },
+  "Network.GamePort": {
+    "Zh": "对局 UDP 端口",
+    "En": "Game UDP port"
+  },
+  "Network.Detect": {
+    "Zh": "查看本机 IPv4",
+    "En": "Show local IPv4"
+  },
+  "Network.Copy": {
+    "Zh": "复制联机信息",
+    "En": "Copy connection info"
+  },
+  "Network.Help.Local": {
+    "Zh": "只在本机游玩。大厅地址填 127.0.0.1；其他玩家无法使用这个回环地址连接你。",
+    "En": "Local play only. Keep the lobby address at 127.0.0.1; other players cannot use this loopback address to reach you."
+  },
+  "Network.Help.Lan": {
+    "Zh": "开服者大厅地址仍填 127.0.0.1。对局 IPv4 填其他玩家可访问的本机局域网或 VPN 地址；多网卡时请自行选择。防火墙需允许大厅 TCP 端口和对局 UDP 端口。",
+    "En": "Keep the host lobby address at 127.0.0.1. Advertise this PC’s LAN or VPN IPv4 that players can reach; select the correct adapter if several exist. Allow the lobby TCP port and game UDP port in your firewall."
+  },
+  "Network.Help.Internet": {
+    "Zh": "开服者大厅地址仍填 127.0.0.1；对局 IPv4 填公网 IPv4。路由器须同端口映射大厅 TCP 和对局 UDP 到本机，并放行防火墙。无公网 IPv4 / CGNAT 请使用 VPN；本机及同局域网玩家还需要路由器支持 NAT 回环，或统一使用 VPN 地址。不会自动修改路由器或防火墙。",
+    "En": "Keep the host lobby address at 127.0.0.1 and advertise your public IPv4. Forward the lobby TCP and game UDP ports to this PC without changing port numbers, and allow them in the firewall. Use a VPN behind CGNAT. The host and LAN players need NAT loopback, or all players should use the VPN address. Router and firewall settings are not changed automatically."
+  },
+  "Network.Help.Join": {
+    "Zh": "大厅地址填开服者提供的局域网、公网或 VPN 地址，端口与 TLS 按对方配置填写。只准备本机所需资源，不启动本地大厅或 CSOHLDS，不向客户端加载武器 DLL；武器勾选由开服者决定。",
+    "En": "Enter the host’s LAN, public or VPN address, lobby port and TLS setting. Only local game assets are prepared: no local lobby/CSOHLDS starts and no weapon DLL is loaded into the client. The host controls weapon selection."
+  },
+  "Network.HostLoopback": {
+    "Zh": "开服模式的大厅连接地址请填 127.0.0.1；其他玩家使用的地址填写在“向玩家通告的对局 IPv4”。",
+    "En": "In host mode, set the lobby connection to 127.0.0.1. Put the player-facing address in Advertised game IPv4."
+  },
+  "Network.AddressInvalid": {
+    "Zh": "请输入玩家可访问的有效 IPv4；不能是 127.0.0.1、0.0.0.0、广播或组播地址。当前协议不支持对局域名或 IPv6。",
+    "En": "Enter a reachable unicast IPv4, not loopback, 0.0.0.0, broadcast or multicast. This game protocol does not support host domains or IPv6."
+  },
+  "Network.JoinNoServer": {
+    "Zh": "加入模式不会启动本地对局服务器。",
+    "En": "Join mode does not start a local game server."
+  },
+  "Network.JoinAssetsPrompt": {
+    "Zh": "准备加入远程服务器所需的本机资源？\n目录：{0}\n只更新已知版本的 Data/fixtrike.nar，并先备份；不修改本地服务端配置或数据库，不加载客户端武器 DLL。",
+    "En": "Prepare local assets for joining the remote server?\nFolder: {0}\nOnly a recognized Data/fixtrike.nar is backed up and updated. Local server configuration and databases are untouched; no client weapon DLL is loaded."
+  },
+  "Network.RemoteWeapons": {
+    "Zh": "加入远程服务器 · 武器功能由开服者管理",
+    "En": "Remote server · weapon features are managed by the host"
+  },
+  "Network.Addresses": {
+    "Zh": "本机 IPv4：{0}（多个地址时，请选择玩家能够访问的网卡地址）",
+    "En": "Local IPv4: {0} (with multiple addresses, choose the adapter reachable by players)"
+  },
+  "Network.SaveHostFirst": {
+    "Zh": "请先保存局域网或互联网开服配置。",
+    "En": "Save a LAN or Internet hosting configuration first."
+  },
+  "Network.Invitation": {
+    "Zh": "CSNZ 联机\n登录器联机方式：加入其他人的服务器\n大厅地址：{0}\n大厅 TCP 端口：{1}\n对局 UDP 端口：{2}\nTLS：{3}\n请使用相同版本客户端与本地登录器资源包。若公网不可达，请开服者检查端口映射、防火墙或改用 VPN。",
+    "En": "CSNZ multiplayer\nLauncher mode: Join another server\nLobby address: {0}\nLobby TCP port: {1}\nGame UDP port: {2}\nTLS: {3}\nUse the same client build and launcher asset bundle. If unreachable, the host must check port forwarding/firewall settings or use a VPN."
+  },
+  "Network.Copied": {
+    "Zh": "已复制联机信息；这不代表外网端口已经连通。",
+    "En": "Connection info copied; this does not verify Internet reachability."
+  },
+  "Network.DedicatedOnly": {
+    "Zh": "CSOHLDS 已启动 · 未启用武器修复模块",
+    "En": "CSOHLDS running · no weapon repair modules enabled"
   }
 }

@@ -16,7 +16,7 @@ if /i not "%VSCMD_ARG_TGT_ARCH%"=="x86" (
 )
 if not exist build\obj mkdir build\obj
 if not exist build\bin mkdir build\bin
-set "MH=..\native-mod-source\third_party\minhook"
+set "MH=..\weapon-mods\shared\third_party\minhook"
 cl /nologo /c /TC /O2 /MT /W3 /DWIN32 /Fo"build\obj\\" /I"%MH%\include" "%MH%\src\hook.c" "%MH%\src\buffer.c" "%MH%\src\trampoline.c" "%MH%\src\hde\hde32.c"
 if errorlevel 1 exit /b 1
 cl /nologo /c /std:c++17 /utf-8 /O2 /MT /W4 /GS /DUNICODE /D_UNICODE /Fo"build\obj\\" /I"%MH%\include" auth_bridge.cpp

@@ -1,4 +1,4 @@
-# CSNZ Desktop Launcher 1.0.8
+# CSNZ Desktop Launcher 1.1.1-local1
 
 [简体中文](README.md) | **English**
 
@@ -8,11 +8,13 @@ A standalone Windows x86 / .NET 8 WPF desktop application with a SaaS-style inte
 
 Use the **CN / EN** button in the top-right corner, to the left of the server address, to switch instantly between Simplified Chinese and English. The active language is highlighted in purple, and your selection is saved automatically. Translation covers login, registration, weapon mods, plugins, settings, help, confirmation dialogs, server status, and error messages. Standard buttons in the system folder picker still follow the Windows display language.
 
-Run `dist/CSNZ_Launcher_1.0.8/CSNZ登录器.exe`. The native patch and licenses are embedded, so you can also copy and run the EXE on its own; a separate `Native` folder is no longer required.
+Run `dist/CSNZ_Launcher_1.1.1-local1/CSNZ登录器.exe`. The native patch and licenses are embedded, so you can also copy and run the EXE on its own; a separate `Native` folder is no longer required.
 
-When the patch is enabled for the first time, the launcher extracts its embedded files to `%LOCALAPPDATA%\CSNZLauncher\Native\GigaBreakLE\0.7.4-native-r2`. Administrator privileges are not required. It does not search the working directory or game directory for unknown DLLs. If the cached files do not match, loading is refused; existing files are not overwritten. Patch runtime logs are also stored in this directory.
+Native weapon modules use a versioned, content-addressed cache under `%LOCALAPPDATA%\CSNZLauncher\Native\Weapons`. Unknown or mismatched cache files are never overwritten. Logs are in `shared/logs`. The old client GigaBreakLE 0.7.4 source and binary are removed from this build and retained only in an external local rollback backup.
 
-The game directory is no longer hard-coded. Place the EXE in the game root directory (the folder containing `Bin`) or in `Bin` itself. Detection uses the EXE's location, not the startup working directory. If you move it to another complete game installation, the adjacent installation takes priority; an explicitly selected external directory is still retained. If the game cannot be found, select its root directory under **Settings**. A `Bin` directory or `Bin/CSOLauncher.exe` path is also accepted. The launcher does not copy, overwrite, or modify original game files, server configuration, or startup scripts.
+This repository provides the latest launcher sources, complete native C++ components and locally compiled weapon DLLs. It excludes Skills, private design documents, account data, game NAR assets, and local EXE/ZIP packages embedding those assets. The standalone EXE instructions refer to a local build after preparing matching assets, not a new complete runnable package supplied by this repository.
+
+The game directory is no longer hard-coded. Place the EXE in the game root directory (the folder containing `Bin`) or in `Bin` itself. Detection uses the EXE's location, not the startup working directory. If you move it to another complete game installation, the adjacent installation takes priority; an explicitly selected external directory is still retained. If the game cannot be found, select its root directory under **Settings**. A `Bin` directory or `Bin/CSOLauncher.exe` path is also accepted. Original game EXE/DLL files and startup scripts remain unchanged. First-time weapon preparation asks before backing up and updating a known asset overlay and dedicated-server settings.
 
 - Opening the launcher automatically starts `game directory/Server/CSNZ_Server.exe` in the background, without a console window.
 - The top-right indicator shows a red dot when stopped, a spinner while starting, and a green dot when ready. A spinner remains visible during graceful shutdown, and the stopped state is shown only after the server exits. The Chinese UI retains the labels `Stop`, `Starting`, `Ready`, and `Stoping`. Readiness requires a real CSNZ protocol banner response, not just a running process.
@@ -20,11 +22,31 @@ The game directory is no longer hard-coded. Place the EXE in the game root direc
 - Graceful shutdown uses the original server's `shutdown` console command and waits for a normal exit. A timeout does not trigger a forced termination. Stopping the server is disabled while the game is running.
 - When closing the launcher, you can choose to gracefully stop the server it started or leave that server running. The launcher will not terminate a running game.
 - Automatic login is handled by the embedded `CSNZLauncherBridge.dll`, independently of the weapon-mod toggle. At the game's original login callback, it sends a standard `/login` authentication packet over the game's existing connection, rather than relying on the chat UI, which could discard the command. The server still validates the password normally; incorrect passwords are rejected. The `-disableauthui` option remains enabled, so credentials do not need to be entered again. First-time character creation for a new account still takes place in the game. The launcher does not log in through a separate session beforehand, grant duplicate login rewards, or rewrite the database.
-- The automatic-login component strictly checks the SHA-256 hashes of the current `CSOLauncher.exe` and `hw.dll`, and verifies the PE, function entry point, and current two-argument ABI at runtime. Unknown versions are refused; original game binaries are not overwritten. The component is embedded in the EXE and extracted to `%LOCALAPPDATA%\CSNZLauncher\Native\LauncherAuth\1.0.0`.
+- The automatic-login component strictly checks the SHA-256 hashes of the current `CSOLauncher.exe` and `hw.dll`, and verifies the PE, function entry point, and current two-argument ABI at runtime. Unknown versions are refused; original game binaries are not overwritten. The component is embedded in the EXE and extracted to `%LOCALAPPDATA%\CSNZLauncher\Native\LauncherAuth\1.0.0-package2`.
 - Registration uses the selected server's actual network protocol. Success is displayed only after an explicit success response. Duplicate accounts, invalid input, registration limits per IP, and database errors have separate messages. The launcher does not directly read or write the account database.
 - Usernames must contain 5–15 ASCII letters or digits. Passwords must contain 5–15 printable ASCII characters; spaces, double quotes, and backslashes are not supported. A registration password cannot consist entirely of digits. These are the field constraints of the current server authentication commands.
 - Remember username, remember password, show/hide password, password confirmation, clear saved credentials, server address/port/TLS settings, and minimize after launch are supported.
-- The `LE 0.7.4-native-r2` native patch is enabled by default and can be disabled under **Weapon Mods**. It strictly checks the current CSNZ0930 PE version and ABI. A mismatch prevents the patch from starting rather than applying offsets anyway. The old LEGuard must not run at the same time.
+- Weapon Mods now lists 12 repaired modules, selected by default. The unchanged Arbalest reference is excluded from the UI and payload; Space Arbalest remains. Selections apply on the next owned server launch. Selected and actually running counts are separate.
+
+## Hosting and joining (1.1.1-local1)
+
+Settings now separate Local, Host LAN/VPN, Host Internet, and Join modes. Hosts keep the lobby connection at `127.0.0.1`, but advertise a player-reachable LAN/VPN IPv4 or public IPv4 for the game. Players use Join mode with the host's lobby address, port and TLS setting. Join mode prepares only known client assets and skips local lobby/dedicated startup and weapon injection without clearing saved weapon preferences.
+
+Default ports are TCP 30002 for the lobby and UDP 27015 for the game. Internet hosting requires firewall permission and same-port router forwarding to the host. Use a VPN behind CGNAT. Host/LAN players need NAT loopback to use a public game address, or all players should use a VPN. No firewall, router or UPnP settings are changed automatically. The current game protocol requires a concrete advertised IPv4; host domains are not implemented upstream.
+
+CSOHLDS now receives `quit` through its own private hidden Windows console, not an ignored stdin pipe. PID/start-time/image and exclusive console membership are checked; the production stop path never force-kills the game server. The lobby still receives its normal `shutdown` command. Other connected players are warned to be disconnected on stopping.
+
+Real isolated CSOHLDS instances passed native startup, LAN/Internet AddServer address/port wire checks, and graceful exit with code 0. No real accounts/database were used. Second-PC gameplay, real Internet/NAT reachability and TLS handshakes were not validated in this round. Weapon behavior/core DLLs are unchanged; Arbalest is only an external reference archive. These are development checks, not new gameplay acceptance from the source upload.
+
+## Native Weapon Modules
+
+The complete runnable package remains a **local build**, not a new binary GitHub release. Its sources and locally compiled weapon DLLs are included in this repository. Giga Break/LE uses the repaired server implementation, not the removed client 0.7.4 patch. Twelve named selection DLLs share one native C++ core so hooks are not duplicated across variants.
+
+The launcher creates a local CSOHLDS dedicated server, verifies its build, loads the selected modules before the first map, and only then starts the client. Weapon DLLs are never loaded into the client or an unknown existing server. Join mode skips local weapon loading without clearing preferences; the remote host manages its own modules.
+
+First-time preparation asks before changing anything. Close the game and servers first. Configuration and known base assets are backed up under `CSNZLauncherBackups`; room mode becomes dedicated (1), localhost is added to the whitelist if needed, and the accepted asset overlay is installed. Unknown custom packs are refused. Accounts, inventories and original game binaries are untouched. The default dedicated UDP port is 27015 (editable in Settings).
+
+See `weapon-mods/README.md` for architecture and builds. Stop the game and owned server before changing selections. Public packaging is paused; `package.ps1 -LocalOnly` is only for private local archives.
 
 ## Plugins / Class Awakening
 
@@ -42,11 +64,15 @@ Configuration is stored in `%LOCALAPPDATA%\CSNZLauncher\settings.json`. The user
 
 Automatic-login credentials **no longer appear on the game's command line**. The launcher temporarily passes them to the game process it has just started, and the component clears its copy after sending the authentication request. Credentials are not written to plaintext files or logs. The same Windows user or an administrator may still be able to read process memory; DPAPI does not make secrets inaccessible to administrators. The original launcher's stdout/stderr are discarded rather than saved.
 
-For registration outside the game, unencrypted connections are allowed only for `localhost` or loopback IP addresses. Remote registration requires TLS and successful system validation of the certificate and hostname; there is no accept-any-certificate bypass. Remote non-TLS login through the original game first requires explicit confirmation. The server's TLS configuration and the launcher's setting must match. `ready` means a CSNZ banner was received; it does not mean the account is authenticated or the TLS certificate has been validated.
+Remote non-TLS login and registration require explicit confirmation of plaintext credential transmission. Prefer a trusted LAN, encrypted VPN or TLS. Direct registration API calls still reject remote plaintext by default. TLS registration still requires normal certificate/hostname validation; there is no accept-any-certificate bypass. The server's TLS configuration and the launcher's setting must match. `ready` means a CSNZ banner was received; it does not mean the account is authenticated or the TLS certificate has been validated.
 
 The server has no email/SMS password-recovery interface. **Forgot password** therefore directs users to the administrator. It does not pretend to send a recovery email or bypass account verification.
 
 ## Build
+
+The GitHub checkout includes the complete C#/XAML launcher, native authentication bridge, awakening implementation, weapon C++ sources, dependencies and licenses. `weapon-mods/build-native.cmd` and `build-tests.cmd` work independently without installed-game assets. Building the complete launcher currently requires a locally prepared `weapon-mods/local-assets/fixtrike.nar` matching `asset-manifest.json`; that game asset is not included. `build.ps1` rejects missing assets. An automatic public extraction/reconstruction workflow is not yet provided: do not use an empty NAR or disable validation.
+
+The complete local source delivery is `dist/CSNZ_Launcher_1.1.1-local1_Source/`, with a matching `_Source.zip`; neither is uploaded. See `src/README.md` for entry points. Run `pwsh -NoProfile -File .\package.ps1 -LocalOnly -SourceOnly` to create a private local source package only; existing deliveries are never overwritten. It includes installed-game assets needed to reproduce the local build and is not a public redistribution authorization. The public asset-packaging guard remains enabled.
 
 The .NET 8 SDK is required. Prebuilt embedded native components are included in the source package. Rebuilding them with `-RebuildNative` also requires Visual Studio 2022 C++ x86/x64 Build Tools.
 
@@ -54,9 +80,9 @@ The .NET 8 SDK is required. Prebuilt embedded native components are included in 
 pwsh -NoProfile -File .\build.ps1
 ```
 
-The self-contained output is written to `dist/CSNZ_Launcher_1.0.8`. Administrator privileges are not required by default at runtime. Launcher source is in `src/CSNZ.Launcher`; targeted tests are in `tests/Launcher.Smoke`. Those tests explicitly require an isolated server directory and must not use the production database.
+The self-contained output is written to `dist/CSNZ_Launcher_1.1.1-local1`. Administrator privileges are not required by default at runtime. Launcher source is in `src/CSNZ.Launcher`; targeted tests are in `tests/Launcher.Smoke`. Those tests explicitly require an isolated server directory and must not use the production database.
 
-`assets/Native/GigaBreakLE.dll` is this project's own native weapon patch. Its complete, rebuildable source is in `native-mod-source`. The automatic-login component's source is in `native-launcher-source` and reuses the bundled MinHook. Class Awakening source, its read-only observer, and the x86/x64 loader tools are in `native-awakening-source`. It uses the system `winsqlite3.dll`; MinHook and nlohmann/json licenses are included. Original game DLLs, asset archives, server executables, account data, and upstream reverse-engineering output are not included.
+Weapon sources and locally compiled DLLs now live in `weapon-mods`, separated by weapon name with shared family logic in `weapon-mods/shared`. The old `native-mod-source` was moved to an external local backup. Login and Class Awakening sources remain in their existing folders. Only reviewed engineering files are synchronized to GitHub; NAR assets, local runnable packages, databases and private configuration are excluded. Runtime requires neither Python nor Frida.
 
 ## Protocol References
 
@@ -69,6 +95,17 @@ Out-of-game registration is implemented as a small, independent client using onl
 Protocol sequence: raw ASCII banner `~SERVERCONNECTED\n` → optional TLS handshake → `0x55 | seq:u8 | bodyLen:u16LE | body`. A version packet is sent first (launcher version 67 / game version 26 / current client.dll timestamp). After a successful version response, the client sends UMsg 67, LobbyChat 1, and a NUL-terminated `/register` command, then waits for an explicit registration result in UMsg 67 / MsgBox 10. Receiving handles TCP fragmentation and enforces length limits. Unknown responses and timeouts are not treated as success.
 
 ## Verification
+
+### 1.1.0-local1 Native Weapon Candidate
+
+- Built 13 named DLLs and one shared core. Actual DLL loads/exports, 9013 balanced x86 callbacks and targeted native geometry/HUD/Bezier contracts passed.
+- Fifteen offline launcher checks passed for settings migration, bundle validation, backups, custom-pack protection, concurrent config edits and idempotent preparation. Thirty-seven bilingual/production-WPF checks passed.
+- The login bridge rebuilt with its new shared MinHook path; its authentication logic and Class Awakening were not rewritten.
+- **No new game/server was launched and no production config/database was changed. Native gameplay, the full live startup chain and multiplayer appearance still need manual revalidation.** Acceptance of the previous unified adapter does not automatically transfer to C++.
+- No commit, push or GitHub release was made.
+
+The following records describe older releases, not new live acceptance of these native modules.
+
 
 ### 1.0.8 Plugins and Native Class Awakening
 

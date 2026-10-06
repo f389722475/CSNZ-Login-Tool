@@ -9,12 +9,18 @@
     <RuntimeIdentifier>win-x86</RuntimeIdentifier>
     <AssemblyName>CSNZ登录器</AssemblyName>
     <RootNamespace>Csnz.Launcher</RootNamespace>
-    <Version>1.0.8</Version>
+    <Version>1.1.1-local1</Version>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>../../assets/cstrike-hd-v1.ico</ApplicationIcon>
     <DebugType>none</DebugType>
   </PropertyGroup>
   <ItemGroup><EmbeddedResource Include="../../assets/Native/*"><LogicalName>Native.%(Filename)%(Extension)</LogicalName></EmbeddedResource></ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="../../weapon-mods/shared/CSNZWeaponCore.dll;../../weapon-mods/*/*.dll;../../weapon-mods/catalog.json;../../weapon-mods/bundle-manifest.json;../../weapon-mods/asset-manifest.json;../../weapon-mods/local-assets/fixtrike.nar" Exclude="../../weapon-mods/shared/CSNZWeaponCore.dll">
+      <LogicalName>WeaponMods.%(Filename)%(Extension)</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="../../weapon-mods/shared/CSNZWeaponCore.dll" LogicalName="WeaponMods.CSNZWeaponCore.dll"/>
+  </ItemGroup>
   <ItemGroup><EmbeddedResource Include="Strings.json" LogicalName="Localization.Strings.json"/></ItemGroup>
   <ItemGroup><Resource Include="../../assets/cstrike-hd-v1.png" Link="Assets/cstrike-hd-v1.png"/></ItemGroup>
   <ItemGroup><Resource Include="../../assets/login-artwork.jpg" Link="Assets/login-artwork.jpg"/></ItemGroup>
