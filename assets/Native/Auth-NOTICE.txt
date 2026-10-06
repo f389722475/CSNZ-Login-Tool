@@ -1,8 +1,9 @@
-CSNZ Launcher Authentication Bridge 1.0.0 - packaging revision 2
+CSNZ Launcher Authentication Bridge 1.0.1 - compatibility revision 2
 
-The authentication bridge binary and protocol behavior are unchanged. This
-package gives its notice an independent name instead of sharing the retired
-GigaBreakLE weapon notice.
+Whole-file hashes and PE timestamps no longer need to match one copy of the
+game. The x86 image layout and actual login code checks remain in place.
+Original game EXE/DLL files are not rewritten. Normal /login protocol behavior
+and server-side credential validation are unchanged; this is not an auth bypass.
 
 MinHook v1.3.4: https://github.com/TsudaKageyu/minhook/tree/v1.3.4
 See MinHook-LICENSE.txt for MinHook and bundled disassembly component terms.

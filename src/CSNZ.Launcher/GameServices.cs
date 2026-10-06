@@ -194,7 +194,7 @@ public static class GameLauncher
         if (ProcessTools.IsRunning(exe, "CSOLauncher")) throw Error<InvalidOperationException>("Error.GameRunning");
         foreach (var p in Process.GetProcessesByName("CSNZ_LEGuard")) { p.Dispose(); throw Error<InvalidOperationException>("Error.LegacyPatch"); }
         AuthBridge.Validate(s.GameRoot);
-        if (Multiplayer.NeedsDedicated(s)) WeaponBundle.ValidateGame(s.GameRoot);
+        if (Multiplayer.NeedsDedicated(s)) WeaponBundle.ValidateGame(s.GameRoot, WeaponBundle.Selected(s).Length != 0);
     }
     public static async Task<Process> StartAsync(LauncherSettings settings, string account, string password, Action<UiText> progress, CancellationToken ct, NativeWeaponServer? weaponServer = null)
     {

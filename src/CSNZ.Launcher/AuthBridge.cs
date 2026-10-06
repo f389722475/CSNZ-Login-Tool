@@ -10,9 +10,9 @@ namespace Csnz.Launcher;
 
 internal static class AuthBridge
 {
-    // Packaging-only revision: the bridge binary is unchanged. A dedicated
-    // notice avoids colliding with the old weapon notice in the 1.0.0 cache.
-    private static readonly Lazy<string> Payload = new(() => NativeBundle.Extract("LauncherAuth", "1.0.0-package2",
+    // A new immutable cache identity for the compatibility bridge. Old caches
+    // remain untouched, including those used by an already running game.
+    private static readonly Lazy<string> Payload = new(() => NativeBundle.Extract("LauncherAuth", "1.0.1-compat2",
         new[] { "CSNZLauncherBridge.dll", "MinHook-LICENSE.txt", "Auth-NOTICE.txt" }));
     internal static string DllPath => Payload.Value;
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode)] private static extern IntPtr OpenEvent(uint access, bool inherit, string name);
@@ -21,14 +21,9 @@ internal static class AuthBridge
 
     internal static void Validate(string gameRoot)
     {
-        foreach (var (name, expected) in new[] {
-            ("CSOLauncher.exe", "8C2EDF9A2C64885E87E4622C63E8015B38B793C260F9E12DC602AD5A62397CFD"),
-            ("hw.dll", "52345CBE9B52F75B1C1DA70254C718D78F2EFF746AC8397D10251A9D134A32E9") })
-        {
-            using var file = File.OpenRead(Path.Combine(GamePaths.NormalizeRoot(gameRoot), "Bin", name));
-            if (Convert.ToHexString(SHA256.HashData(file)) != expected)
-                throw Error<InvalidOperationException>("Error.AuthVersion", name);
-        }
+        var bin = Path.Combine(GamePaths.NormalizeRoot(gameRoot), "Bin");
+        GameCompatibility.ValidateFile(Path.Combine(bin, "CSOLauncher.exe"), 811008);
+        GameCompatibility.ValidateFile(Path.Combine(bin, "hw.dll"), 73768960);
         _ = DllPath; // Verify/extract this EXE's own payload before starting a game.
     }
     internal static void Attach(Process game, string account, string password, CancellationToken ct)

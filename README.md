@@ -1,4 +1,4 @@
-# CSNZ 桌面登录器 1.1.1-local1
+# CSNZ 桌面登录器 1.1.2-local1
 
 **简体中文** | [English](README.en.md)
 
@@ -8,7 +8,7 @@
 
 右上角服务器地址左侧的 **CN / EN** 按钮可立即切换简体中文 / English，当前语言以紫色标示，选择自动保存。覆盖登录、注册、武器模组、插件、设置、帮助、确认对话框、服务端状态及错误反馈。系统文件夹选择窗口的通用按钮仍遵循 Windows 的显示语言。
 
-运行 `dist/CSNZ_Launcher_1.1.1-local1/CSNZ登录器.exe`。原生补丁及许可证已内嵌，单独复制此 EXE 也能使用，不再依赖旁边的 `Native` 文件夹。
+运行 `dist/CSNZ_Launcher_1.1.2-local1/CSNZ登录器.exe`。原生补丁及许可证已内嵌，单独复制此 EXE 也能使用，不再依赖旁边的 `Native` 文件夹。
 
 本仓库提供最新登录器源码、完整 C++ 原生组件及自编译武器 DLL；不包含 Skill、私人设计文档、账号数据、游戏 NAR 资源或内嵌这些资源的本地 EXE/ZIP。下述独立 EXE 使用说明针对自行准备匹配资源后生成的本地构建，不表示本仓库附带可直接下载的新版完整运行包。原生武器组件释放到 `%LOCALAPPDATA%\CSNZLauncher\Native\Weapons\版本-内容标识`，缓存不匹配时拒绝覆盖。核心日志在其中的 `shared/logs`。旧版客户端马神 0.7.4 已从当前源码树和内嵌交付移除，仅保留外部本地回退备份。
 
@@ -78,13 +78,13 @@ GitHub 版本包含 `src/CSNZ.Launcher`、`native-launcher-source`、`native-awa
 
 ### 完整本地交付
 
-完整本地源码目录为 `dist/CSNZ_Launcher_1.1.1-local1_Source/`，另有同名 `_Source.zip`。包含 `src/CSNZ.Launcher` 的 C#/XAML、自动登录桥、原生觉醒、全部武器组件源码及完整构建依赖；源码入口说明见 `src/README.md`。仅生成源码交付：`pwsh -NoProfile -File .\package.ps1 -LocalOnly -SourceOnly`，不会生成部署包或覆盖已有源码交付。此包含重建当前本地版本所需的游戏资源，不可据此公开再分发。
+完整本地源码目录为 `dist/CSNZ_Launcher_1.1.2-local1_Source/`，另有同名 `_Source.zip`。包含 `src/CSNZ.Launcher` 的 C#/XAML、自动登录桥、原生觉醒、全部武器组件源码及完整构建依赖；源码入口说明见 `src/README.md`。仅生成源码交付：`pwsh -NoProfile -File .\package.ps1 -LocalOnly -SourceOnly`，不会生成部署包或覆盖已有源码交付。此包含重建当前本地版本所需的游戏资源，不可据此公开再分发。
 
 需要 .NET 8 SDK；内嵌原生组件随源码包提供，如使用 `-RebuildNative` 重新编译，还需要 Visual Studio 2022 C++ x86/x64 Build Tools。
 
     pwsh -NoProfile -File .\build.ps1
 
-输出独立运行的 `dist/CSNZ_Launcher_1.1.1-local1` 目录。运行时默认不要求管理员权限。新登录器源码在 `src/CSNZ.Launcher`；定向测试在 `tests/Launcher.Smoke`（测试明确要求隔离服务端目录，不允许使用正式数据库）。
+输出独立运行的 `dist/CSNZ_Launcher_1.1.2-local1` 目录。运行时默认不要求管理员权限。新登录器源码在 `src/CSNZ.Launcher`；定向测试在 `tests/Launcher.Smoke`（测试明确要求隔离服务端目录，不允许使用正式数据库）。
 
 所有武器源码和自编译 DLL 统一收在 `weapon-mods`，按武器名称分目录；公共家族逻辑和 MinHook 在 `weapon-mods/shared`。旧 `native-mod-source` 已迁入外部回退备份。自动登录源码仍在 `native-launcher-source`，角色觉醒仍在 `native-awakening-source`。GitHub 同步仅包含已审查的工程文件，`.nar`、本地运行包、数据库和私人配置被排除。正常运行不依赖 Python/Frida。
 
@@ -100,7 +100,7 @@ GitHub 版本包含 `src/CSNZ.Launcher`、`native-launcher-source`、`native-awa
 
 ## 本次验证
 
-### 1.1.1-local1 关闭与联机配置
+### 1.1.2-local1 关闭与联机配置
 
 - 修复真实 CSOHLDS 控制台输入路径；隔离实例使用当前生产类启动、装载原生模块并正常退出，退出码为 0，没有强杀。
 - 已核对真实 CSOHLDS 的 LAN / 公网配置 `AddServer` 数据包中通告的 IPv4 和 UDP 端口；使用本机模拟大厅，不使用真实账号或打开数据库。
@@ -196,3 +196,7 @@ GitHub 版本包含 `src/CSNZ.Launcher`、`native-launcher-source`、`native-awa
 * DPAPI 加解密、绑定不匹配拒绝、配置无明文密码、输入约束、封包、无 shell 启动参数通过，共 17 项定向检查。证据在 `evidence/smoke-result.txt`，不随发布包公开。
 * 已实际打开桌面窗口，确认本地正式服务端自动进入 `ready`，随后由登录器正常停止；未使用用户账号登录，未启动游戏战斗测试。
 * 以上为 1.0.0 的历史验证范围；1.0.2 已增加实际游戏自动登录验证。**原生补丁战斗效果仍待用户验收**，不把账号登录或 DLL 加载当作完整战斗实测。
+
+## 1.1.2 兼容性调整
+
+原版 EXE/DLL 不会被覆盖。游戏文件不再要求整文件 SHA256 或时间戳一致：专用宿主检查 x86 PE，启用原生功能的引擎仍检查映像布局及运行时关键代码/虚表。未选择武器修复的开服不套用武器布局；加入模式不需要本地 CSOHLDS.exe。缺文件与布局不兼容分开提示。内嵌组件和资源包的完整性校验不变；不表示任意其他游戏版本均兼容。

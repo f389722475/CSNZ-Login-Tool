@@ -145,7 +145,7 @@ public partial class MainWindow : Window
     private async Task<bool> PrepareWeaponsAsync()
     {
         if (Multiplayer.IsHost(settings) && !Multiplayer.NeedsDedicated(settings)) return true;
-        if (Multiplayer.IsHost(settings)) WeaponBundle.ValidateGame(settings.GameRoot);
+        if (Multiplayer.IsHost(settings)) WeaponBundle.ValidateGame(settings.GameRoot, WeaponBundle.Selected(settings).Length != 0);
         var plan = await Task.Run(() => WeaponAssets.Inspect(settings), lifetime.Token);
         if (!plan.Required) return true;
         if (UiDialog.Show(this, Msg(Multiplayer.IsHost(settings) ? "Weapons.PreparePrompt" : "Network.JoinAssetsPrompt", settings.GameRoot), Msg("Nav.Mods"), MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return false;

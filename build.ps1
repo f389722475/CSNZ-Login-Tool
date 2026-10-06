@@ -25,7 +25,7 @@ if ($RebuildNative -or -not (Test-Path -LiteralPath (Join-Path $root 'assets\Nat
 }
 Push-Location -LiteralPath $root
 try {
-    $out = Join-Path $root 'dist\CSNZ_Launcher_1.1.1-local1'
+    $out = Join-Path $root 'dist\CSNZ_Launcher_1.1.2-local1'
     & dotnet publish (Join-Path $root 'src\CSNZ.Launcher\CSNZ.Launcher.csproj') -c Release --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -o $out --nologo
     if ($LASTEXITCODE -ne 0) { throw 'Launcher build failed.' }
     foreach ($name in @('README.md','README.en.md')) {

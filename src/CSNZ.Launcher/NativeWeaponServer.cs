@@ -29,7 +29,7 @@ public sealed class NativeWeaponServer : IDisposable
             if (!ReadyFor(settings)) throw Error<InvalidOperationException>("Weapons.RestartRequired");
             await RefreshAsync(ct); if (RuntimeStatus is not (2 or 3)) throw Error<InvalidOperationException>("Weapons.NativeFailed", LogPath); return;
         }
-        WeaponBundle.ValidateGame(settings.GameRoot); WeaponBundle.ValidatePayload();
+        WeaponBundle.ValidateGame(settings.GameRoot, selected.Length != 0); WeaponBundle.ValidatePayload();
         if (WeaponAssets.Inspect(settings).Required) throw Error<InvalidOperationException>("Weapons.PrepareFirst");
         if (ProcessTools.IsRunning(Path.Combine(settings.GameRoot, "Bin", "CSOHLDS.exe"), "CSOHLDS")) throw Error<InvalidOperationException>("Weapons.ExistingServer");
         if (settings.DedicatedWeaponPort is < 1 or > 65535 || settings.DedicatedWeaponPort == settings.Port) throw Error<InvalidOperationException>("Error.Port");

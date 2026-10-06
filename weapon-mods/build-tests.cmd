@@ -23,6 +23,19 @@ if not exist ..\..\shared\CSNZWeaponCore.dll goto done
 cl /nologo /std:c++17 /utf-8 /O2 /MT /EHsc /W4 /I"..\..\shared\include" ..\..\tests\dll_contract.cpp /link /MACHINE:X86 /DYNAMICBASE /NXCOMPAT /SAFESEH /OUT:dll_contract.exe
 if errorlevel 1 exit /b 1
 dll_contract.exe "%~dp0."
+if errorlevel 1 exit /b 1
+rem Optional read-only source game root; copies are confined to build/tests.
+if "%~1"=="" goto done
+if not exist "%~1\Bin\mp.dll" exit /b 1
+if not exist "%~1\Bin\hw.dll" exit /b 1
+if not exist compatibility mkdir compatibility
+cl /nologo /std:c++17 /utf-8 /O2 /MT /EHa /W4 /arch:SSE2 /I"..\..\shared\include" ..\..\tests\compatibility.cpp ..\..\shared\src\profile.cpp ..\..\shared\src\profile_data.cpp ..\..\shared\src\platform.cpp /link /MACHINE:X86 /DYNAMICBASE /NXCOMPAT /SAFESEH /OUT:compatibility\CSOHLDS.exe
+if errorlevel 1 exit /b 1
+copy /Y "%~1\Bin\mp.dll" compatibility\mp.dll >nul
+if errorlevel 1 exit /b 1
+copy /Y "%~1\Bin\hw.dll" compatibility\hw.dll >nul
+if errorlevel 1 exit /b 1
+compatibility\CSOHLDS.exe
 :done
 set "RESULT=%ERRORLEVEL%"
 popd

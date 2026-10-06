@@ -1,4 +1,4 @@
-# CSNZ Desktop Launcher 1.1.1-local1
+# CSNZ Desktop Launcher 1.1.2-local1
 
 [简体中文](README.md) | **English**
 
@@ -8,7 +8,7 @@ A standalone Windows x86 / .NET 8 WPF desktop application with a SaaS-style inte
 
 Use the **CN / EN** button in the top-right corner, to the left of the server address, to switch instantly between Simplified Chinese and English. The active language is highlighted in purple, and your selection is saved automatically. Translation covers login, registration, weapon mods, plugins, settings, help, confirmation dialogs, server status, and error messages. Standard buttons in the system folder picker still follow the Windows display language.
 
-Run `dist/CSNZ_Launcher_1.1.1-local1/CSNZ登录器.exe`. The native patch and licenses are embedded, so you can also copy and run the EXE on its own; a separate `Native` folder is no longer required.
+Run `dist/CSNZ_Launcher_1.1.2-local1/CSNZ登录器.exe`. The native patch and licenses are embedded, so you can also copy and run the EXE on its own; a separate `Native` folder is no longer required.
 
 Native weapon modules use a versioned, content-addressed cache under `%LOCALAPPDATA%\CSNZLauncher\Native\Weapons`. Unknown or mismatched cache files are never overwritten. Logs are in `shared/logs`. The old client GigaBreakLE 0.7.4 source and binary are removed from this build and retained only in an external local rollback backup.
 
@@ -28,7 +28,7 @@ The game directory is no longer hard-coded. Place the EXE in the game root direc
 - Remember username, remember password, show/hide password, password confirmation, clear saved credentials, server address/port/TLS settings, and minimize after launch are supported.
 - Weapon Mods now lists 12 repaired modules, selected by default. The unchanged Arbalest reference is excluded from the UI and payload; Space Arbalest remains. Selections apply on the next owned server launch. Selected and actually running counts are separate.
 
-## Hosting and joining (1.1.1-local1)
+## Hosting and joining (1.1.2-local1)
 
 Settings now separate Local, Host LAN/VPN, Host Internet, and Join modes. Hosts keep the lobby connection at `127.0.0.1`, but advertise a player-reachable LAN/VPN IPv4 or public IPv4 for the game. Players use Join mode with the host's lobby address, port and TLS setting. Join mode prepares only known client assets and skips local lobby/dedicated startup and weapon injection without clearing saved weapon preferences.
 
@@ -72,7 +72,7 @@ The server has no email/SMS password-recovery interface. **Forgot password** the
 
 The GitHub checkout includes the complete C#/XAML launcher, native authentication bridge, awakening implementation, weapon C++ sources, dependencies and licenses. `weapon-mods/build-native.cmd` and `build-tests.cmd` work independently without installed-game assets. Building the complete launcher currently requires a locally prepared `weapon-mods/local-assets/fixtrike.nar` matching `asset-manifest.json`; that game asset is not included. `build.ps1` rejects missing assets. An automatic public extraction/reconstruction workflow is not yet provided: do not use an empty NAR or disable validation.
 
-The complete local source delivery is `dist/CSNZ_Launcher_1.1.1-local1_Source/`, with a matching `_Source.zip`; neither is uploaded. See `src/README.md` for entry points. Run `pwsh -NoProfile -File .\package.ps1 -LocalOnly -SourceOnly` to create a private local source package only; existing deliveries are never overwritten. It includes installed-game assets needed to reproduce the local build and is not a public redistribution authorization. The public asset-packaging guard remains enabled.
+The complete local source delivery is `dist/CSNZ_Launcher_1.1.2-local1_Source/`, with a matching `_Source.zip`; neither is uploaded. See `src/README.md` for entry points. Run `pwsh -NoProfile -File .\package.ps1 -LocalOnly -SourceOnly` to create a private local source package only; existing deliveries are never overwritten. It includes installed-game assets needed to reproduce the local build and is not a public redistribution authorization. The public asset-packaging guard remains enabled.
 
 The .NET 8 SDK is required. Prebuilt embedded native components are included in the source package. Rebuilding them with `-RebuildNative` also requires Visual Studio 2022 C++ x86/x64 Build Tools.
 
@@ -80,7 +80,7 @@ The .NET 8 SDK is required. Prebuilt embedded native components are included in 
 pwsh -NoProfile -File .\build.ps1
 ```
 
-The self-contained output is written to `dist/CSNZ_Launcher_1.1.1-local1`. Administrator privileges are not required by default at runtime. Launcher source is in `src/CSNZ.Launcher`; targeted tests are in `tests/Launcher.Smoke`. Those tests explicitly require an isolated server directory and must not use the production database.
+The self-contained output is written to `dist/CSNZ_Launcher_1.1.2-local1`. Administrator privileges are not required by default at runtime. Launcher source is in `src/CSNZ.Launcher`; targeted tests are in `tests/Launcher.Smoke`. Those tests explicitly require an isolated server directory and must not use the production database.
 
 Weapon sources and locally compiled DLLs now live in `weapon-mods`, separated by weapon name with shared family logic in `weapon-mods/shared`. The old `native-mod-source` was moved to an external local backup. Login and Class Awakening sources remain in their existing folders. Only reviewed engineering files are synchronized to GitHub; NAR assets, local runnable packages, databases and private configuration are excluded. Runtime requires neither Python nor Frida.
 
@@ -182,3 +182,7 @@ The following records describe older releases, not new live acceptance of these 
 - DPAPI encryption/decryption, binding-mismatch rejection, absence of plaintext passwords in configuration, input constraints, packet construction, and launch arguments without a shell passed a total of 17 targeted checks. Evidence is in `evidence/smoke-result.txt` and is not distributed in release packages.
 - The desktop window was opened and the local production server was confirmed to reach `ready` automatically, then stopped normally by the launcher. No user account was used to log in, and no gameplay test was started.
 - These are the historical verification boundaries for 1.0.0. Version 1.0.2 added actual in-game automatic-login checks. **The native patch's combat behavior still requires user acceptance**; account login or DLL loading is not treated as a complete combat test.
+
+## 1.1.2 compatibility update
+
+Original game EXE/DLL files are never overwritten. Whole-file SHA256 and timestamp equality are no longer required: dedicated hosts need an x86 PE; native engine features retain image-layout and live code/vtable guards. Hosting without weapon repairs skips weapon-layout checks; joining does not require local CSOHLDS.exe. Missing files and incompatible layouts have separate messages. Embedded payload and asset integrity checks remain unchanged; arbitrary other game versions are not guaranteed compatible.

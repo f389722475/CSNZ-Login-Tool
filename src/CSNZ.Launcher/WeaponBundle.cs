@@ -96,15 +96,13 @@ public static class WeaponBundle
         ValidateDll(CoreDll, ["CSNZWeapons_Api", "CSNZWeapons_Register", "CSNZWeapons_Start", "CSNZWeapons_Stop", "CSNZWeapons_Status", "CSNZWeapons_IsClean"], "CSNZWeapons_Api");
         foreach (var weapon in Catalog.Weapons) ValidateDll(Dll(weapon), ["CSNZWeapon_Api", "CSNZWeapon_Id", "CSNZWeapon_Start"], "CSNZWeapon_Api", weapon.Id);
     }
-    public static void ValidateGame(string gameRoot)
+    public static void ValidateGame(string gameRoot, bool nativeWeapons = true)
     {
-        foreach (var (name, hash) in new[] {
-            ("CSOHLDS.exe", "a2ce29976618699a408da0b21d97ed9eddf220d221254ab4265d90549ac26c6f"),
-            ("mp.dll", "9680d98c306ef3c1c606e1b22c1bd0123ca861bd0cfb86b25b4da009327e0686"),
-            ("hw.dll", "52345cbe9b52f75b1c1da70254c718d78f2eff746ac8397d10251a9d134a32e9") })
-        {
-            var path = Path.Combine(GamePaths.NormalizeRoot(gameRoot), "Bin", name);
-            if (!File.Exists(path) || Hash(path) != hash) throw Error<InvalidDataException>("Native.BuildMismatch", name);
-        }
+        var bin = Path.Combine(GamePaths.NormalizeRoot(gameRoot), "Bin");
+        // CSOHLDS is only the dedicated host; weapon hooks target mp/hw, not
+        // fixed addresses in this EXE. Do not pin it to one maintainer's hash.
+        GameCompatibility.ValidateFile(Path.Combine(bin, "CSOHLDS.exe"));
+        GameCompatibility.ValidateFile(Path.Combine(bin, "mp.dll"), nativeWeapons ? 38477824 : null);
+        GameCompatibility.ValidateFile(Path.Combine(bin, "hw.dll"), nativeWeapons ? 73768960 : null);
     }
 }

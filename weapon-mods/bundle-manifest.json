@@ -1,73 +1,73 @@
-{
-  "schema": 1,
-  "version": "1.0.0-native-local1",
-  "architecture": "x86",
-  "implementation": "native-cpp",
-  "files": [
-    {
-      "path": "shared/CSNZWeaponCore.dll",
-      "bytes": 1456640,
-      "sha256": "666f2bd97b1bdffd5cbd88597836cdba0605c9092742a4764cba25cee11ce975"
-    },
-    {
-      "path": "GigaBreak/GigaBreak.dll",
-      "bytes": 84480,
-      "sha256": "fb6ba32e713e296fcef1ace4e0f9f82d71b2f00c9cff72044c1cc559d31d1701"
-    },
-    {
-      "path": "GigaBreakLE/GigaBreakLE.dll",
-      "bytes": 84480,
-      "sha256": "1ec6b76b40f02bd560f2a9bafbc95b622a6c1bd6a626c5cc83b20efcfd9f99a0"
-    },
-    {
-      "path": "Lycaon/Lycaon.dll",
-      "bytes": 84480,
-      "sha256": "a939890f5aae7752ad07d7d31001a338c127ffc39864e1749954b8004e00d46b"
-    },
-    {
-      "path": "Brionac/Brionac.dll",
-      "bytes": 84480,
-      "sha256": "e215cb23fcc49ec31c8eb8503eac84fad5403d99105dc72bb359df97a39ecb4e"
-    },
-    {
-      "path": "LuminousBrionac/LuminousBrionac.dll",
-      "bytes": 84480,
-      "sha256": "7aff556b8e43c3da57f17458dbe21bcb670ad0fda45ad29c11d8c619552dd4ec"
-    },
-    {
-      "path": "LuminousBrionacLE/LuminousBrionacLE.dll",
-      "bytes": 84480,
-      "sha256": "ac187c62f54e8a5a6c4c62389dcdbd377eda2805be1cb241512b9e29555fc7d5"
-    },
-    {
-      "path": "SpaceArbalest/SpaceArbalest.dll",
-      "bytes": 84480,
-      "sha256": "f2f466c4f52e37fe1326e121f25ae267ce7214b9719fa1ff9b49085090fa610b"
-    },
-    {
-      "path": "GravityRepulsor/GravityRepulsor.dll",
-      "bytes": 84480,
-      "sha256": "7fc043582e10fb9ec6660b6cc3b40b78b4b12f450ae00aeebbb64f10418d1f82"
-    },
-    {
-      "path": "AbyssRepulsor/AbyssRepulsor.dll",
-      "bytes": 84480,
-      "sha256": "1f411ddce059e0c53207ceeb9957a98650d7ac6611e8bb6a18fb47f300d2037a"
-    },
-    {
-      "path": "Naberius/Naberius.dll",
-      "bytes": 84480,
-      "sha256": "c2816dbcb721f3a942d013569a9aeda8b62e1002dde9a2a61b25dcf29bd7b768"
-    },
-    {
-      "path": "ArcaneNaberius/ArcaneNaberius.dll",
-      "bytes": 84480,
-      "sha256": "339f4adedc7e0ddc74140109fc240e04e16ecd991e55fa63f75a0c7ec500cdc6"
-    },
-    {
-      "path": "FrostViper/FrostViper.dll",
-      "bytes": 84480,
-      "sha256": "be633aaa8b0860f0282d4f72646d2578a7a9b0186e445db00482e07933ed255f"
-    }
-  ]
+﻿{
+    "schema":  1,
+    "version":  "1.0.0-native-local1",
+    "architecture":  "x86",
+    "implementation":  "native-cpp",
+    "files":  [
+                  {
+                      "path":  "shared/CSNZWeaponCore.dll",
+                      "bytes":  1449984,
+                      "sha256":  "2e98e4f761b103176c7bec2be1c81cffa1fd1e49182c51c5affa2567aff98aa0"
+                  },
+                  {
+                      "path":  "GigaBreak/GigaBreak.dll",
+                      "bytes":  84480,
+                      "sha256":  "1e3ac91011777682db3beee9f70e69ffef3382b8ab2fc97a8f6a10f3c9c5367c"
+                  },
+                  {
+                      "path":  "GigaBreakLE/GigaBreakLE.dll",
+                      "bytes":  84480,
+                      "sha256":  "e9e41327dcbd897d619ef59aed09d1cb383a987f1b042522079d1f2db5028781"
+                  },
+                  {
+                      "path":  "Lycaon/Lycaon.dll",
+                      "bytes":  84480,
+                      "sha256":  "d5a3724b6fcc2780b18cd85382e9477854c9b47234aa5a26b670bc1f7d0646fd"
+                  },
+                  {
+                      "path":  "Brionac/Brionac.dll",
+                      "bytes":  84480,
+                      "sha256":  "477e2254b5c72eb878f6b5227c52cc6b92e02cd6bfae9400de8430f57d83c058"
+                  },
+                  {
+                      "path":  "LuminousBrionac/LuminousBrionac.dll",
+                      "bytes":  84480,
+                      "sha256":  "ae1fcad62f06a5b6ab2b1432f8a406599f4c37bdb4eabe463860cd590a1467ba"
+                  },
+                  {
+                      "path":  "LuminousBrionacLE/LuminousBrionacLE.dll",
+                      "bytes":  84480,
+                      "sha256":  "861a56dca7afba2ef6c441df3f088fc06d66972a21b329ed7dc692b833fe8b52"
+                  },
+                  {
+                      "path":  "SpaceArbalest/SpaceArbalest.dll",
+                      "bytes":  84480,
+                      "sha256":  "a793bef46fe3a04e5b5f6d12514231aa5705c3fe10122863f577947cc253f691"
+                  },
+                  {
+                      "path":  "GravityRepulsor/GravityRepulsor.dll",
+                      "bytes":  84480,
+                      "sha256":  "15d0c83c696ec02f437600c85938bc8479972b7f9d4c0a0781d9abb7f863da55"
+                  },
+                  {
+                      "path":  "AbyssRepulsor/AbyssRepulsor.dll",
+                      "bytes":  84480,
+                      "sha256":  "c3ef424ecc5619ebff5313dba7ab0caf43c85656d23311fbf7b5bc69eb0f33d7"
+                  },
+                  {
+                      "path":  "Naberius/Naberius.dll",
+                      "bytes":  84480,
+                      "sha256":  "1a136247f2afaee3f6b99bb2fa66ffbf3e8df19fd9f4510fed32d84d83f2c5ac"
+                  },
+                  {
+                      "path":  "ArcaneNaberius/ArcaneNaberius.dll",
+                      "bytes":  84480,
+                      "sha256":  "1668208907266ccc318412574ed5e6ec4c8ca2c7b2a94e39ae5df88360719a1a"
+                  },
+                  {
+                      "path":  "FrostViper/FrostViper.dll",
+                      "bytes":  84480,
+                      "sha256":  "41d030a00450a00e014d76d0cbf367c5e5436bd2ea6cd8a67bb490ccbed7884a"
+                  }
+              ]
 }

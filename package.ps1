@@ -4,17 +4,17 @@ if (-not $LocalOnly) { throw 'Public packaging is paused. This candidate embeds 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 $root = [IO.Path]::GetFullPath($PSScriptRoot)
 $dist = Join-Path $root 'dist'
-$release = Join-Path $dist 'CSNZ_Launcher_1.1.1-local1'
+$release = Join-Path $dist 'CSNZ_Launcher_1.1.2-local1'
 if (-not (Test-Path -LiteralPath (Join-Path $release 'CSNZ登录器.exe'))) { throw 'Run build.ps1 first.' }
-$sourceZip = Join-Path $dist 'CSNZ_Launcher_1.1.1-local1_Source.zip'
-$deployZip = Join-Path $dist 'CSNZ_Launcher_1.1.1-local1_Deploy.zip'
+$sourceZip = Join-Path $dist 'CSNZ_Launcher_1.1.2-local1_Source.zip'
+$deployZip = Join-Path $dist 'CSNZ_Launcher_1.1.2-local1_Deploy.zip'
 $archives = @($sourceZip)
 if (-not $SourceOnly) { $archives += $deployZip }
 foreach ($zip in $archives) { if (Test-Path -LiteralPath $zip) { throw ('Refusing to overwrite: '+$zip) } }
 $stage = Join-Path $root ('evidence\package-'+[DateTime]::Now.ToString('yyyyMMdd-HHmmss'))
-$sourceStage = Join-Path $dist 'CSNZ_Launcher_1.1.1-local1_Source'
+$sourceStage = Join-Path $dist 'CSNZ_Launcher_1.1.2-local1_Source'
 if (Test-Path -LiteralPath $sourceStage) { throw ('Refusing to overwrite source directory: '+$sourceStage) }
-$deployStage = Join-Path $stage 'CSNZ_Launcher_1.1.1-local1'
+$deployStage = Join-Path $stage 'CSNZ_Launcher_1.1.2-local1'
 [IO.Directory]::CreateDirectory($sourceStage) | Out-Null
 if (-not $SourceOnly) { [IO.Directory]::CreateDirectory((Join-Path $deployStage 'licenses')) | Out-Null }
 # Explicit roots and extension allowlist: no research repos, account settings,

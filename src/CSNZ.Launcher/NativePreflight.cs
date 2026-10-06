@@ -28,7 +28,8 @@ internal static class NativePreflight
             WeaponBundle.ValidatePayload();
             AuthBridge.Validate(Path.GetFullPath(gameRoot));
             JsonSerializer.Serialize(report, new { passed = true, launcherVersion = Version, coreDll = WeaponBundle.CoreDll, weaponModules = WeaponBundle.Catalog.Weapons.Length,
-                serverOnly = true, hashesAndExportsValidated = true, gameStarted = false, settingsRead = false, gameFilesChanged = false, nativeGameplayValidated = false });
+                serverOnly = true, gamePeLayoutValidated = true, gameWholeFileHashesRequired = false, payloadHashesAndExportsValidated = true,
+                runtimeCodeAndVtablesValidated = false, gameStarted = false, settingsRead = false, gameFilesChanged = false, nativeGameplayValidated = false });
             return 0;
         }
         catch (Exception error)

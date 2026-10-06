@@ -9,7 +9,7 @@
     <RuntimeIdentifier>win-x86</RuntimeIdentifier>
     <AssemblyName>CSNZ登录器</AssemblyName>
     <RootNamespace>Csnz.Launcher</RootNamespace>
-    <Version>1.1.1-local1</Version>
+    <Version>1.1.2-local1</Version>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>../../assets/cstrike-hd-v1.ico</ApplicationIcon>
     <DebugType>none</DebugType>

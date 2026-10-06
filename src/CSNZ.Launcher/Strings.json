@@ -740,8 +740,16 @@
     "En": "{0} (Windows {1})"
   },
   "Native.BuildMismatch": {
-    "Zh": "{0} 版本与 Giga Break LE 原生补丁不匹配，已阻止启动。请关闭补丁或使用匹配版本。",
-    "En": "{0} does not match the Giga Break LE native patch. Launch was blocked. Disable the patch or use a matching game build."
+    "Zh": "{0} 的映像布局与原生功能不兼容，已阻止加载。请使用兼容的 0930 游戏版本；此检查不要求整文件哈希一致。",
+    "En": "The image layout of {0} is incompatible with the native feature. Loading was blocked. Use a compatible 0930 game build; identical whole-file hashes are not required."
+  },
+  "Native.GameFileMissing": {
+    "Zh": "缺少游戏文件：{0}。请确认游戏目录及文件是否完整；只加入他人的服务器不需要本地 CSOHLDS.exe。",
+    "En": "Game file missing: {0}. Check the selected directory and installation. Joining another server does not require a local CSOHLDS.exe."
+  },
+  "Native.GameFormat": {
+    "Zh": "游戏文件不是有效的 32 位 Windows EXE/DLL：{0}。请检查文件是否损坏或选错版本。",
+    "En": "Game file is not a valid 32-bit Windows EXE/DLL: {0}. Check for corruption or an incorrect architecture."
   },
   "Native.Missing": {
     "Zh": "原生补丁文件不存在：{0}。请重新启动登录器以释放内嵌补丁。",

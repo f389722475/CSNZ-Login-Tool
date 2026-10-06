@@ -20,7 +20,7 @@ Check(WeaponBundle.Selected(new LauncherSettings { EnabledWeaponIds = [537, 591,
 bool denied = false; try { WeaponBundle.Selected(new LauncherSettings { EnabledWeaponIds = [999999] }); } catch (InvalidDataException) { denied = true; }
 Check(denied, "unknown ID fails closed");
 WeaponBundle.ValidateGame(args[1]); WeaponBundle.ValidatePayload();
-Check(true, "current CSOHLDS/mp/hw hashes and all 13 embedded x86 DLL exports");
+Check(true, "current CSOHLDS/mp/hw PE compatibility and all 13 embedded x86 DLL exports");
 using (var manager = new NativeWeaponServer()) Check(!manager.ReadyFor(subset) && manager.LoadedCount == 0, "selected is not reported as running");
 var settings = new LauncherSettings { GameRoot = root, EnabledWeaponIds = [726] };
 var config = Path.Combine(root, "Server", "ServerConfig.json"); var asset = Path.Combine(root, "Data", "fixtrike.nar");

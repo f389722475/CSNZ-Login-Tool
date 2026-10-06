@@ -23,13 +23,13 @@ bool executable(const void* address) {
         !(info.Protect & (PAGE_GUARD | PAGE_NOACCESS)) &&
         (info.Protect & (PAGE_EXECUTE | PAGE_EXECUTE_READ | PAGE_EXECUTE_READWRITE | PAGE_EXECUTE_WRITECOPY));
 }
-bool build(BYTE* base, DWORD timestamp, DWORD imageSize) {
+bool build(BYTE* base, DWORD imageSize) {
     if (!base) return false;
     auto dos = reinterpret_cast<IMAGE_DOS_HEADER*>(base);
     if (dos->e_magic != IMAGE_DOS_SIGNATURE || dos->e_lfanew < 64 || dos->e_lfanew > 0x1000) return false;
     auto pe = reinterpret_cast<IMAGE_NT_HEADERS32*>(base + dos->e_lfanew);
     return pe->Signature == IMAGE_NT_SIGNATURE && pe->FileHeader.Machine == IMAGE_FILE_MACHINE_I386 &&
-        pe->FileHeader.TimeDateStamp == timestamp && pe->OptionalHeader.SizeOfImage == imageSize;
+        pe->OptionalHeader.Magic == IMAGE_NT_OPTIONAL_HDR32_MAGIC && pe->OptionalHeader.SizeOfImage == imageSize;
 }
 bool validCredentials(const Credentials& value) {
     if (value.size != sizeof(Credentials)) return false;
@@ -48,7 +48,7 @@ bool validCredentials(const Credentials& value) {
 bool engineMatches(BYTE* engine) {
     const BYTE prologue[] = {0x55, 0x8b, 0xec, 0x6a, 0xff, 0x68};
     const BYTE loginReturn[] = {0x8b, 0xe5, 0x5d, 0xc2, 0x08, 0x00};
-    return build(engine, 1783989493u, 73768960u) &&
+    return build(engine, 73768960u) &&
         !memcmp(engine + 0xa53e50, prologue, sizeof(prologue)) &&
         !memcmp(engine + 0x9807b8, loginReturn, sizeof(loginReturn));
 }
@@ -92,7 +92,7 @@ extern "C" DWORD WINAPI CSNZAuth_Start(void* input) {
     if (InterlockedCompareExchange(&phase, 0, 0) != 0) return ERROR_ALREADY_INITIALIZED;
     launcher = reinterpret_cast<BYTE*>(GetModuleHandleW(nullptr));
     const BYTE entry[] = {0x55, 0x8b, 0xec, 0x81, 0xec, 0x04, 0x02, 0, 0};
-    if (!build(launcher, 1790721054u, 811008u) || memcmp(launcher + 0x5eb0, entry, sizeof(entry))) return ERROR_REVISION_MISMATCH;
+    if (!build(launcher, 811008u) || memcmp(launcher + 0x5eb0, entry, sizeof(entry))) return ERROR_REVISION_MISMATCH;
     __try {
         if (!input || !validCredentials(*static_cast<Credentials*>(input))) return ERROR_INVALID_DATA;
         credentials = *static_cast<Credentials*>(input);
