@@ -4,6 +4,8 @@
 
 A standalone Windows x86 / .NET 8 WPF desktop application with a SaaS-style interface. No BAT files, Python, Frida, browser, or separate .NET installation is required to use it.
 
+## Note: In the #update channel on Discord, smilex has updated the game version. If you’re having trouble launching the launcher, it’s because the versions don’t match. The launcher itself only supports version 0930 of CSNZ. If you’re using version 0722, you’ll need to modify the source code yourself to make it compatible with other versions. Please don’t contact me regarding game version issues.
+
 ## Usage
 
 Use the **CN / EN** button in the top-right corner, to the left of the server address, to switch instantly between Simplified Chinese and English. The active language is highlighted in purple, and your selection is saved automatically. Translation covers login, registration, weapon mods, plugins, settings, help, confirmation dialogs, server status, and error messages. Standard buttons in the system folder picker still follow the Windows display language.
